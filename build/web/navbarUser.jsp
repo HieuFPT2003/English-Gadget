@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <style>
+       <style>
               .nav{
                 display: flex;
                 justify-content: space-between;
@@ -74,10 +74,48 @@
                 border: none;
                 background-color: transparent;
             }
+            .navLeft{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+                transition: all 0.3s ease-in-out;
+            }
+            .navLi{
+                padding: 12px 8px;
+                padding-left: 20px;
+            }
+            .navLi:hover{
+                background-color: #198754;
+                color: white;
+            }
+            .navLink{
+                text-decoration: none;
+                list-style: none;
+                color: black;
+            }
+            .navLink:hover{
+                color: white;
+            }
+            .leftTop{
+                list-style: none;
+                padding: 0;
+            }
+            .leftBotton{
+                display: flex;
+                justify-content: flex-end;
+                padding: 4px 0;
+                padding-right:20px ;
+            }
+            .leftBottonLink{
+                text-decoration: none;
+                list-style: none;
+                color: black;
+            }
         </style>
     </head>
     <body>
-         <nav class="nav navbar navbar-expand-lg bg-body-tertiarys container-fluid">
+          <nav class="nav navbar navbar-expand-lg bg-body-tertiarys container-fluid">
             <div class="headerLeft d-flex">
                 <div class="leftBar leftBarIcon"> 
                     <button class="headerIconBtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#leftNavbar" aria-controls="staticBackdrop">
@@ -100,7 +138,7 @@
                         <i class="bi bi-person-circle rightIcon"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" class="navLink" href="#">Profile</a></li>
                         <li><a class="dropdown-item" href="#">My Blog</a></li>
                         <li><a class="dropdown-item" href="#">Log 0ut</a></li>
                       </ul>
@@ -110,7 +148,7 @@
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form class="modal-content" action="CreatePost" method="post">
+            <form class="modal-content" action="BlogController" method="post">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a Post</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -128,12 +166,19 @@
 
     <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="leftNavbar" aria-labelledby="staticLeftBackdropLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="staticLeftBackdropLabel">Offcanvas</h5>
+          <h5 class="offcanvas-title" id="staticLeftBackdropLabel">English Gadget</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
-          <div>
-            I will not close if you click outside of me.
+        <div class="offcanvas-body" style="padding: 4px 0;">
+          <div class="navLeft">
+            <ul class="leftTop">
+                <li class="navLi"><a class="navLink fs-5" href="#"> <i class="bi bi-house-door-fill"></i> Home</a></li>
+                <li class="navLi"><a class="navLink fs-5" href="#"> <i class="bi bi-book-fill"></i> Grammer Checking</a></li>
+                <li class="navLi"><a class="navLink fs-5" href="#"><i class="bi bi-chat-left-text-fill"></i> Paraphraser</a></li>
+            </ul>
+            <div class="leftBotton">
+                <a class="leftBottonLink fs-6"><i class="bi bi-info-circle"></i> Help Center</a>
+            </div>
           </div>
         </div>
       </div>
