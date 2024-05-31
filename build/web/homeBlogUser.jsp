@@ -89,8 +89,8 @@
                             <i class="bi bi-person-circle avatar"></i>
                         </div>
                         <div class="header-name">
-                            <div class="post-user-name">${post.userID}</div>
-                            <div class="post-time">22-5</div> <!-- Thay đổi theo ngày thực tế nếu cần -->
+                            <div class="post-user-name">${post.customerName}</div>
+                            <div class="post-time">22-5</div>
                         </div>
                     </div>
                     <div class="body-post">
