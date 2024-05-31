@@ -138,9 +138,9 @@
                         <i class="bi bi-person-circle rightIcon"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" class="navLink" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" class="navLink" href="profile">Profile</a></li>
                         <li><a class="dropdown-item" href="#">My Blog</a></li>
-                        <li><a class="dropdown-item" href="#">Log 0ut</a></li>
+                        <li><a class="dropdown-item" href="LandingPage.jsp">Log 0ut</a></li>
                       </ul>
                   </div>
             </div>
@@ -172,8 +172,8 @@
         <div class="offcanvas-body" style="padding: 4px 0;">
           <div class="navLeft">
             <ul class="leftTop">
-                <li class="navLi"><a class="navLink fs-5" href="#"> <i class="bi bi-house-door-fill"></i> Home</a></li>
-                <li class="navLi"><a class="navLink fs-5" href="#"> <i class="bi bi-book-fill"></i> Grammer Checking</a></li>
+                <li class="navLi"><a class="navLink fs-5" href="LandingPage.jsp"> <i class="bi bi-house-door-fill"></i> Home</a></li>
+                <li class="navLi"><a class="navLink fs-5" href="Check_Backup.jsp"> <i class="bi bi-book-fill"></i> Grammer Checking</a></li>
                 <li class="navLi"><a class="navLink fs-5" href="#"><i class="bi bi-chat-left-text-fill"></i> Paraphraser</a></li>
             </ul>
             <div class="leftBotton">
