@@ -22,7 +22,7 @@ public class Users {
     private Date createdAt;
     private boolean premiumID;
 
-    public Users(int userID1, String username1, String email1, String email2, String email3, String email4, int userID2, boolean par) {
+    public Users( ) {
     }
 
     public Users(int userID, String username, String email, String password, String phone, String address, int age, Date createdAt, boolean premiumID) {

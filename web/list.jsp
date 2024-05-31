@@ -97,7 +97,9 @@
                 <button type="submit">Sort</button>
             </form>
             
-                <button hef="LandingPage.jsp" type="submit">Home</button>
+            <form action="LandingPage.jsp" method="get">
+                <button type="submit">Home</button>
+            </form>
             
             <table>
                 <thead>
@@ -135,7 +137,6 @@
                 </tbody>
             </table>
         </div>
+        <jsp:include page="Footer.jsp"></jsp:include>
     </body>
-    
 </html>
-<jsp:include page="Footer.jsp"></jsp:include>
