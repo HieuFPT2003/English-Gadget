@@ -47,7 +47,7 @@ public class loginwithgoogle extends HttpServlet {
         if(c == null){
            request.getRequestDispatcher("signup.jsp").forward(request, response);
         }else{
-           request.getRequestDispatcher("home.jsp").forward(request, response);
+           request.getRequestDispatcher("Check_Backup.jsp").forward(request, response);
         
         }
     } 
