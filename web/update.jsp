@@ -114,5 +114,6 @@
 
         <input type="submit" value="Update User" />
     </form>
+            <jsp:include page="Footer.jsp"></jsp:include>
 </body>
 </html>

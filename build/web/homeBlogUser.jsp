@@ -106,7 +106,8 @@
                     </div>
                 </div>
             </c:forEach>
-        </div>
+        
     </section>
+       <jsp:include page="Footer.jsp"></jsp:include>  
 </body>
 </html>
