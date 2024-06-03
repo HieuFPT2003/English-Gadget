@@ -78,31 +78,13 @@
                 margin-top: 10px;
                 color: #6c757d;
             }
-
-            .emotion {
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                font-size: 24px;
-                justify-content: center; /* Thêm dòng này để căn giữa nội dung */
-                padding: 12px 0;
-            }
-
-            .emotion:hover {
-                color: #007bff;
-            }
-
-/*            .action {
-                font-size: 14px;
-                margin-right: 10px;
-            }*/
-
         </style>
     </head>
     <body>
         <%@include file="navbarUser.jsp" %>
+
         <section class="home">
-            <c:forEach items="${listPost}" var="post"> 
+            <c:forEach items="${listPost}" var="post">
                 <div class="post">
                     <div class="header-post">
                         <div class="post-user">
@@ -110,23 +92,24 @@
                         </div>
                         <div class="header-name">
                             <div class="post-user-name">${post.customerName}</div>
-                            <div class="post-time">${post.formattedDatePosted}</div>
+                            <div class="post-time">
+                                ${post.formattedDatePosted}
+                                <c:if test="${post.edited}">
+                                    <span>(edited)</span>
+                                </c:if>
+                            </div>
                         </div>
                     </div>
                     <div class="body-post">
                         <p class="body-post__content">${post.postText}</p>
                     </div>
-                    <div class="row footer-post text-center">
-                        <div class="col-6 like emotion">
-                            <i class="bi bi-hand-thumbs-up-fill action">Like  ${post.likeCount}</i>
-                        </div>
-                        <div class="col-6 dislike emotion">
-                            <i class="bi bi-hand-thumbs-down-fill">Dislike ${post.dislikeCount}</i> 
-                        </div>
+                    <div class="body-footer">
+                        <a href="myblog?action=edit&post=${post.postID}&id=${post.userID}" class="btn">Edit</a>
+                        <a href="myblog?action=delete&post=${post.postID}&id=${post.userID}" class="btn">Delete</a>
                     </div>
                 </div>
             </c:forEach>
         </section>
-        <jsp:include page="Footer.jsp"></jsp:include>  
+        <jsp:include page="Footer.jsp"></jsp:include>
     </body>
 </html>

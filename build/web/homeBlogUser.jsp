@@ -6,77 +6,97 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>English Gadget</title>
         <style>
-            .home{
+            .home {
                 display: flex;
-                justify-content: space-between;
-                background-color: #d6d0d0;
+                justify-content: center;
+                background-color: #f0f0f0;
                 flex-flow: column;
                 width: 100%;
+                padding: 20px 0;
             }
-            .post{
-                margin: 30px 0 50px 0;
-                margin-left: auto;
-                margin-right:auto;
-                padding-top:20px;
-                width: 50%;
 
+            .post {
+                margin: 20px auto;
+                width: 70%;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
                 display: flex;
                 flex-direction: column;
-                background-color: white;
-                border-radius: 4px;
             }
-            
-            .header-post{
+
+            .header-post {
                 display: flex;
-                padding-left: 20px;
-                margin-bottom: 8px;
                 align-items: center;
-                position: relative;
+                margin-bottom: 10px;
             }
-            .post-user{
-                padding-right: 12px;
+
+            .post-user {
+                margin-right: 10px;
             }
+
             .avatar {
-                vertical-align: middle;
+                font-size: 36px;
+                background-color: #007bff;
+                color: white;
+                width: 50px;
+                height: 50px;
                 border-radius: 50%;
-                font-size: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
-            .post-name{
-                position: absolute;
-                top:15px;
-                left:70px;
+
+            .header-name {
+                display: flex;
+                flex-direction: column;
             }
-            .post-user-name{
+
+            .post-user-name {
                 font-weight: bold;
-                font-size: 20px
+                font-size: 18px;
             }
-            .post-time{
-                font-size:12px
+
+            .post-time {
+                font-size: 12px;
+                color: #6c757d;
             }
-            .body-post{
-                padding: 10px;
+
+            .body-post {
+                padding: 10px 0;
             }
-            .body-post__content{
-                
+
+            .body-post__content {
+                font-size: 16px;
+                line-height: 1.6;
             }
-            .footer-post{
+
+            .footer-post {
                 display: flex;
                 justify-content: space-between;
-                margin: 0 !important;
+                margin-top: 10px;
+                color: #6c757d;
             }
-            .emotion{
-                color: black;
-                font-size: 18px;
+
+            .emotion {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                font-size: 24px;
+                justify-content: center; /* Thêm dòng này để căn giữa nội dung */
                 padding: 12px 0;
             }
-            .emotion:active{
-                background-color: #198754;
-                color: white;
-                border-radius: 4px;
+
+            .emotion:hover {
+                color: #007bff;
             }
-            .action{
-                color:#18d618;
-            }
+
+/*            .action {
+                font-size: 14px;
+                margin-right: 10px;
+            }*/
+
         </style>
     </head>
     <body>
@@ -90,7 +110,7 @@
                         </div>
                         <div class="header-name">
                             <div class="post-user-name">${post.customerName}</div>
-                            <div class="post-time">22-5</div>
+                            <div class="post-time">${post.formattedDatePosted}</div>
                         </div>
                     </div>
                     <div class="body-post">
@@ -106,8 +126,7 @@
                     </div>
                 </div>
             </c:forEach>
-        
-    </section>
-       <jsp:include page="Footer.jsp"></jsp:include>  
-</body>
+        </section>
+        <jsp:include page="Footer.jsp"></jsp:include>  
+    </body>
 </html>

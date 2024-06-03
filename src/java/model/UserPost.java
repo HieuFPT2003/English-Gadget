@@ -6,10 +6,6 @@ package model;
 
 import java.util.Date;
 
-/**
- *
- * @author nookh
- */
 public class UserPost {
     private int postID;
     private int userID;
@@ -57,5 +53,5 @@ public class UserPost {
     public void setDatePosted(Date datePosted) {
         this.datePosted = datePosted;
     }
-    
+   
 }
