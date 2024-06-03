@@ -5,17 +5,24 @@
         <servlet-class>controller.BlogController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>test</servlet-name>
-        <servlet-class>controller.test</servlet-class>
+        <servlet-name>MyBlog</servlet-name>
+        <servlet-class>controller.MyBlog</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckPlagiarismController</servlet-name>
+        <servlet-class>controller.CheckPlagiarismController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BlogController</servlet-name>
-        <url-pattern>/BlogController</url-pattern>
+        <url-pattern>/blog</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
-        <servlet-name>test</servlet-name>
-        <url-pattern>/test</url-pattern>
+        <servlet-name>MyBlog</servlet-name>
+        <url-pattern>/myblog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckPlagiarismController</servlet-name>
+        <url-pattern>/checkcreateandupdate</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>LandingPage.jsp</welcome-file>

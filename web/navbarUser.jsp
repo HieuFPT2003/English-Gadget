@@ -139,8 +139,8 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" class="navLink" href="profile">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">My Blog</a></li>
-                        <li><a class="dropdown-item" href="LandingPage.jsp">Log 0ut</a></li>
+                        <li><a class="dropdown-item" href="myblog">My Blog</a></li>
+                        <li><a class="dropdown-item" href="LandingPage.jsp">Log Out</a></li>
                       </ul>
                   </div>
             </div>
@@ -148,7 +148,7 @@
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form class="modal-content" action="BlogController" method="post">
+            <form class="modal-content" action="blog" method="post">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a Post</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -1,9 +1,10 @@
-
 package model;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class Post {
+
     private int postID;
     private int userID;
     private String customerName;
@@ -11,8 +12,13 @@ public class Post {
     private Date datePosted;
     private int likeCount;
     private int dislikeCount;
+    private boolean Edited = false;
 
     // Constructor
+    
+    public Post() {
+    }
+
     public Post(int postID, int userID, String customerName, String postText, Date datePosted, int likeCount, int dislikeCount) {
         this.postID = postID;
         this.userID = userID;
@@ -21,6 +27,25 @@ public class Post {
         this.datePosted = datePosted;
         this.likeCount = likeCount;
         this.dislikeCount = dislikeCount;
+    }
+
+    public Post(int postID, int userID, String customerName, String postText, Date datePosted, int likeCount, int dislikeCount, boolean Editeds) {
+        this.postID = postID;
+        this.userID = userID;
+        this.customerName = customerName;
+        this.postText = postText;
+        this.datePosted = datePosted;
+        this.likeCount = likeCount;
+        this.dislikeCount = dislikeCount;
+        this.Edited = Editeds;
+    }
+
+    public boolean isEdited() {
+        return Edited;
+    }
+
+    public void setEdited(boolean Edited) {
+        this.Edited = Edited;
     }
 
     public int getPostID() {
@@ -79,11 +104,15 @@ public class Post {
         this.dislikeCount = dislikeCount;
     }
 
+    public String getFormattedDatePosted() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        return formatter.format(datePosted);
+    }
+
     @Override
     public String toString() {
-        return "Post{" + "postID=" + postID + ", userID=" + userID + ", customerName=" + customerName + ", postText=" + postText + ", datePosted=" + datePosted + ", likeCount=" + likeCount + ", dislikeCount=" + dislikeCount + '}';
+        return "Post{" + "postID=" + postID + ", userID=" + userID + ", customerName=" + customerName + ", postText=" + postText + ", datePosted=" + datePosted + ", likeCount=" + likeCount + ", dislikeCount=" + dislikeCount + ", Edited=" + Edited + '}';
     }
 
 
-    
 }
