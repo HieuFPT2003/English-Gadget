@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import model.Users;
+import model.Feedbacks;
 
 public class UsersDAO extends DBContext {
 
@@ -184,11 +185,35 @@ public class UsersDAO extends DBContext {
         return list;
     }
 
+    public List<Feedbacks> getAllFeedback() {
+        List<Feedbacks> listfb = new ArrayList<>();
+        String sql = "select * from userFeedback";
+        try (PreparedStatement st = connection.prepareStatement(sql); ResultSet rs = st.executeQuery()) {
+            while (rs.next()) {
+                Feedbacks f = new Feedbacks(
+                        rs.getInt("feedbackID"),
+                        rs.getInt("userID"),
+                        rs.getString("feedbackText"),
+                        rs.getString("userImage")
+                );
+                listfb.add(f);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Better exception handling
+        }
+        return listfb;
+    }
+
     public static void main(String[] args) {
         UsersDAO dao = new UsersDAO();
         List<Users> list = dao.getAll();
         for (Users user : list) {
             System.out.println(user.getUsername());
         }
+        List<Feedbacks> listfb = dao.getAllFeedback();
+        for (Feedbacks fb : listfb) {
+            System.out.println(fb);
+
     }
+}
 }

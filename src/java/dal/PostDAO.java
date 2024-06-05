@@ -294,4 +294,28 @@ public class PostDAO {
         boolean test = dao.deletePost(1, 11);
         System.out.println(test);
     }
+        public List<Post> searchPostByText(String txtSearch) {
+        List<Post> list = new ArrayList<>();
+        String sql = "  select * from UserPost\n" +
+"                       where [postText] like ?";
+        try {
+            conn = DBUtils.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,"%"+ txtSearch+"%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Post(rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(4),
+                        rs.getInt(5),
+                        rs.getInt(6)));
+            }
+        } catch (Exception e) {
+        }
+
+        return list;
+    }
+
 }

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Comment;
 
+
 public class CommentDAO extends DBContext {
 
     public List<Comment> getAll() {
@@ -94,6 +95,7 @@ public class CommentDAO extends DBContext {
             System.out.println("Error in delete: " + e.getMessage());
         }
     }
+
 }
 
 
