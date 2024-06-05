@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -86,8 +87,6 @@
                             <div class="full">
                                 <form action="index.html">
                                     <fieldset>
-                                        <input type="text" placeholder="Enter your full name" name="name" required />
-                                        <input type="email" placeholder="Enter your email address" name="email" required />
                                         <input type="text" placeholder="Enter subject" name="subject" required />
                                         <textarea placeholder="Enter your message" required></textarea>
                                         <input type="submit" value="Submit" />
@@ -98,6 +97,53 @@
                     </div>
                 </div>
             </section>
+                        <section class="client_section layout_padding">
+            <div class="container">
+                <div class="heading_container heading_center">
+                    <h2  style="font-family: Radio Canada Big">
+                        Customer's Testimonial
+                    </h2>
+                </div>
+                <div id="carouselExample3Controls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                    <c:forEach items="${list}" var ="o">
+                        <div class="carousel-item active">
+                            <div class="box col-lg-10 mx-auto">
+                                <div class="img_container">
+                                    <div class="img-box">
+                                        <div class="img_box-inner">
+                                            <img src="${o.userImage}" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        Anna Trevor
+                                    </h5>
+                                    <h6>
+                                        Customer
+                                    </h6>
+                                    <p>
+                                        ${o.feedbackText};
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        </c:forEach>
+                    </div>
+                    <div class="carousel_btn_box">
+                        <a class="carousel-control-prev" href="#carouselExample3Controls" role="button" data-slide="prev">
+                            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExample3Controls" role="button" data-slide="next">
+                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
             <!-- end why section -->
             <!-- arrival section -->
             <!-- end arrival section -->

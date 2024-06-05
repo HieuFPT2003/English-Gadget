@@ -11,24 +11,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-       <style>
-              .nav{
+        <style>
+            .nav{
                 display: flex;
                 justify-content: space-between;
                 padding: 4px;
                 background-color: #198754;
-              }
-              .headerIconBtn{
+            }
+            .headerIconBtn{
                 font-size: 24px;
                 padding:0 2px 0 4px;
                 margin-right: 12px;
                 border: none;
                 background-color: transparent;
-              }
-              .headerMiddle{
+            }
+            .headerMiddle{
                 position: relative;
-              }
-              .midlleIcon{
+            }
+            .midlleIcon{
                 font-size: 20px;
                 padding:0 2px 0 4px;
                 margin-right: 12px;
@@ -37,17 +37,17 @@
                 position: absolute;
                 top: 0;
                 right: 1%;
-              }
-              .searchInput{
+            }
+            .searchInput{
                 width: 320px;
-              }
+            }
             .headerRight{
                 display: flex;
                 align-items: center;
                 position: relative;
-            }   
+            }
             .rightBtn{
-                
+
                 border: none;
                 background-color: transparent;
                 text-align: center;
@@ -115,7 +115,7 @@
         </style>
     </head>
     <body>
-          <nav class="nav navbar navbar-expand-lg bg-body-tertiarys container-fluid">
+        <nav class="nav navbar navbar-expand-lg bg-body-tertiarys container-fluid">
             <div class="headerLeft d-flex">
                 <div class="leftBar leftBarIcon"> 
                     <button class="headerIconBtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#leftNavbar" aria-controls="staticBackdrop">
@@ -124,10 +124,19 @@
                 </div>
                 <div class="logo fs-4">English Gadget</div>
             </div> 
+            <!--             search-->
             <div class="headerMiddle d-flex">
-                <input class="form-control form-control-sm me-2 searchInput" type="search" placeholder="Search Blog" aria-label="Search" >
-                <i class="bi bi-search midlleIcon"></i>
+                <div class="headerMiddle d-flex">
+                <form action="Search.jsp">
+                    <input type="submit" id="fname" name="fname" value="Search Post"><br>
+                </button>
+                </form>
             </div>
+            </div>
+            <!--            <div class="headerMiddle d-flex">
+                            <input class="form-control form-control-sm me-2 searchInput" type="search" placeholder="Search Blog" aria-label="Search" >
+                            <i class="bi bi-search midlleIcon"></i>
+                        </div>-->
             <div class="headerRight">
                 <button type="button" class="rightBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     <i class="bi bi-plus-lg"></i>
@@ -141,49 +150,49 @@
                         <li><a class="dropdown-item" class="navLink" href="profile">Profile</a></li>
                         <li><a class="dropdown-item" href="myblog">My Blog</a></li>
                         <li><a class="dropdown-item" href="LandingPage.jsp">Log Out</a></li>
-                      </ul>
-                  </div>
+                    </ul>
+                </div>
             </div>
         </nav>
 
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <form class="modal-content" action="blog" method="post">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a Post</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <textarea style="width: 100%; height: 300px;" placeholder="What are you thinking?" name="contentpost" id="contentpost"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Post</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="leftNavbar" aria-labelledby="staticLeftBackdropLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="staticLeftBackdropLabel">English Gadget</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body" style="padding: 4px 0;">
-          <div class="navLeft">
-            <ul class="leftTop">
-                <li class="navLi"><a class="navLink fs-5" href="LandingPage.jsp"> <i class="bi bi-house-door-fill"></i> Home</a></li>
-                <li class="navLi"><a class="navLink fs-5" href="Check_Backup.jsp"> <i class="bi bi-book-fill"></i> Grammer Checking</a></li>
-                <li class="navLi"><a class="navLink fs-5" href="#"><i class="bi bi-chat-left-text-fill"></i> Paraphraser</a></li>
-            </ul>
-            <div class="leftBotton">
-                <a class="leftBottonLink fs-6"><i class="bi bi-info-circle"></i> Help Center</a>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form class="modal-content" action="blog" method="post">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a Post</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea style="width: 100%; height: 300px;" placeholder="What are you thinking?" name="contentpost" id="contentpost"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </div>
+                </form>
             </div>
-          </div>
         </div>
-      </div>
-        
-        
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+        <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="leftNavbar" aria-labelledby="staticLeftBackdropLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="staticLeftBackdropLabel">English Gadget</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body" style="padding: 4px 0;">
+                <div class="navLeft">
+                    <ul class="leftTop">
+                        <li class="navLi"><a class="navLink fs-5" href="LandingPage.jsp"> <i class="bi bi-house-door-fill"></i> Home</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="Check_Backup.jsp"> <i class="bi bi-book-fill"></i> Grammer Checking</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="#"><i class="bi bi-chat-left-text-fill"></i> Paraphraser</a></li>
+                    </ul>
+                    <div class="leftBotton">
+                        <a class="leftBottonLink fs-6"><i class="bi bi-info-circle"></i> Help Center</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>

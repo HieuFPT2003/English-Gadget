@@ -3,15 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWP/English-Gadget/web/EditPost.jsp</file>
-            <file>file:/D:/SWP/English-Gadget/web/MyBlog.jsp</file>
-            <file>file:/D:/SWP/English-Gadget/src/java/controller/MyBlog.java</file>
-            <file>file:/D:/SWP/English-Gadget/src/java/model/Post.java</file>
-            <file>file:/D:/SWP/English-Gadget/src/java/controller/BlogController.java</file>
-            <file>file:/D:/SWP/English-Gadget/src/java/dal/UsersDAO.java</file>
-            <file>file:/D:/SWP/English-Gadget/src/java/controller/UserProfile.java</file>
-            <file>file:/D:/SWP/English-Gadget/src/java/dal/UserPostDAO.java</file>
-            <file>file:/D:/SWP/English-Gadget/web/userprofile.jsp</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project_Fin/English-Gadget/web/navbarUser.jsp</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project_Fin/English-Gadget/web/Contact.jsp</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project_Fin/English-Gadget/web/homeBlogUser.jsp</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project_Fin/English-Gadget/src/java/controller/MyBlog.java</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project_Fin/English-Gadget/web/Checking.jsp</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project_Fin/English-Gadget/web/Check_Backup.jsp</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project_Fin/English-Gadget/src/java/controller/BlogController.java</file>
         </group>
     </open-files>
 </project-private>

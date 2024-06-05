@@ -213,3 +213,25 @@ GO
 -- Display all users
 SELECT * FROM Users;
 GO
+CREATE TABLE userFeedback (
+    feedbackID INT PRIMARY KEY IDENTITY(1,1),
+    userID INT,
+	feedbackTopic NVARCHAR(MAX),
+    feedbackText NVARCHAR(MAX),
+    FOREIGN KEY (userID) REFERENCES Users(userID),
+);
+Go
+select * from userFeedback
+drop table userFeedback
+
+select * from Users
+INSERT INTO userFeedback(userID,feedbackTopic,feedbackText)
+VALUES 
+(1, 'Convenient','"This spell-check software is very convenient and easy to use. Ive significantly reduced errors in my documents."'),
+(2, 'Accurate','"I find this software quite accurate in detecting spelling mistakes"'),
+(3, 'Feature','"Very satisfied with the word suggestion feature. It helps me write faster and more efficiently."'),
+(4, 'More feature','"The interface is user-friendly and easy to navigate. However, more language options should be added."'),
+(5, 'Saving time','"This spell-check software saves me a lot of editing time. Highly recommended."'),
+(4, 'Missed error','"Sometimes the software still misses a few minor spelling errors. Hopefully, it will be improved in future versions."');
+
+GO

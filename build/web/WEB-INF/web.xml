@@ -12,6 +12,26 @@
         <servlet-name>CheckPlagiarismController</servlet-name>
         <servlet-class>controller.CheckPlagiarismController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LandingPage</servlet-name>
+        <servlet-class>controller.LandingPage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LandingPageServlet</servlet-name>
+        <servlet-class>controller.FeedbackServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchUserControl</servlet-name>
+        <servlet-class>controller.SearchUserControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchUserServlet</servlet-name>
+        <servlet-class>controller.SearchUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchUser</servlet-name>
+        <servlet-class>controller.SearchUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BlogController</servlet-name>
         <url-pattern>/blog</url-pattern>
@@ -23,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>CheckPlagiarismController</servlet-name>
         <url-pattern>/checkcreateandupdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LandingPage</servlet-name>
+        <url-pattern>/LandingPage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LandingPageServlet</servlet-name>
+        <url-pattern>/landing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchUser</servlet-name>
+        <url-pattern>/searchUser</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>LandingPage.jsp</welcome-file>

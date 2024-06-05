@@ -118,9 +118,9 @@
                     <select id="fontFamily" onchange="changeFontFamily(this.value)">
                         <option value="Open Sans">Open sans</option>
                     </select>
-                    <button onclick="boldText()">B</button>
-                    <button onclick="italicText()">I</button>
-                    <button onclick="underlineText()">U</button>
+                    <button onclick="boldText()">Bold</button>
+                    <button onclick="italicText()">Italic</button>
+                    <button onclick="underlineText()">Underline</button>
                     <button onclick="uploadDocument()">Upload Document</button>
                 </div>
                 <textarea  placeholder="Start by writing, pasting (Ctrl + V) text, or uploading a document (doc, pdf)."></textarea>

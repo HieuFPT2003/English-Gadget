@@ -15,7 +15,7 @@
     </head>
     <body>
 
-        <h2>Sign in/up</h2>
+        <h2>Sign in</h2>
         <div class="container" id="container">
             <div class="form-container sign-up-container">
                 <form action="#">
