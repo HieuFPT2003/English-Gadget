@@ -31,8 +31,7 @@ public class LoginDao extends DBContext {
                         rs.getString(6),
                         rs.getInt(7),
                         rs.getDate(8),
-                        rs.getBoolean(9),
-                rs.getBoolean(10));
+                        rs.getBoolean(9));
                 return a;
             } else {
                 // Handle case where user not found
@@ -60,8 +59,7 @@ public class LoginDao extends DBContext {
                         rs.getString(6),
                         rs.getInt(7),
                         rs.getDate(8),
-                        rs.getBoolean(9),
-                rs.getBoolean(10));
+                        rs.getBoolean(9));
                 return a;
             }
         } catch (Exception e) {
@@ -103,8 +101,7 @@ public class LoginDao extends DBContext {
                         rs.getString(6),
                         rs.getInt(7),
                         rs.getDate(8),
-                        rs.getBoolean(9),
-                rs.getBoolean(10));
+                        rs.getBoolean(9));
                 return a;
             }
         } catch (Exception e) {
