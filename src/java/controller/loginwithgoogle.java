@@ -42,12 +42,18 @@ public class loginwithgoogle extends HttpServlet {
          
          LoginDao dao = new LoginDao();
          //check xem tai khoan nay da ton tai hay chua
-         Users c = dao.getEmail(acc.getEmail());
+         Users c = dao.checkAccountExist(acc.getEmail());
          //neu chua ton tai 
-        if(c == null){
-           request.getRequestDispatcher("signup.jsp").forward(request, response);
+        if( c== null){
+             Users a = new Users();
+            a.setUsername(acc.getName());
+            a.setEmail(acc.getEmail());
+            
+                   
+            dao.signup(a);
+           request.getRequestDispatcher("home.jsp").forward(request, response);
         }else{
-           request.getRequestDispatcher("Check_Backup.jsp").forward(request, response);
+          request.getRequestDispatcher("home.jsp").forward(request, response);
         
         }
     } 

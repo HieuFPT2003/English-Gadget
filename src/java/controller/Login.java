@@ -97,7 +97,10 @@ public class Login extends HttpServlet {
             request.setAttribute("mess", "Wrong email or password");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
-
+            HttpSession session = request.getSession();
+             session.setAttribute("userID", a.getUserID());
+              session.setAttribute("premium", a.isPremiumID());
+               session.setAttribute("role", a.isRole());
             request.getRequestDispatcher("LandingPage.jsp").forward(request, response);
         }
     }
