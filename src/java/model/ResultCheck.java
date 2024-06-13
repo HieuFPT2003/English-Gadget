@@ -16,6 +16,14 @@ public class ResultCheck {
         this.correctText = correctText;
     }
 
+    public ResultCheck(List<String> listSuggests, String message, String errorText) {
+        this.listSuggests = listSuggests;
+        this.message = message;
+        this.errorText = errorText;
+    }
+    
+    
+
     public List<String> getListSuggests() {
         return listSuggests;
     }

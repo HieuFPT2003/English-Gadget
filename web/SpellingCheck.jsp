@@ -58,7 +58,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: 'GrammarCheck',
+                        url: 'SpellingCheck',
                         data: formData,
 
                         success: function (response) {
@@ -66,14 +66,10 @@
                             $('#loadingText').hide();
                             $('#btnCheck').show();
 
-
-
-                            // Lay ra correctText dung nhat
-                            var correctText = response[response.length - 1].correctText;
                             var correct = "";
 
                             response.forEach(function (resultCheck, index) {
-                                correct += '<div title = "' + resultCheck.message + '" class="suggest_list" data-index="' + index + '">' + resultCheck.errorText + ' ---> ' + resultCheck.listSuggests.join(', ') + '</div>';
+                                correct += '<div title = "' + resultCheck.message + '" class="suggest_list" data-index="' + index + '">' + resultCheck.errorText + ' ---> ' + resultCheck.listSuggests[0]+ ', ' + resultCheck.listSuggests[1] + '</div>';
                             });
 
 
@@ -81,20 +77,7 @@
                                 $('#correct').html('<div class="suggest_list_container">' + correct + '</div>');
                             } else {
                                 $('#correct').html(correct);
-                            }
-
-
-                            var resultHtml = "";
-                            // Correct the text in the textarea
-                            resultHtml += '<div class="form-check">';
-                            resultHtml += '<div class="card-header bg-success text-white">After Error Correction</div>';
-                            resultHtml += '<form id="myForm" action="GrammarCheck" method="post">';
-                            resultHtml += '<textarea readonly class="form_input" rows="20" cols="50" placeholder="This is where you get your answers" required>' + correctText + '</textarea>';
-                            resultHtml += '</form>';
-                            resultHtml += '</div>';
-
-                            $('#results').html(resultHtml);
-
+                            };
                         },
                         error: function (error) {
                             console.log('Success response:', error);
@@ -170,7 +153,7 @@
         <br>
         <div class="">
             <div class="row">
-                <div class="col-5">
+                <div class="col-8">
                     <div class="form-check">
                         <div class="card-header bg-success text-white">
                             English Text (US)
@@ -186,13 +169,13 @@
                     </div>
                 </div>
 
-                <div class="col-2 form-result text-center"">
-                    <div class="card-header bg-danger text-white">
-                        SUGGESTS LIST
-                    </div>
+                <div class="col-4 form-result text-center"">
+                   <div class="card-header bg-danger text-white">
+                            SUGGESTS LIST
+                        </div>
                     <div id="correct"></div>
                 </div>
-                <div id="results" class="col-5"></div>
+               
             </div>
         </div>
         <script src="scripts.js"></script>

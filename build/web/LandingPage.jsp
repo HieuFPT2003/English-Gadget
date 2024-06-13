@@ -24,7 +24,7 @@
                                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Products<span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="GrammarCheck.jsp">Grammar Check (Prime)</a></li>
-                                            <li><a href="Check_Backup.jsp">Spelling Check</a></li>
+                                            <li><a href="SpellingCheck.jsp">Spelling Check</a></li>
                                             <li><a href="blog">Blog</a></li>
                                         </ul>
                                     </li>
