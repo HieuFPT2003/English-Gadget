@@ -101,16 +101,16 @@ public class Signup extends HttpServlet {
         Users existingUser = dao.checkAccountExist(username);
 
         if (existingUser == null) {
-            Users c = new Users();
-            c.setUsername(username);
-            c.setEmail(email);
-            c.setPassword(password);
-            c.setPhone(phone);
-            c.setAddress(address);
-            c.setAge(age);
+           Users newUser = new Users();
+        newUser.setUsername(username);
+        newUser.setEmail(email);
+        newUser.setPassword(password);
+        newUser.setPhone(phone);
+        newUser.setAddress(address);
+        newUser.setAge(age);
             
 
-            dao.signup(c);
+            dao.signup(newUser);
             
             HttpSession session = request.getSession();
             session.setAttribute("email", email);

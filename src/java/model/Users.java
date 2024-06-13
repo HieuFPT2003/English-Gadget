@@ -21,11 +21,12 @@ public class Users {
     private int age;
     private Date createdAt;
     private boolean premiumID;
+    private boolean role;
 
     public Users( ) {
     }
 
-    public Users(int userID, String username, String email, String password, String phone, String address, int age, Date createdAt, boolean premiumID) {
+    public Users(int userID, String username, String email, String password, String phone, String address, int age, Date createdAt, boolean premiumID, boolean role) {
         this.userID = userID;
         this.username = username;
         this.email = email;
@@ -35,6 +36,7 @@ public class Users {
         this.age = age;
         this.createdAt = createdAt;
         this.premiumID = premiumID;
+        this.role = role;
     }
 
     public int getUserID() {
@@ -108,7 +110,14 @@ public class Users {
     public void setPremiumID(boolean premiumID) {
         this.premiumID = premiumID;
     }
-    
-    
-    
+
+    public boolean isRole() {
+        return role;
+    }
+
+    public void setRole(boolean role) {
+        this.role = role;
+    }
+
+   
 }
