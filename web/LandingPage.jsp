@@ -23,7 +23,8 @@
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Products<span class="caret"></span></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="Check_Backup.jsp">Grammar Check</a></li>
+                                            <li><a href="GrammarCheck.jsp">Grammar Check (Prime)</a></li>
+                                            <li><a href="Check_Backup.jsp">Spelling Check</a></li>
                                             <li><a href="blog">Blog</a></li>
                                         </ul>
                                     </li>
@@ -43,7 +44,6 @@
                                     </li>
 
                                     <form class="form-inline" action="Search.jsp">
-                                        <!-- <input type="text" name="search" placeholder="Tìm kiếm"> -->
                                         <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
                                             <i class="fa fa-search" aria-hidden="true"></i>
                                         </button>
@@ -64,7 +64,6 @@
 
                             Your browser does not support the video tag.
                         </video>
-                        <!--                        <img src="images/slider-bg.jpg" alt="">-->
                     </div>
                     <div id="customCarousel1" class="carousel slide" data-ride="carousel" >
                         <div class="carousel-inner">

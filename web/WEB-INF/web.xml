@@ -32,6 +32,10 @@
         <servlet-name>SearchUser</servlet-name>
         <servlet-class>controller.SearchUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GrammarCheckController</servlet-name>
+        <servlet-class>controller.GrammarCheckController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BlogController</servlet-name>
         <url-pattern>/blog</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>SearchUser</servlet-name>
         <url-pattern>/searchUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GrammarCheckController</servlet-name>
+        <url-pattern>/GrammarCheck</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>LandingPage.jsp</welcome-file>
