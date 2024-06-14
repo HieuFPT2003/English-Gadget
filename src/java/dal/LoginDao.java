@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dal;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import model.Users;
 
-/**
- *
- * @author khanh
- */
 public class LoginDao extends DBContext {
 
     public Users login(String user, String pass) {
@@ -31,11 +23,10 @@ public class LoginDao extends DBContext {
                         rs.getString(6),
                         rs.getInt(7),
                         rs.getDate(8),
-                        rs.getBoolean(9));
-                        rs.getBoolean(10);
+                        rs.getBoolean(9),
+                        rs.getBoolean(10));
                 return a;
             } else {
-                // Handle case where user not found
                 return null;
             }
         } catch (Exception e) {
@@ -52,7 +43,7 @@ public class LoginDao extends DBContext {
 
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                 Users a = new Users(rs.getInt(1),
+                Users a = new Users(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
@@ -60,7 +51,8 @@ public class LoginDao extends DBContext {
                         rs.getString(6),
                         rs.getInt(7),
                         rs.getDate(8),
-                        rs.getBoolean(9));
+                        rs.getBoolean(9),
+                        rs.getBoolean(10));
                 return a;
             }
         } catch (Exception e) {
@@ -86,7 +78,7 @@ public class LoginDao extends DBContext {
         return c;
     }
 
-     public Users getEmail(String email) {
+    public Users getEmail(String email) {
         String sql = "select * from [dbo].[Users] where  email = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -94,7 +86,7 @@ public class LoginDao extends DBContext {
 
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                 Users a = new Users(rs.getInt(1),
+                Users a = new Users(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
@@ -103,6 +95,7 @@ public class LoginDao extends DBContext {
                         rs.getInt(7),
                         rs.getDate(8),
                         rs.getBoolean(9));
+                rs.getBoolean(10);
                 return a;
             }
         } catch (Exception e) {
@@ -110,8 +103,12 @@ public class LoginDao extends DBContext {
         }
         return null;
     }
-     public static void main(String[] args) {
+
+    public static void main(String[] args) {
         LoginDao d = new LoginDao();
-         System.out.println( d.login("user2", "hashed_password2"));
+//        Users c = new Users(1,"Hieu","Hieu2003@","123","123","HN",12,false);
+//        d.signup(c);
+//
+//        System.out.println(d.login("Hieu", "123"));
     }
 }

@@ -2,6 +2,7 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dal.HistoryCheck;
 
 import org.languagetool.JLanguageTool;
 import org.languagetool.language.AmericanEnglish;
@@ -16,7 +17,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import model.History;
 
 import model.ResultCheck;
 
@@ -49,6 +52,8 @@ public class SpellingCheckController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HistoryCheck historyDAO = new HistoryCheck();
+
         String checkText = request.getParameter("checkText");
         JLanguageTool langTool = new JLanguageTool(new AmericanEnglish());
 
@@ -76,6 +81,16 @@ public class SpellingCheckController extends HttpServlet {
             String message = match.getMessage();
 
             resultCheckList.add(new ResultCheck(listSuggests, message, errorText));
+        }
+
+        // Save History in DataBase
+        HttpSession session = request.getSession();
+        Integer userID = (Integer) session.getAttribute("userID");
+
+        if (userID != null) {
+            // results
+            History newHistory = new History(userID, checkText, true);
+            historyDAO.saveGrammarCheckHistory(newHistory);
         }
 
         // Conver from java to JSON

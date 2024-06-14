@@ -68,6 +68,7 @@ public class BlogController extends HttpServlet {
             response.sendRedirect("login.jsp");
             return;
         }
+        
         String contentText = request.getParameter("contentpost");
         boolean check = checkPlagiarism.checkPlagiarism(contentText, currentID, request, response);
 

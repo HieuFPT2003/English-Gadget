@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWP/E14/English-Gadget/src/java/dal/UsersDAO.java</file>
-            <file>file:/D:/SWP/E14/English-Gadget/web/primium.jsp</file>
+            <file>file:/D:/SWP/E14/English-Gadget/src/java/model/History.java</file>
+            <file>file:/D:/SWP/E14/English-Gadget/src/java/model/Users.java</file>
             <file>file:/D:/SWP/E14/English-Gadget/src/java/controller/BlogController.java</file>
-            <file>file:/D:/SWP/E14/English-Gadget/src/java/controller/Login.java</file>
             <file>file:/D:/SWP/E14/English-Gadget/src/java/controller/GrammarCheckController.java</file>
             <file>file:/D:/SWP/E14/English-Gadget/web/GrammarCheck.jsp</file>
+            <file>file:/D:/SWP/E14/English-Gadget/src/java/dal/HistoryCheck.java</file>
         </group>
     </open-files>
 </project-private>

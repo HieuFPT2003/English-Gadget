@@ -19,20 +19,20 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <style>
             body {
-                font-family: Arial, sans-serif; /* Đặt font-family cho toàn bộ trang */
+                font-family: Arial, sans-serif;
             }
             .suggest_list_container {
-                max-height: 400px; /* Chiều cao tối đa khi có nhiều lỗi */
-                overflow-y: auto;  /* Hiển thị thanh cuộn dọc */
+                max-height: 400px;
+                overflow-y: auto;  
             }
             .suggest_list {
                 padding: 6px ;
                 margin: 4px 0;
                 border: 1px solid #ddd;
-                cursor: pointer; /* Con trỏ thay đổi khi hover để chỉ ra rằng phần tử có thể nhấp */
+                cursor: pointer; 
             }
             .suggest_list:hover {
-                background-color: #f0f0f0; /* Thay đổi màu nền khi hover để làm nổi bật phần tử */
+                background-color: #f0f0f0; 
             }
             #message {
                 margin-top: 20px;
@@ -69,15 +69,20 @@
                             var correct = "";
 
                             response.forEach(function (resultCheck, index) {
-                                correct += '<div title = "' + resultCheck.message + '" class="suggest_list" data-index="' + index + '">' + resultCheck.errorText + ' ---> ' + resultCheck.listSuggests[0]+ ', ' + resultCheck.listSuggests[1] + '</div>';
-                            });
+                                let suggests = resultCheck.listSuggests.slice(0, 5);
+                                
+                                let suggestString = suggests.join(', ');
 
+                                correct += '<div title="' + resultCheck.message + '" class="suggest_list" data-index="' + index + '">' +
+                                        resultCheck.errorText + ' ---> ' + suggestString + '</div>';
+                            });
 
                             if (response.length > 8) {
                                 $('#correct').html('<div class="suggest_list_container">' + correct + '</div>');
                             } else {
                                 $('#correct').html(correct);
-                            };
+                            }
+                            ;
                         },
                         error: function (error) {
                             console.log('Success response:', error);
@@ -144,7 +149,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="full">
-                            <h3>Checking grammar</h3>
+                            <h3>Check Spelling</h3>
                         </div>
                     </div>
                 </div>
@@ -170,12 +175,12 @@
                 </div>
 
                 <div class="col-4 form-result text-center"">
-                   <div class="card-header bg-danger text-white">
-                            SUGGESTS LIST
-                        </div>
+                    <div class="card-header bg-danger text-white">
+                        SUGGESTS LIST
+                    </div>
                     <div id="correct"></div>
                 </div>
-               
+
             </div>
         </div>
         <script src="scripts.js"></script>

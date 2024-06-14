@@ -50,21 +50,20 @@
             // Lấy giá trị từ session 
             var userID = <%= session.getAttribute("userID") != null ? session.getAttribute("userID") : "null" %>;
             var premium = <%= session.getAttribute("premium") != null ? session.getAttribute("premium") : "null" %>;
-            var role = <%= sesstion.getAttribute("role") != null ? sessstion.getAttribute("role") : "null" %>;
-            
-            
+            var role = <%= session.getAttribute("role") != null ? session.getAttribute("role") : "null" %>;
+
+            console.log("User ID: " + userID);
+            console.log("Premium: " + premium);
+            console.log("Role: " + role);
+
             // If admin not check
             if (!role) {
                 if (!userID) {
                     window.location.href = "login.jsp";
                 } else if (!premium) {
                     window.location.href = "premium.jsp";
-                } else {
-                    console.log("User ID: " + userID);
-                    console.log("Premium: " + premium);
                 }
             }
-
 
             // Gui request
             $(document).ready(function () {
@@ -172,7 +171,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="full">
-                            <h3>Checking grammar</h3>
+                            <h3>Checking Grammar</h3>
                         </div>
                     </div>
                 </div>
