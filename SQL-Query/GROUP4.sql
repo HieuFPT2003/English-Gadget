@@ -1,9 +1,9 @@
 -- Create the new merged database
-CREATE DATABASE GrammarCheck3;
+CREATE DATABASE GrammarCheck;
 GO
 
 -- Use the created database
-USE GrammarCheck3;
+USE GrammarCheck;
 GO
 
 -- Create Users table
@@ -16,8 +16,9 @@ CREATE TABLE Users (
     [address] NVARCHAR(100),
     age INT,
     created_at DATETIME DEFAULT GETDATE(),
-    premiumID BIT DEFAULT 0
-);
+    premiumID BIT DEFAULT 0,
+	role BIT DEFAULT 0
+	)
 GO
 
 -- Create SubscriptionPlans table
@@ -210,9 +211,7 @@ LEFT JOIN (
 ) AS dislikeUsers ON p.postID = dislikeUsers.postID;
 GO
 
--- Display all users
-SELECT * FROM Users;
-GO
+
 CREATE TABLE userFeedback (
     feedbackID INT PRIMARY KEY IDENTITY(1,1),
     userID INT,
@@ -221,8 +220,7 @@ CREATE TABLE userFeedback (
     FOREIGN KEY (userID) REFERENCES Users(userID),
 );
 Go
-select * from userFeedback
-drop table userFeedback
+
 
 select * from Users
 INSERT INTO userFeedback(userID,feedbackTopic,feedbackText)
@@ -234,4 +232,29 @@ VALUES
 (5, 'Saving time','"This spell-check software saves me a lot of editing time. Highly recommended."'),
 (4, 'Missed error','"Sometimes the software still misses a few minor spelling errors. Hopefully, it will be improved in future versions."');
 
+GO
+
+
+-- Create table
+CREATE TABLE CheckHistory (
+    checkID INT IDENTITY(1,1) PRIMARY KEY,
+    userID INT,
+    text NVARCHAR(MAX),
+    result NVARCHAR(MAX),
+    checkDate DATETIME DEFAULT GETDATE(),
+    type BIT, -- 0 for spelling check, 1 for grammar check
+    FOREIGN KEY (userID) REFERENCES Users(userID)
+);
+GO
+
+select * from CheckHistory
+
+-- Insert sample data into CheckHistory
+INSERT INTO CheckHistory (userID, text, result, checkDate, type)
+VALUES 
+(1, N'This is a sample text for grammar check.', N'Grammar check passed.', GETDATE(), 1),
+(2, N'This is an example text with a typo.', N'Typo found: "typo".', GETDATE(), 0),
+(1, N'Another text for grammar checking.', N'Grammar check passed.', GETDATE(), 1),
+(3, N'This text contains a spelng error.', N'Typo found: "spelng".', GETDATE(), 0),
+(2, N'This sentence will be checked for grammar.', N'Grammar check passed.', GETDATE(), 1);
 GO
