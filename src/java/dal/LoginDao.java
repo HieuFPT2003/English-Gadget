@@ -32,6 +32,7 @@ public class LoginDao extends DBContext {
                         rs.getInt(7),
                         rs.getDate(8),
                         rs.getBoolean(9));
+                        rs.getBoolean(10);
                 return a;
             } else {
                 // Handle case where user not found
@@ -108,5 +109,9 @@ public class LoginDao extends DBContext {
             //nothing
         }
         return null;
+    }
+     public static void main(String[] args) {
+        LoginDao d = new LoginDao();
+         System.out.println( d.login("user2", "hashed_password2"));
     }
 }

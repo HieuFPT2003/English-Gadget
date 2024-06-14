@@ -99,8 +99,8 @@ public class Login extends HttpServlet {
         } else {
             HttpSession session = request.getSession();
              session.setAttribute("userID", a.getUserID());
-              session.setAttribute("premium", a.isPremiumID());
-               session.setAttribute("role", a.isRole());
+             session.setAttribute("premium", a.isPremiumID());
+             session.setAttribute("role", a.isRole());
             request.getRequestDispatcher("LandingPage.jsp").forward(request, response);
         }
     }

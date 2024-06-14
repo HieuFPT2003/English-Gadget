@@ -24,19 +24,7 @@ public class GrammarCheckController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet GrammarCheck</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet GrammarCheck at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+
     }
 
     @Override
@@ -53,12 +41,11 @@ public class GrammarCheckController extends HttpServlet {
         JLanguageTool langTool = new JLanguageTool(new AmericanEnglish());
 
         //Check
-         List<RuleMatch> matches = langTool.check(checkText);
+        List<RuleMatch> matches = langTool.check(checkText);
 
         List<RuleMatch> grammarErrors = new ArrayList<>();
 
         for (RuleMatch match : matches) {
-            System.out.println("test2");
             if (!(match.getRule() instanceof SpellingCheckRule)) {
                 grammarErrors.add(match);
             }
