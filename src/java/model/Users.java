@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.util.Date;
 
-/**
- *
- * @author nookh
- */
 public class Users {
 
     private int userID;
@@ -27,6 +19,19 @@ public class Users {
     }
 
     public Users(int userID, String username, String email, String password, String phone, String address, int age, Date createdAt, boolean premiumID) {
+        this.userID = userID;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.address = address;
+        this.age = age;
+        this.createdAt = createdAt;
+        this.premiumID = premiumID;
+    }
+
+    
+    public Users(int userID, String username, String email, String password, String phone, String address, int age, Date createdAt, boolean premiumID,boolean  role) {
         this.userID = userID;
         this.username = username;
         this.email = email;
@@ -117,6 +122,11 @@ public class Users {
 
     public void setRole(boolean role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" + "userID=" + userID + ", username=" + username + ", email=" + email + ", password=" + password + ", phone=" + phone + ", address=" + address + ", age=" + age + ", createdAt=" + createdAt + ", premiumID=" + premiumID + ", role=" + role + '}';
     }
 
    

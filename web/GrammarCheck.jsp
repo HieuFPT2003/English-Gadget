@@ -17,6 +17,7 @@
         <link href="css/style.css" rel="stylesheet" />
         <link href="css/responsive.css" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <style>
             body {
                 font-family: Arial, sans-serif; /* Đặt font-family cho toàn bộ trang */
@@ -44,7 +45,28 @@
                 font-size: 16px;
             }
         </style>
+
         <script>
+            // Lấy giá trị từ session 
+            var userID = <%= session.getAttribute("userID") != null ? session.getAttribute("userID") : "null" %>;
+            var premium = <%= session.getAttribute("premium") != null ? session.getAttribute("premium") : "null" %>;
+            var role = <%= sesstion.getAttribute("role") != null ? sessstion.getAttribute("role") : "null" %>;
+            
+            
+            // If admin not check
+            if (!role) {
+                if (!userID) {
+                    window.location.href = "login.jsp";
+                } else if (!premium) {
+                    window.location.href = "premium.jsp";
+                } else {
+                    console.log("User ID: " + userID);
+                    console.log("Premium: " + premium);
+                }
+            }
+
+
+            // Gui request
             $(document).ready(function () {
                 $('#myForm').submit(function (event) {
 
@@ -52,31 +74,22 @@
                     $('#loading').show();
                     $('#loadingText').show();
                     $('#btnCheck').hide();
-
                     // encode to URL
                     var formData = $(this).serialize();
-
                     $.ajax({
                         type: 'POST',
                         url: 'GrammarCheck',
                         data: formData,
-
                         success: function (response) {
                             $('#loading').hide();
                             $('#loadingText').hide();
                             $('#btnCheck').show();
-
-
-
                             // Lay ra correctText dung nhat
                             var correctText = response[response.length - 1].correctText;
                             var correct = "";
-
                             response.forEach(function (resultCheck, index) {
                                 correct += '<div title = "' + resultCheck.message + '" class="suggest_list" data-index="' + index + '">' + resultCheck.errorText + ' ---> ' + resultCheck.listSuggests.join(', ') + '</div>';
                             });
-
-
                             if (response.length > 8) {
                                 $('#correct').html('<div class="suggest_list_container">' + correct + '</div>');
                             } else {
@@ -92,9 +105,7 @@
                             resultHtml += '<textarea readonly class="form_input" rows="20" cols="50" placeholder="This is where you get your answers" required>' + correctText + '</textarea>';
                             resultHtml += '</form>';
                             resultHtml += '</div>';
-
                             $('#results').html(resultHtml);
-
                         },
                         error: function (error) {
                             console.log('Success response:', error);
