@@ -58,6 +58,8 @@ public class PostDAO {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
+            
+            
             List<Post> posts = new ArrayList<>();
             while (rs.next()) {
                 int postID = rs.getInt("postID");
