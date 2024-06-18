@@ -213,6 +213,7 @@ GO
 -- Display all users
 SELECT * FROM Users;
 GO
+-- Create table userFeedback
 CREATE TABLE userFeedback (
     feedbackID INT PRIMARY KEY IDENTITY(1,1),
     userID INT,

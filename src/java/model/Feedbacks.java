@@ -12,17 +12,17 @@ package model;
 public class Feedbacks {
     private int feedbackID;
     private int userID;
+    private String feedbackTopic;
     private String feedbackText;
-    private String userImage;
 
     public Feedbacks() {
     }
 
-    public Feedbacks(int feedbackID, int userID, String feedbackText, String userImage) {
+    public Feedbacks(int feedbackID, int userID, String feedbackTopic, String feedbackText) {
         this.feedbackID = feedbackID;
         this.userID = userID;
+        this.feedbackTopic = feedbackTopic;
         this.feedbackText = feedbackText;
-        this.userImage = userImage;
     }
 
     public int getFeedbackID() {
@@ -41,6 +41,14 @@ public class Feedbacks {
         this.userID = userID;
     }
 
+    public String getFeedbackTopic() {
+        return feedbackTopic;
+    }
+
+    public void setFeedbackTopic(String feedbackTopic) {
+        this.feedbackTopic = feedbackTopic;
+    }
+
     public String getFeedbackText() {
         return feedbackText;
     }
@@ -49,20 +57,13 @@ public class Feedbacks {
         this.feedbackText = feedbackText;
     }
 
-    public String getUserImage() {
-        return userImage;
-    }
-
-    public void setUserImage(String userImage) {
-        this.userImage = userImage;
-    }
-
     @Override
     public String toString() {
-        return "Feedbacks{" + "feedbackID=" + feedbackID + ", userID=" + userID + ", feedbackText=" + feedbackText + ", userImage=" + userImage + '}';
+        return "Feedbacks{" + "feedbackID=" + feedbackID + ", userID=" + userID + ", feedbackTopic=" + feedbackTopic + ", feedbackText=" + feedbackText + '}';
     }
 
-
-    
-            
+   
 }
+    
+
+   

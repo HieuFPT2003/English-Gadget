@@ -971,6 +971,13 @@ li.nav-item ul li a:hover, li.nav-item ul li a:focus {
     font-size: 42px;
     font-weight: 800;
 }
+.inner_page_qa {
+    background: #588157;
+    text-align: center;
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 
 /** footer **/
 

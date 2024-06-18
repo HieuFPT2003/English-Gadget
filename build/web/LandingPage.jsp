@@ -41,6 +41,9 @@
                                             <li><a href="Contact.jsp">Contact</a></li>
                                         </ul>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="help">Help Center<span class="sr-only"></span></a>
+                                    </li>
 
                                     <form class="form-inline" action="Search.jsp">
                                         <!-- <input type="text" name="search" placeholder="Tìm kiếm"> -->

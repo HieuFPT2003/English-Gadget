@@ -32,6 +32,14 @@
         <servlet-name>SearchUser</servlet-name>
         <servlet-class>controller.SearchUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HelpCenterControl</servlet-name>
+        <servlet-class>controller.HelpCenterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchQAServlet</servlet-name>
+        <servlet-class>controller.SearchQAServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BlogController</servlet-name>
         <url-pattern>/blog</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>SearchUser</servlet-name>
         <url-pattern>/searchUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HelpCenterControl</servlet-name>
+        <url-pattern>/help</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchQAServlet</servlet-name>
+        <url-pattern>/searchqa</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>LandingPage.jsp</welcome-file>

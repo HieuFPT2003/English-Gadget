@@ -187,7 +187,7 @@ public class UsersDAO extends DBContext {
 
     public List<Feedbacks> getAllFeedback() {
         List<Feedbacks> listfb = new ArrayList<>();
-        String sql = "select * from userFeedback";
+        String sql = "select * from UserFeedback";
         try (PreparedStatement st = connection.prepareStatement(sql); ResultSet rs = st.executeQuery()) {
             while (rs.next()) {
                 Feedbacks f = new Feedbacks(
