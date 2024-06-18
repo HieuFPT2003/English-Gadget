@@ -47,13 +47,11 @@ public class loginwithgoogle extends HttpServlet {
         if( c== null){
              Users a = new Users();
             a.setUsername(acc.getName());
-            a.setEmail(acc.getEmail());
-            
-                   
+            a.setEmail(acc.getEmail());             
             dao.signup(a);
-           request.getRequestDispatcher("home.jsp").forward(request, response);
+           request.getRequestDispatcher("LandingPage.jsp").forward(request, response);
         }else{
-          request.getRequestDispatcher("home.jsp").forward(request, response);
+          request.getRequestDispatcher("LandingPage.jsp").forward(request, response);
         
         }
     } 

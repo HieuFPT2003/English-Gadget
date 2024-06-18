@@ -3,12 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWP/E14/English-Gadget/src/java/model/History.java</file>
-            <file>file:/D:/SWP/E14/English-Gadget/src/java/model/Users.java</file>
-            <file>file:/D:/SWP/E14/English-Gadget/src/java/controller/BlogController.java</file>
-            <file>file:/D:/SWP/E14/English-Gadget/src/java/controller/GrammarCheckController.java</file>
-            <file>file:/D:/SWP/E14/English-Gadget/web/GrammarCheck.jsp</file>
-            <file>file:/D:/SWP/E14/English-Gadget/src/java/dal/HistoryCheck.java</file>
+            <file>file:/D:/swp/English-Gadget/src/java/controller/SpellingCheckController.java</file>
+            <file>file:/D:/swp/English-Gadget/src/java/controller/MyBlog.java</file>
+            <file>file:/D:/swp/English-Gadget/web/LandingPage.jsp</file>
+            <file>file:/D:/swp/English-Gadget/src/java/controller/Login.java</file>
+            <file>file:/D:/swp/English-Gadget/web/login.jsp</file>
+            <file>file:/D:/swp/English-Gadget/src/java/controller/loginwithgoogle.java</file>
+            <file>file:/D:/swp/English-Gadget/src/java/constant/Iconstant.java</file>
+            <file>file:/D:/swp/English-Gadget/src/java/controller/FeedbackServlet.java</file>
+            <file>file:/D:/swp/English-Gadget/src/java/controller/GrammarCheckController.java</file>
+            <file>file:/D:/swp/English-Gadget/web/Header.jsp</file>
+            <file>file:/D:/swp/English-Gadget/src/java/controller/BlogController.java</file>
+            <file>file:/D:/swp/English-Gadget/src/java/model/Google.java</file>
+            <file>file:/D:/swp/English-Gadget/src/java/model/GoogleAccount.java</file>
         </group>
     </open-files>
 </project-private>
