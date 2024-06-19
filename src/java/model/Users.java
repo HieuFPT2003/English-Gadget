@@ -18,19 +18,7 @@ public class Users {
     public Users( ) {
     }
     
-    public Users(int userID, String username, String email, String password, String phone, String address, int age, Date createdAt, boolean premiumID) {
-        this.userID = userID;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-        this.address = address;
-        this.age = age;
-        this.createdAt = createdAt;
-        this.premiumID = premiumID;
-    }
-
-    
+       
     public Users(int userID, String username, String email, String password, String phone, String address, int age, Date createdAt, boolean premiumID,boolean  role) {
         this.userID = userID;
         this.username = username;
@@ -124,10 +112,5 @@ public class Users {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "Users{" + "userID=" + userID + ", username=" + username + ", email=" + email + ", password=" + password + ", phone=" + phone + ", address=" + address + ", age=" + age + ", createdAt=" + createdAt + ", premiumID=" + premiumID + ", role=" + role + '}';
-    }
-
-   
+ 
 }

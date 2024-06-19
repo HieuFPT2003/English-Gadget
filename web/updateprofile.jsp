@@ -53,7 +53,7 @@
 </head>
 <body>
     <h1>Update User</h1>
-    <form action="update" method="post">
+    <form action="userupdate" method="post">
         <input type="hidden" name="userID" value="${user.userID}" />
         
         <label for="username">Username:</label>
@@ -61,9 +61,6 @@
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" value="${user.email}" readonly />
-
-        <label for="password">Password:</label>
-        <input type="text" id="password" name="password" value="${user.password}" readonly />
 
         <label for="phone">Phone:</label>
         <input type="tel" id="phone" name="phone" value="${user.phone}" readonly />
@@ -74,11 +71,6 @@
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" value="${user.age}" readonly />
 
-        <label for="premiumID">Premium ID:</label>
-        <select id="premiumID" name="premiumID" >
-            <option value="1" ${user.premiumID ? 'selected' : ''}>Yes</option>
-            <option value="0" ${!user.premiumID ? 'selected' : ''}>No</option>
-        </select>
 
         <input type="submit" value="Update User" />
     </form>

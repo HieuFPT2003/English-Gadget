@@ -17,20 +17,16 @@
         <servlet-class>controller.LandingPage</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LandingPageServlet</servlet-name>
-        <servlet-class>controller.FeedbackServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SearchUserControl</servlet-name>
         <servlet-class>controller.SearchUserControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchUserServlet</servlet-name>
-        <servlet-class>controller.SearchUserServlet</servlet-class>
+        <servlet-class>controller.SearchPost</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchUser</servlet-name>
-        <servlet-class>controller.SearchUserServlet</servlet-class>
+        <servlet-class>controller.SearchPost</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GrammarCheckController</servlet-name>
@@ -55,10 +51,6 @@
     <servlet-mapping>
         <servlet-name>LandingPage</servlet-name>
         <url-pattern>/LandingPage</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LandingPageServlet</servlet-name>
-        <url-pattern>/landing</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SearchUser</servlet-name>

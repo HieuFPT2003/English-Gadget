@@ -11,7 +11,7 @@ import java.util.List;
 import model.Users;
 
 @WebServlet(name="SortServlet", urlPatterns={"/sort"})
-public class SortServlet extends HttpServlet {
+public class SortUser extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

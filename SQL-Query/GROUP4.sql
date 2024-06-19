@@ -212,7 +212,7 @@ LEFT JOIN (
 GO
 
 
-CREATE TABLE userFeedback (
+CREATE TABLE Feedback (
     feedbackID INT PRIMARY KEY IDENTITY(1,1),
     userID INT,
 	feedbackTopic NVARCHAR(MAX),
@@ -221,9 +221,7 @@ CREATE TABLE userFeedback (
 );
 Go
 
-
-select * from Users
-INSERT INTO userFeedback(userID,feedbackTopic,feedbackText)
+INSERT INTO Feedback(userID,feedbackTopic,feedbackText)
 VALUES 
 (1, 'Convenient','"This spell-check software is very convenient and easy to use. Ive significantly reduced errors in my documents."'),
 (2, 'Accurate','"I find this software quite accurate in detecting spelling mistakes"'),
@@ -233,6 +231,21 @@ VALUES
 (4, 'Missed error','"Sometimes the software still misses a few minor spelling errors. Hopefully, it will be improved in future versions."');
 
 GO
+
+select * from Feedback
+
+SELECT * FROM Feedback WHERE feedbackID = 1
+DELETE FROM Feedback WHERE feedbackID = 2
+DELETE FROM Users WHERE userID = 1
+
+DELETE FROM Payments WHERE userID = 1; 
+DELETE FROM Comment WHERE postID IN (SELECT postID FROM UserPost WHERE userID = 1); 
+DELETE FROM UserPost WHERE userID = 1; 
+DELETE FROM Emotion WHERE postID = 1; 
+DELETE FROM Administrator WHERE userID = 1; 
+DELETE FROM UserPost WHERE userID = 1; 
+DELETE FROM Users WHERE userID = 1;
+
 
 
 -- Create table
@@ -247,7 +260,6 @@ CREATE TABLE CheckHistory (
 );
 GO
 
-select * from CheckHistory
 
 -- Insert sample data into CheckHistory
 INSERT INTO CheckHistory (userID, text, result, checkDate, type)

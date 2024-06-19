@@ -1,71 +1,45 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-
 package controller;
 
 import dal.UsersDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 import model.Users;
 
-/**
- *
- * @author nookh
- */
-@WebServlet(name="UserProfile", urlPatterns={"/profile"})
+@WebServlet(name = "UserProfile", urlPatterns = {"/userprofile"})
 public class UserProfile extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UserProfile</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UserProfile at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    } 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        UsersDAO u = new UsersDAO();
-        List<Users> users = u.getAll();
-        request.setAttribute("users", users); 
+            throws ServletException, IOException {
+        String userID_raw = request.getParameter("userID");
+        if (userID_raw != null) {
+            try {
+                int userID = Integer.parseInt(userID_raw);
+                UsersDAO usersDAO = new UsersDAO();
+                Users user = usersDAO.getUsersById(userID);
+                if (user != null) {
+                    request.setAttribute("user", user);
+                } else {
+                    request.setAttribute("errorMessage", "User not found");
+                }
+            } catch (NumberFormatException e) {
+                request.setAttribute("errorMessage", "Invalid user ID format");
+            }
+        }
         request.getRequestDispatcher("userprofile.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
+            throws ServletException, IOException {
     }
-
 
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "User profile servlet";
     }
-
 }

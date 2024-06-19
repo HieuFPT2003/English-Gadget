@@ -40,6 +40,7 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="About.jsp">Development team</a></li>
                                             <li><a href="Contact.jsp">Contact</a></li>
+                                            <li><a href="feedback.jsp">Feed Back</a></li>
                                         </ul>
                                     </li>
 

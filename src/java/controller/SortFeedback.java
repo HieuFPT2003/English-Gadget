@@ -5,21 +5,23 @@
 
 package controller;
 
-import dal.PostDAO;
+import dal.FeedbackDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.Post;
+import model.Feedback;
 
 /**
  *
- * @author Admin
+ * @author nookh
  */
-public class SearchUserServlet extends HttpServlet {
+@WebServlet(name="SortFeedback", urlPatterns={"/sortfeedback"})
+public class SortFeedback extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,11 +33,18 @@ public class SearchUserServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String txtSearch = request.getParameter("txt");
-        PostDAO dao = new PostDAO();
-        List<Post> list = dao.searchPostByText(txtSearch);
-        request.setAttribute("listPost", list);
-        request.getRequestDispatcher("MyBlog.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SortFeedback</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet SortFeedback at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -46,11 +55,21 @@ public class SearchUserServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
-    } 
+            throws ServletException, IOException {
+        String sortBy = request.getParameter("sortBy");
+        List<Feedback> feedback;
+        FeedbackDAO feedbackDAO = new FeedbackDAO();
+        if (sortBy == null || sortBy.isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/AdminFeedback.jsp");
+            return;
+        }
+        feedback = feedbackDAO.sortFeedback(sortBy);
+        request.setAttribute("feedback", feedback);
+        request.getRequestDispatcher("AdminFeedback.jsp").forward(request, response);
+    }
+
 
     /** 
      * Handles the HTTP <code>POST</code> method.

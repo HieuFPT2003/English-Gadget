@@ -4,21 +4,21 @@
  */
 package controller;
 
-import dal.UsersDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.Feedbacks;
+import dal.FeedbackDAO;
 
 /**
  *
- * @author Admin
+ * @author nookh
  */
-public class FeedbackServlet extends HttpServlet {
+@WebServlet(name = "DeleteFeedback", urlPatterns = {"/deletefeedback"})
+public class DeleteFeedback extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,11 +32,18 @@ public class FeedbackServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        UsersDAO dao = new UsersDAO();
-        List<Feedbacks> list = dao.getAllFeedback();
-        request.setAttribute("list", list);
-        request.getRequestDispatcher("Contact.jsp").forward(request, response);
-
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet DeleteFeedback</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet DeleteFeedback at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,8 +58,17 @@ public class FeedbackServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String feedbackID_raw = request.getParameter("feedbackID");
+        try {
+            int feedbackID = Integer.parseInt(feedbackID_raw);
+            FeedbackDAO feedbackDAO = new FeedbackDAO();
+            feedbackDAO.deleteFeedback(feedbackID);
+            response.sendRedirect(request.getContextPath() + "/userfeedback");
+        } catch (NumberFormatException | IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -65,7 +81,7 @@ public class FeedbackServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     /**

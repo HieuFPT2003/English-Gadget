@@ -3,12 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWP/E14/English-Gadget/src/java/model/History.java</file>
-            <file>file:/D:/SWP/E14/English-Gadget/src/java/model/Users.java</file>
-            <file>file:/D:/SWP/E14/English-Gadget/src/java/controller/BlogController.java</file>
-            <file>file:/D:/SWP/E14/English-Gadget/src/java/controller/GrammarCheckController.java</file>
-            <file>file:/D:/SWP/E14/English-Gadget/web/GrammarCheck.jsp</file>
-            <file>file:/D:/SWP/E14/English-Gadget/src/java/dal/HistoryCheck.java</file>
+            <file>file:/D:/New%20folder/English-Gadget/src/java/controller/ListServlet.java</file>
+            <file>file:/D:/New%20folder/English-Gadget/src/java/controller/loginwithgoogle.java</file>
+            <file>file:/D:/New%20folder/English-Gadget/src/java/controller/UserUpdate.java</file>
+            <file>file:/D:/New%20folder/English-Gadget/src/java/controller/SearchUserServlet.java</file>
+            <file>file:/D:/New%20folder/English-Gadget/web/update.jsp</file>
+            <file>file:/D:/New%20folder/English-Gadget/src/java/controller/DeleteServlet.java</file>
+            <file>file:/D:/New%20folder/English-Gadget/src/java/controller/UserProfile.java</file>
+            <file>file:/D:/New%20folder/English-Gadget/web/homeBlogUser.jsp</file>
+            <file>file:/D:/New%20folder/English-Gadget/web/thankfeedback.jsp</file>
+            <file>file:/D:/New%20folder/English-Gadget/src/java/controller/MyBlog.java</file>
+            <file>file:/D:/New%20folder/English-Gadget/web/userprofile.jsp</file>
+            <file>file:/D:/New%20folder/English-Gadget/src/java/controller/SearchServlet.java</file>
         </group>
     </open-files>
 </project-private>
