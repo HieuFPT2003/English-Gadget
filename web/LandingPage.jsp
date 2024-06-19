@@ -4,72 +4,53 @@
 <html>
     <head>
         <jsp:include page="Header.jsp"></jsp:include>
-        </head>
-        <body>
-            <div class="hero_area">
-                <!-- header section strats -->
-                <header class="header_section">
-                    <div class="container">
-                        <nav class="navbar navbar-expand-lg custom_nav-container ">
-                            <a class="navbar-brand" href="LandingPage.jsp"><img width="300" src="images/logofixfinal.png" alt="#" /></a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class=""> </span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="LandingPage.jsp">Home<span class="sr-only">(current)</span></a>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Products<span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="GrammarCheck.jsp">Grammar Check (Prime)</a></li>
-                                            <li><a href="SpellingCheck.jsp">Spelling Check</a></li>
-                                            <li><a href="blog">Blog</a></li>
-                                        </ul>
-                                    </li>
+            <script>
+            var userID = <%= session.getAttribute("userID") != null ? session.getAttribute("userID") : "null" %>;
+            var premium = <%= session.getAttribute("premium") != null ? session.getAttribute("premium") : "null" %>;
+            var role = <%= session.getAttribute("role") != null ? session.getAttribute("role") : "null" %>;
+         
+            console.log(userID,premium,role);
+            
+        </script>
+    </head>
+    <body>
+        <div class="hero_area">
 
-                                    <li class="nav-item dropdown">
-                                    <%
-                                        HttpSession currentSession = request.getSession();
-                                        Integer userIdInteger = (Integer) currentSession.getAttribute("userID");
-String userid = userIdInteger.toString();
-        
-                                        // Kiểm tra xem userid có tồn tại hay không
-                                        if (userid != null) {
-                                    %>
-                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                                        <span class="nav-label">
-                                            Profile <!-- Nếu có userID tồn tại trong session, sẽ hiển thị "Profile" -->
-                                            <span class="caret"></span>
-                                        </span>
-                                    </a>
+            <header class="header_section">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg custom_nav-container ">
+                        <a class="navbar-brand" href="LandingPage.jsp"><img width="300" src="images/logofixfinal.png" alt="#" /></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class=""> </span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="LandingPage.jsp">Home<span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Products<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="profile.jsp">View Profile</a></li>
-                                        <li><a href="logout.jsp">Logout</a></li>
+                                        <li><a href="GrammarCheck.jsp">Grammar Check (Prime)</a></li>
+                                        <li><a href="SpellingCheck.jsp">Spelling Check</a></li>
+                                        <li><a href="blog">Blog</a></li>
                                     </ul>
-                                    <%
-                                        } else {
-                                    %>
-                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                                        <span class="nav-label">
-                                            Account <!-- Nếu không có userID tồn tại trong session, sẽ hiển thị "Account" -->
-                                            <span class="caret"></span>
-                                        </span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="login.jsp">Sign in</a></li>
-                                        <li><a href="signup.jsp">Sign up</a></li>
-                                    </ul>
-                                    <%
-                                        }
-                                    %>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">About us<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="About.jsp">Development team</a></li>
                                         <li><a href="Contact.jsp">Contact</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item dropdown" id="account">
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <span class="nav-label">Account<span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="login.jsp">Sign in</a></li>
+                                        <li><a href="signup.jsp">Sign up</a></li>
                                     </ul>
                                 </li>
 
