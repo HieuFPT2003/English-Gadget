@@ -147,8 +147,9 @@
                         <i class="bi bi-person-circle rightIcon"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" class="navLink" href="profile">Profile</a></li>
+                        <li><a class="dropdown-item" class="navLink" href="userprofile">Profile</a></li>
                         <li><a class="dropdown-item" href="myblog">My Blog</a></li>
+                        <li><a class="dropdown-item" href="feedback.jsp">Send Feedback</a></li>
                         <li><a class="dropdown-item" href="LandingPage.jsp">Log Out</a></li>
                     </ul>
                 </div>
@@ -184,6 +185,7 @@
                         <li class="navLi"><a class="navLink fs-5" href="LandingPage.jsp"> <i class="bi bi-house-door-fill"></i> Home</a></li>
                         <li class="navLi"><a class="navLink fs-5" href="Check_Backup.jsp"> <i class="bi bi-book-fill"></i> Grammer Checking</a></li>
                         <li class="navLi"><a class="navLink fs-5" href="#"><i class="bi bi-chat-left-text-fill"></i> Paraphraser</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="userfeedback"> <i class="bi bi-house-door-fill"></i> Feedback</a></li>
                     </ul>
                     <div class="leftBotton">
                         <a class="leftBottonLink fs-6"><i class="bi bi-info-circle"></i> Help Center</a>

@@ -26,7 +26,7 @@ public class DeleteServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             request.setAttribute("errorMessage", "Invalid user ID format: " + e.getMessage());
             request.getRequestDispatcher("errorPage.jsp").forward(request, response);
-        } catch (SQLException e) {
+        } catch (IOException e) {
             e.printStackTrace(); 
             request.setAttribute("errorMessage", "Error deleting user: " + e.getMessage());
             request.getRequestDispatcher("errorPage.jsp").forward(request, response);

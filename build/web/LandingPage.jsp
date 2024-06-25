@@ -4,14 +4,6 @@
 <html>
     <head>
         <jsp:include page="Header.jsp"></jsp:include>
-            <script>
-            var userID = <%= session.getAttribute("userID") != null ? session.getAttribute("userID") : "null" %>;
-            var premium = <%= session.getAttribute("premium") != null ? session.getAttribute("premium") : "null" %>;
-            var role = <%= session.getAttribute("role") != null ? session.getAttribute("role") : "null" %>;
-         
-            console.log(userID,premium,role);
-            
-        </script>
     </head>
     <body>
         <div class="hero_area">

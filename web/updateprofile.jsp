@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,32 +52,23 @@
 </head>
 <body>
     <h1>Update User</h1>
-    <form action="update" method="post">
+    <form action="userupdate" method="post">
         <input type="hidden" name="userID" value="${user.userID}" />
         
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="${user.username}" readonly />
+        <input type="text" id="username" name="username" value="${user.username}"  />
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="${user.email}" readonly />
-
-        <label for="password">Password:</label>
-        <input type="text" id="password" name="password" value="${user.password}" readonly />
+        <input type="email" id="email" name="email" value="${user.email}"  />
 
         <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" value="${user.phone}" readonly />
+        <input type="tel" id="phone" name="phone" value="${user.phone}"  />
 
         <label for="address">Address:</label>
-        <input type="text" id="address" name="address" value="${user.address}" readonly />
+        <input type="text" id="address" name="address" value="${user.address}"  />
 
         <label for="age">Age:</label>
-        <input type="number" id="age" name="age" value="${user.age}" readonly />
-
-        <label for="premiumID">Premium ID:</label>
-        <select id="premiumID" name="premiumID" >
-            <option value="1" ${user.premiumID ? 'selected' : ''}>Yes</option>
-            <option value="0" ${!user.premiumID ? 'selected' : ''}>No</option>
-        </select>
+        <input type="number" id="age" name="age" value="${user.age}"  />
 
         <input type="submit" value="Update User" />
     </form>
