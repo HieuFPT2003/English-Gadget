@@ -79,75 +79,100 @@
             </section>
             <!-- end inner page section -->
             <!-- why section -->
-            <section class="why_section layout_padding">
-                <div class="container">
-
-                    <div class="row">
-                        <div class="col-lg-8 offset-lg-2">
-                            <div class="full">
-                                <form action="index.html">
-                                    <fieldset>
-                                        <input type="text" placeholder="Enter subject" name="subject" required />
-                                        <textarea placeholder="Enter your message" required></textarea>
-                                        <input type="submit" value="Submit" />
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-                        <section class="client_section layout_padding">
+            <div class="col-lg-8 offset-lg-2">
+            <c:if test="${not empty logsu}">
+                <div class="alert alert-success mt-3" style="text-align: center">${logsu}</div>
+            </c:if>
+            <c:if test="${not empty logfa}}">
+                <div class="alert alert-danger mt-3"  style="text-align: center">${logfa}</div>
+            </c:if>
+        </div>
+        <section class="why_section layout_padding" style="padding-top: 35px">
             <div class="container">
-                <div class="heading_container heading_center">
-                    <h2  style="font-family: Radio Canada Big">
-                        Customer's Testimonial
-                    </h2>
-                </div>
-                <div id="carouselExample3Controls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                    <c:forEach items="${list}" var ="o">
-                        <div class="carousel-item active">
-                            <div class="box col-lg-10 mx-auto">
-                                <div class="img_container">
-                                    <div class="img-box">
-                                        <div class="img_box-inner">
-                                            <img src="${o.userImage}" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="detail-box">
-                                    <h5>
-                                        Anna Trevor
-                                    </h5>
-                                    <h6>
-                                        Customer
-                                    </h6>
-                                    <p>
-                                        ${o.feedbackText};
-                                    </p>
-                                </div>
-                            </div>
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="full">
+                            <form action="EmailContactServlet" method = post>
+                                <fieldset>  
+                                    <input type="text" placeholder="Enter name" name="name" required />
+                                    <input type="email" placeholder="Enter email" name="email" required />
+                                    Choose related subject: <select name="subject" class="input-text" required>
+                                        <option class="dropdown-item" value="" disabled selected>Select a subject</option>
+                                        <option class="dropdown-item" value="General Inquiry">General Inquiry</option>
+                                        <option class="dropdown-item" value="Report issue">Report issue</option>
+                                        <option class="dropdown-item" value="Support Request">Support Request</option>
+                                        <option class="dropdown-item" value="Billing Issues">Billing Issues</option>
+                                        <option class="dropdown-item" value="Feature Request">Feature Request</option>
+                                        <option class="dropdown-item" value="Technical Support">Technical Support</option>
+                                        <option class="dropdown-item" value="Account Issues">Account Issues</option>
+                                        <option class="dropdown-item" value="Partnership Inquiry">Partnership Inquiry</option>
+                                    </select>
+                                    <br>
+                                    <br>
+
+                                    <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                                    <input type="submit" value="Submit"/>
+                                </fieldset>
+                            </form>
                         </div>
-                        </c:forEach>
                     </div>
-                    <div class="carousel_btn_box">
-                        <a class="carousel-control-prev" href="#carouselExample3Controls" role="button" data-slide="prev">
-                            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExample3Controls" role="button" data-slide="next">
-                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
+
                 </div>
             </div>
         </section>
-            <!-- end why section -->
-            <!-- arrival section -->
-            <!-- end arrival section -->
-            <!-- footer section -->
+        <!------ Include the above in your HEAD tag ---------->
+
+        <!--            <section class="client_section layout_padding">
+                        <div class="container">
+                            <div class="heading_container heading_center">
+                                <h2  style="font-family: Radio Canada Big">
+                                    Customer's Testimonial
+                                </h2>
+                            </div>
+                            <div id="carouselExample3Controls" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+        <c:forEach items="${list}" var ="o">
+            <div class="carousel-item active">
+                <div class="box col-lg-10 mx-auto">
+                    <div class="img_container">
+                        <div class="img-box">
+                            <div class="img_box-inner">
+                                <img src="${o.userImage}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-box">
+                        <h5>
+                            Anna Trevor
+                        </h5>
+                        <h6>
+                            Customer
+                        </h6>
+                        <p>
+            ${o.feedbackText};
+        </p>
+    </div>
+</div>
+</div>
+        </c:forEach>
+    </div>
+    <div class="carousel_btn_box">
+        <a class="carousel-control-prev" href="#carouselExample3Controls" role="button" data-slide="prev">
+            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExample3Controls" role="button" data-slide="next">
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+</div>
+</section>-->
+        <!-- end why section -->
+        <!-- arrival section -->
+        <!-- end arrival section -->
+        <!-- footer section -->
         <jsp:include page="Footer.jsp"></jsp:include>
         <!-- footer section -->
         <!-- jQery -->

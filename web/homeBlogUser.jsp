@@ -111,10 +111,10 @@
                 color: #007bff;
             }
 
-/*            .action {
-                font-size: 14px;
-                margin-right: 10px;
-            }*/
+            /*            .action {
+                            font-size: 14px;
+                            margin-right: 10px;
+                        }*/
 
         </style>
     </head>
@@ -136,16 +136,45 @@
                         <p class="body-post__content">${post.postText}</p>
                     </div>
                     <div class="row footer-post text-center">
-                        <div class="col-6 like emotion">
+                        <div class="col-4 like emotion">
                             <i class="bi bi-hand-thumbs-up-fill action">Like  ${post.likeCount}</i>
                         </div>
-                        <div class="col-6 dislike emotion">
+                        <div class="col-4 dislike emotion">
                             <i class="bi bi-hand-thumbs-down-fill">Dislike ${post.dislikeCount}</i> 
                         </div>
+                        <div class="col-4 dislike emotion">
+                            <i class="bi bi-flag-fill" id="reportModal">Report</i> 
+                        </div>
+                        
                     </div>
                 </div>
             </c:forEach>
         </section>
+        <!-- Modal -->
+        <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reportModalLabel">Report Post</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="reportForm" action="/submit-report" method="post">
+                            <div class="form-group">
+                                <label for="reportReason">Reason for reporting:</label>
+                                <textarea class="form-control" id="reportReason" name="reportReason" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Report</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <jsp:include page="Footer.jsp"></jsp:include>  
     </body>
 </html>
