@@ -78,7 +78,7 @@ public class UsersDAO extends DBContext {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Replace with proper logging
+            e.printStackTrace(); 
         }
         return null;
     }

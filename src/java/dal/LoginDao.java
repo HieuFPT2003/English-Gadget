@@ -60,6 +60,27 @@ public class LoginDao extends DBContext {
         }
         return null;
     }
+   public Users checkEmailExist(String user) {
+        String sql = "select * from [dbo].[Users] where  email = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, user);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Users a = new Users(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getBoolean(9),
+                        rs.getBoolean(10));
+                return a;
+            }
+        } catch (Exception e) {
+            //nothing
+        }
+        return null;
+    }
+
 
     public Users signup(Users c) {
         String sql = "INSERT INTO Users (username, email, [password], phone, [address], age) VALUES (?, ?, ?, ?, ?, ?)";
@@ -103,6 +124,9 @@ public class LoginDao extends DBContext {
         }
         return null;
     }
+    
+
+   
 
     public static void main(String[] args) {
         LoginDao d = new LoginDao();

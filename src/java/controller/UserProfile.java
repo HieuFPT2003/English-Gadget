@@ -30,12 +30,12 @@ public class UserProfile extends HttpServlet {
                 request.setAttribute("errorMessage", "Invalid user ID format");
             }
         } else {
-            request.setAttribute("errorMessage", "");
+            request.setAttribute("errorMessage", "User ID is required");
         }
         request.getRequestDispatcher("userprofile.jsp").forward(request, response);
     }
-    
-    
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -48,7 +48,7 @@ public class UserProfile extends HttpServlet {
 
             UsersDAO usersDAO = new UsersDAO();
             Users user = usersDAO.getUsersById(userID);
-            
+
             if (user != null) {
                 user.setUsername(username);
                 user.setEmail(email);
@@ -57,7 +57,7 @@ public class UserProfile extends HttpServlet {
                 user.setAge(age);
                 usersDAO.update(user);
             }
-            response.sendRedirect("userprofile");
+            response.sendRedirect("userprofile?userID=" + userID);
         } catch (NumberFormatException e) {
             response.sendRedirect("userupdate?userID=" + request.getParameter("userID"));
         }

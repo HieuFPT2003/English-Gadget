@@ -9,6 +9,7 @@ public class Feedback {
     private String feedbackText;
     private Date createdAt;
     private String username;
+    private String role; // Add role attribute
 
     public Feedback() {
     }
@@ -19,16 +20,15 @@ public class Feedback {
         this.feedbackText = feedbackText;
     }
 
-    public Feedback(int feedbackID, int userID, String feedbackTopic, String feedbackText, Date createdAt, String username) {
+    public Feedback(int feedbackID, int userID, String feedbackTopic, String feedbackText, Date createdAt, String username, String role) {
         this.feedbackID = feedbackID;
         this.userID = userID;
         this.feedbackTopic = feedbackTopic;
         this.feedbackText = feedbackText;
         this.createdAt = createdAt;
         this.username = username;
+        this.role = role;
     }
-    
-    
 
     public Feedback(int feedbackID, int userID, String feedbackTopic, String feedbackText, Date createdAt) {
         this.feedbackID = feedbackID;
@@ -86,5 +86,11 @@ public class Feedback {
         this.username = username;
     }
 
-    
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

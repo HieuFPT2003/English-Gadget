@@ -10,9 +10,8 @@ import model.Feedback;
 
 public class FeedbackDAO extends DBContext {
 
-    // Constructor
     public FeedbackDAO() {
-        super(); // Call the parent constructor to initialize the DB connection
+        super();
     }
 
     public List<Feedback> getAll() {
@@ -26,17 +25,18 @@ public class FeedbackDAO extends DBContext {
                         rs.getInt("userID"),
                         rs.getString("feedbackTopic"),
                         rs.getString("feedbackText"),
-                        rs.getDate("created_at")
+                        rs.getDate("created_at"),
+                        rs.getString("username"),
+                        rs.getString("role") // Get role from ResultSet
                 );
                 list.add(f);
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Replace with proper logging
+            e.printStackTrace();
         }
         return list;
     }
 
-    // Retrieve feedback by ID
     public Feedback getFeedbackById(int id) {
         String sql = "SELECT * FROM Feedback WHERE feedbackID = ?";
         try (PreparedStatement st = connection.prepareStatement(sql)) {
@@ -48,28 +48,28 @@ public class FeedbackDAO extends DBContext {
                             rs.getInt("userID"),
                             rs.getString("feedbackTopic"),
                             rs.getString("feedbackText"),
-                             rs.getDate("created_at")
+                            rs.getDate("created_at"),
+                            rs.getString("username"),
+                            rs.getString("role") // Get role from ResultSet
                     );
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Replace with proper logging
+            e.printStackTrace();
         }
         return null;
     }
 
-    // Delete feedback by ID
     public void deleteFeedback(int feedbackID) {
         String sql = "DELETE FROM Feedback WHERE feedbackID = ?";
         try (PreparedStatement st = connection.prepareStatement(sql)) {
             st.setInt(1, feedbackID);
             st.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace(); // Replace with proper logging
+            e.printStackTrace();
         }
     }
 
-    // Search feedback by keyword
     public List<Feedback> searchFeedback(String keyword) {
         List<Feedback> list = new ArrayList<>();
         String sql = "SELECT * FROM Feedback WHERE feedbackID = ? OR feedbackTopic LIKE ? ";
@@ -78,11 +78,11 @@ public class FeedbackDAO extends DBContext {
             try {
                 st.setInt(1, Integer.parseInt(keyword));
             } catch (NumberFormatException e) {
-                st.setInt(1, -1); // Handle non-integer input gracefully
+                st.setInt(1, -1);
             }
             String searchPattern = "%" + keyword + "%";
             st.setString(2, searchPattern);
-         
+
             try (ResultSet rs = st.executeQuery()) {
                 while (rs.next()) {
                     Feedback f = new Feedback(
@@ -90,32 +90,33 @@ public class FeedbackDAO extends DBContext {
                             rs.getInt("userID"),
                             rs.getString("feedbackTopic"),
                             rs.getString("feedbackText"),
-                             rs.getDate("created_at")
+                            rs.getDate("created_at"),
+                            rs.getString("username"),
+                            rs.getString("role") // Get role from ResultSet
                     );
                     list.add(f);
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Replace with proper logging
+            e.printStackTrace();
         }
         return list;
     }
 
-    // Insert new feedback
-     public void insert(Feedback f) {
-        String sql = "INSERT INTO Feedback (userID, feedbackTopic, feedbackText, created_at) "
-                + "VALUES (?, ?, ?, GETDATE())";
+    public void insert(Feedback f) {
+        String sql = "INSERT INTO Feedback (userID, feedbackTopic, feedbackText, created_at, role) "
+                + "VALUES (?, ?, ?, GETDATE(), ?)";
         try (PreparedStatement st = connection.prepareStatement(sql)) {
             st.setInt(1, f.getUserID());
             st.setString(2, f.getFeedbackTopic());
             st.setString(3, f.getFeedbackText());
+            st.setString(4, f.getRole()); // Set role
             st.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace(); // Replace with proper logging
+            e.printStackTrace();
         }
     }
 
-    // Sort feedback by specified column
     public List<Feedback> sortFeedback(String sortBy) {
         List<Feedback> list = new ArrayList<>();
         List<String> allowedColumns = List.of("userID", "feedbackTopic", "created_at");
@@ -133,18 +134,21 @@ public class FeedbackDAO extends DBContext {
                         rs.getInt("userID"),
                         rs.getString("feedbackTopic"),
                         rs.getString("feedbackText"),
-                         rs.getDate("created_at")
+                        rs.getDate("created_at"),
+                        rs.getString("username"),
+                        rs.getString("role") // Get role from ResultSet
                 );
                 list.add(f);
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Replace with proper logging
+            e.printStackTrace();
         }
         return list;
     }
-      public List<Feedback> getAllHaveName() {
+
+    public List<Feedback> getAllHaveName() {
         List<Feedback> list = new ArrayList<>();
-        String sql = "SELECT f.feedbackID, f.userID, u.username, f.feedbackTopic, f.feedbackText, f.created_at " +
+        String sql = "SELECT f.feedbackID, f.userID, u.username, f.feedbackTopic, f.feedbackText, f.created_at, u.role " +
                      "FROM Feedback f " +
                      "JOIN Users u ON f.userID = u.userID";
 
@@ -156,55 +160,46 @@ public class FeedbackDAO extends DBContext {
                         rs.getString("feedbackTopic"),
                         rs.getString("feedbackText"),
                         rs.getDate("created_at"),
-                        rs.getString("username")
+                        rs.getString("username"),
+                        rs.getString("role") // Get role from ResultSet
                 );
                 list.add(f);
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Replace with proper logging
+            e.printStackTrace();
         }
         return list;
     }
+
     public List<Feedback> searchUserFeedback(String keyword) {
-    List<Feedback> list = new ArrayList<>();
-    String sql = "SELECT f.feedbackID, f.userID, u.username, f.feedbackTopic, f.feedbackText, f.created_at " +
-                 "FROM Feedback f " +
-                 "JOIN Users u ON f.userID = u.userID " +
-                 "WHERE u.username = ? OR f.feedbackTopic LIKE ? ";
+        List<Feedback> list = new ArrayList<>();
+        String sql = "SELECT f.feedbackID, f.userID, u.username, f.feedbackTopic, f.feedbackText, f.created_at, u.role " +
+                     "FROM Feedback f " +
+                     "JOIN Users u ON f.userID = u.userID " +
+                     "WHERE u.username = ? OR f.feedbackTopic LIKE ? ";
 
-    try (PreparedStatement st = connection.prepareStatement(sql)) {
-        // Bind the keyword to both username and feedbackTopic search
-        st.setString(1, keyword);
-        String searchPattern = "%" + keyword + "%";
-        st.setString(2, searchPattern);
+        try (PreparedStatement st = connection.prepareStatement(sql)) {
+            st.setString(1, keyword);
+            String searchPattern = "%" + keyword + "%";
+            st.setString(2, searchPattern);
 
-        try (ResultSet rs = st.executeQuery()) {
-            while (rs.next()) {
-                Feedback f = new Feedback(
-                        rs.getInt("feedbackID"),
-                        rs.getInt("userID"),
-                        rs.getString("feedbackTopic"),
-                        rs.getString("feedbackText"),
-                        rs.getDate("created_at"),
-                        rs.getString("username")
-                );
-                list.add(f);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    Feedback f = new Feedback(
+                            rs.getInt("feedbackID"),
+                            rs.getInt("userID"),
+                            rs.getString("feedbackTopic"),
+                            rs.getString("feedbackText"),
+                            rs.getDate("created_at"),
+                            rs.getString("username"),
+                            rs.getString("role") // Get role from ResultSet
+                    );
+                    list.add(f);
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace(); // Replace with proper logging
-    }
-    return list;
-}
-
-
-
-
-    public static void main(String[] args) {
-        FeedbackDAO dao = new FeedbackDAO();
-        List<Feedback> list = dao.getAll();
-        for (Feedback feedback : list) {
-            System.out.println(feedback.getFeedbackText());
-        }
+        return list;
     }
 }

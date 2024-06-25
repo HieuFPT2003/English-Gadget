@@ -61,7 +61,6 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
 
         if (username.isEmpty() || password.isEmpty()) {
-            // Handle empty username or password
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             session.setAttribute("password", password);
@@ -74,7 +73,6 @@ public class Login extends HttpServlet {
         Users user = dao.login(username, password);
 
         if (user == null) {
-            // Handle invalid login
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             session.setAttribute("password", password);
@@ -83,7 +81,7 @@ public class Login extends HttpServlet {
         } else {
             // Successful login, store user in session
             HttpSession session = request.getSession();
-            session.setAttribute("user", user);
+            session.setAttribute("username", username);
             session.setAttribute("userID", user.getUserID());
             session.setAttribute("premium", user.isPremiumID());
             session.setAttribute("role", user.isRole());

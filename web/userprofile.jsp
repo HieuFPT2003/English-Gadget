@@ -65,15 +65,12 @@
         .btn-home:hover {
             background-color: #45a049;
         }
-        
-        
     </style>
 </head>
 <body>
 <header>
     <h1>User Profile</h1>
 </header>
-    
 <div class="container">
     <c:if test="${not empty user}">
         <table>
@@ -108,14 +105,11 @@
         </table>
     </c:if>
     <c:if test="${not empty errorMessage}">
-        <a href="../src/java/controller/UserProfile.java"></a>
         <p class="error">${errorMessage}</p>
     </c:if>
-    
-     <a href="LandingPage.jsp" class="btn-home">Home</a>
+    <a href="LandingPage.jsp" class="btn-home">Home</a>
     <a href="userupdate?userID=${user.userID}" class="btn-home">Update</a>
 </div>
-
+<jsp:include page="Footer.jsp" />
 </body>
-<jsp:include page="Footer.jsp"></jsp:include>
 </html>
