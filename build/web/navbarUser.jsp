@@ -149,7 +149,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" class="navLink" href="profile">Profile</a></li>
                         <li><a class="dropdown-item" href="myblog">My Blog</a></li>
-                        <li><a class="dropdown-item" href="LandingPage.jsp">Log Out</a></li>
+                        <li><a class="dropdown-item" href="logout">Log Out</a></li>
                     </ul>
                 </div>
             </div>

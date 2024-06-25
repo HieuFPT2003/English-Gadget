@@ -37,9 +37,9 @@
                 <form action="login" method="post">
                     <h1>Sign in</h1>
                     <div class="social-container">
-                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        
                         <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:9999/English_Gadget/loginwithgoogle&response_type=code&client_id=1058288513168-95klp5p5jtdvdq7ftj0nn0oj29ac7a9i.apps.googleusercontent.com&approval_prompt=force" class="social"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                        
                     </div>
                     <span>or use your account</span>
                     <div class="wrapper1 content">

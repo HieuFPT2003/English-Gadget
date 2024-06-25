@@ -4,6 +4,17 @@
 <html>
     <head>
         <jsp:include page="Header.jsp"></jsp:include>
+        <script >
+            var userID = <%= session.getAttribute("userID") != null ? session.getAttribute("userID") : "null" %>;
+            var premium = <%= session.getAttribute("premium") != null ? session.getAttribute("premium") : "null" %>;
+            var role = <%= session.getAttribute("role") != null ? session.getAttribute("role") : "null" %>;
+                        var name = <%= session.getAttribute("usernamegoogle") != null ? session.getAttribute("usernamegoogle") : "null" %>;
+
+            console.log("User ID: " + name);
+
+            console.log("Premium: " + premium);
+            console.log("Role: " + role);
+        </script>
         </head>
         <body>
             <div class="hero_area">
@@ -31,29 +42,35 @@
 
                                     <li class="nav-item dropdown">
                                     <%
-                                        HttpSession currentSession = request.getSession();
+                                         HttpSession currentSession = request.getSession();
+                                         String username = (String) currentSession.getAttribute("username");
+                                         String usernamegoogle = (String) currentSession.getAttribute("usernamegoogle");
                                         Integer userIdInteger = (Integer) currentSession.getAttribute("userID");
-String userid = userIdInteger.toString();
-        
+                                        String userid = (userIdInteger != null) ? userIdInteger.toString() : null;
+                                       
                                         // Kiểm tra xem userid có tồn tại hay không
                                         if (userid != null) {
+                                          String displayUsername = (username != null) ? username : usernamegoogle;
+                                          
                                     %>
                                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                                         <span class="nav-label">
-                                            Profile <!-- Nếu có userID tồn tại trong session, sẽ hiển thị "Profile" -->
+                                            Profile 
                                             <span class="caret"></span>
                                         </span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="profile.jsp">View Profile</a></li>
-                                        <li><a href="logout.jsp">Logout</a></li>
+                     
+                                        <li><a href="profile.jsp">Account detail:<%= displayUsername %></a></li>
+                                        <li><a href="">premium</a></li>
+                                        <li><a href="logout">Logout</a></li>
                                     </ul>
                                     <%
                                         } else {
                                     %>
                                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                                         <span class="nav-label">
-                                            Account <!-- Nếu không có userID tồn tại trong session, sẽ hiển thị "Account" -->
+                                            Account 
                                             <span class="caret"></span>
                                         </span>
                                     </a>

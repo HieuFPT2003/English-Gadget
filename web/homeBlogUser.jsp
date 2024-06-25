@@ -111,10 +111,10 @@
                 color: #007bff;
             }
 
-/*            .action {
-                font-size: 14px;
-                margin-right: 10px;
-            }*/
+            /*            .action {
+                            font-size: 14px;
+                            margin-right: 10px;
+                        }*/
 
         </style>
     </head>
@@ -135,17 +135,56 @@
                     <div class="body-post">
                         <p class="body-post__content">${post.postText}</p>
                     </div>
+
                     <div class="row footer-post text-center">
-                        <div class="col-6 like emotion">
-                            <i class="bi bi-hand-thumbs-up-fill action">Like  ${post.likeCount}</i>
-                        </div>
-                        <div class="col-6 dislike emotion">
-                            <i class="bi bi-hand-thumbs-down-fill">Dislike ${post.dislikeCount}</i> 
-                        </div>
+
+                        <div class="col-6 like emotion" onclick="likePost(${post.postID})">
+    Like <span id="likeCount_${post.postID}">${post.likeCount}</span>
+</div>
+<div class="col-6 dislike emotion" onclick="dislikePost(${post.postID})">
+    Dislike <span id="dislikeCount_${post.postID}">${post.dislikeCount}</span>
+</div>
+
                     </div>
                 </div>
             </c:forEach>
         </section>
         <jsp:include page="Footer.jsp"></jsp:include>  
+
     </body>
+
+<script>
+    function likePost(postID) {
+        // Example AJAX call to update like count
+        $.ajax({
+            type: 'POST',
+            url: '/likePostServlet',  // Replace with your servlet URL or endpoint
+            data: { postID: postID },
+            success: function(response) {
+                // Update the like count displayed on the page
+                $('#likeCount_' + postID).text(response.likeCount);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error liking post:', error);
+            }
+        });
+    }
+
+    function dislikePost(postID) {
+        // Example AJAX call to update dislike count
+        $.ajax({
+            type: 'POST',
+            url: '/dislikePostServlet',  // Replace with your servlet URL or endpoint
+            data: { postID: postID },
+            success: function(response) {
+                // Update the dislike count displayed on the page
+                $('#dislikeCount_' + postID).text(response.dislikeCount);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error disliking post:', error);
+            }
+        });
+    }
+</script>
+                                
 </html>
