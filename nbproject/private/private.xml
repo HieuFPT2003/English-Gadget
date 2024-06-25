@@ -3,19 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/swp/English-Gadget/src/java/controller/SpellingCheckController.java</file>
-            <file>file:/D:/swp/English-Gadget/src/java/controller/MyBlog.java</file>
-            <file>file:/D:/swp/English-Gadget/web/LandingPage.jsp</file>
-            <file>file:/D:/swp/English-Gadget/src/java/controller/Login.java</file>
-            <file>file:/D:/swp/English-Gadget/web/login.jsp</file>
-            <file>file:/D:/swp/English-Gadget/src/java/controller/loginwithgoogle.java</file>
-            <file>file:/D:/swp/English-Gadget/src/java/constant/Iconstant.java</file>
-            <file>file:/D:/swp/English-Gadget/src/java/controller/FeedbackServlet.java</file>
-            <file>file:/D:/swp/English-Gadget/src/java/controller/GrammarCheckController.java</file>
-            <file>file:/D:/swp/English-Gadget/web/Header.jsp</file>
-            <file>file:/D:/swp/English-Gadget/src/java/controller/BlogController.java</file>
-            <file>file:/D:/swp/English-Gadget/src/java/model/Google.java</file>
-            <file>file:/D:/swp/English-Gadget/src/java/model/GoogleAccount.java</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project2006/English-Gadget/src/java/controller/EmailContactServlet.java</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project2006/English-Gadget/src/java/dal/UsersDAO.java</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project2006/English-Gadget/web/Contact.jsp</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project2006/English-Gadget/web/HelpCenter.jsp</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project2006/English-Gadget/src/java/dal/LoginDao.java</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project2006/English-Gadget/src/java/controller/SearchQAServlet.java</file>
+            <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project2006/English-Gadget/web/login.jsp</file>
         </group>
     </open-files>
 </project-private>
