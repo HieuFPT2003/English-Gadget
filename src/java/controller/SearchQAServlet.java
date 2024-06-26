@@ -30,9 +30,6 @@ public class SearchQAServlet extends HttpServlet {
         HelpCenterDAO dao = new HelpCenterDAO();
         List<HelpCenter> listQA = dao.searchAns(keyword);
         PrintWriter out = response.getWriter();
-//        request.setAttribute("listQaA", listQA);
-//        
-//        request.getRequestDispatcher("HelpCenter.jsp").forward(request, response);
         String ms = "";
 
         if (listQA == null || listQA.isEmpty()) {

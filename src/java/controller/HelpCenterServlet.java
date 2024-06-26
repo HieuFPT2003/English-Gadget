@@ -34,7 +34,6 @@ public class HelpCenterServlet extends HttpServlet {
         List<HelpCenter> list1 = dao1.getAllQaA();
         request.setAttribute("listQaA", list1);
         request.getRequestDispatcher("HelpCenter.jsp").forward(request, response);
-
 //        String keyword = request.getParameter("txt");
 //        HelpCenterDAO dao2 = new HelpCenterDAO();
 //        List<HelpCenter> listQA = dao2.searchAns(keyword);

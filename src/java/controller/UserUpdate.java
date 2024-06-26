@@ -9,30 +9,28 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Users;
 
-@WebServlet(name = "UserProfile", urlPatterns = {"/userprofile"})
-public class UserProfile extends HttpServlet {
+@WebServlet(name = "UserUpdate", urlPatterns = {"/userupdate"})
+public class UserUpdate extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userID_raw = request.getParameter("userID");
-        if (userID_raw != null) {
+        String userIDStr = request.getParameter("userID");
+        if (userIDStr != null) {
             try {
-                int userID = Integer.parseInt(userID_raw);
+                int userID = Integer.parseInt(userIDStr);
                 UsersDAO usersDAO = new UsersDAO();
                 Users user = usersDAO.getUsersById(userID);
                 if (user != null) {
                     request.setAttribute("user", user);
-                } else {
-                    request.setAttribute("errorMessage", "User not found");
+                    request.getRequestDispatcher("updateprofile.jsp").forward(request, response);
+                    return;
                 }
             } catch (NumberFormatException e) {
-                request.setAttribute("errorMessage", "Invalid user ID format");
+                e.printStackTrace();
             }
-        } else {
-            request.setAttribute("errorMessage", "User ID is required");
         }
-        request.getRequestDispatcher("userprofile.jsp").forward(request, response);
+        response.sendRedirect("userprofile");
     }
 
     @Override
@@ -57,14 +55,14 @@ public class UserProfile extends HttpServlet {
                 user.setAge(age);
                 usersDAO.update(user);
             }
-            response.sendRedirect("userprofile?userID=" + userID);
-        } catch (NumberFormatException e) {
-            response.sendRedirect("userupdate?userID=" + request.getParameter("userID"));
-        }
-    }
 
-    @Override
-    public String getServletInfo() {
-        return "User profile servlet";
+            response.sendRedirect("userprofile?userID=" + userID); // Ensure redirect includes userID
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            response.sendRedirect("userupdate?userID=" + request.getParameter("userID"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("userprofile?error=true");
+        }
     }
 }

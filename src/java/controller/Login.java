@@ -54,39 +54,44 @@ public class Login extends HttpServlet {
         processRequest(request, response);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        //lay gia tri tu form
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        //luu gia tri vao bien session
 
-        LoginDao dao = new LoginDao();
-        Users a = dao.login(username, password);
-        
-        
         if (username.isEmpty() || password.isEmpty()) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             session.setAttribute("password", password);
-            request.setAttribute("mess", "This field cant empty");
+            request.setAttribute("mess", "Username or password cannot be empty.");
             request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
         }
-        if (a == null) {
+
+        LoginDao dao = new LoginDao();
+        Users user = dao.login(username, password);
+
+        if (user == null) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             session.setAttribute("password", password);
-            request.setAttribute("mess", "Wrong email or password");
+            request.setAttribute("mess", "Invalid username or password.");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
+            // Successful login, store user in session
             HttpSession session = request.getSession();
-             session.setAttribute("userID", a.getUserID());
-             session.setAttribute("premium", a.isPremiumID());
-             session.setAttribute("role", a.isRole());
-            request.getRequestDispatcher("LandingPage.jsp").forward(request, response);
+            session.setAttribute("username", username);
+            session.setAttribute("userID", user.getUserID());
+            session.setAttribute("premium", user.isPremiumID());
+            session.setAttribute("role", user.isRole());
+
+            // Redirect based on user role
+            if (user.isRole()) { // Assuming isRole() checks if user is admin (role = 1)
+                response.sendRedirect("AdminLandingPage.jsp");
+            } else {
+                response.sendRedirect("LandingPage.jsp");
+            }
         }
     }
 
@@ -94,5 +99,4 @@ public class Login extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-
 }

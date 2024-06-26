@@ -31,13 +31,10 @@ public class BlogController extends HttpServlet {
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-
-        Integer userID = authenticateUser(req);
-
-        if (userID != null) {
-            HttpSession session = req.getSession();
-            session.setAttribute("userID", userID);
-
+         HttpSession session = req.getSession();
+        int userID = (int) session.getAttribute("userID");
+        
+        if (userID > 0) {
             try (PrintWriter out = resp.getWriter()) {
                 List<Post> listPosts = postDAO.getAllPost();
                 Collections.reverse(listPosts);
@@ -91,10 +88,5 @@ public class BlogController extends HttpServlet {
         }
     }
 
-    // Gia dinh session tra ve userID = 1
-    private Integer authenticateUser(HttpServletRequest req) {
-
-        return 1;
-    }
 
 }

@@ -25,18 +25,24 @@
             </a>
           </p>
         </div>
-
+      
         <div class="mt-5">
-          <form>
+            <form action="requestPass" method="post">
+                  <%
+          HttpSession currentSession = request.getSession();
+          String email = (String) currentSession.getAttribute("email");
+        %>
             <div class="grid gap-y-4">
               <div>
                 <label for="email" class="block text-sm font-bold ml-1 mb-2 dark:text-white">Email address</label>
                 <div class="relative">
-                  <input type="email" id="email" name="email" class="py-3 px-4 block w-full border-2 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm" required aria-describedby="email-error">
+                    <input type="email" id="email" name="email" class="py-3 px-4 block w-full border-2 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm" required aria-describedby="email-error" value="<%= email != null ? email : "" %>"">
                 </div>
                 <p class="hidden text-xs text-red-600 mt-2" id="email-error">Please include a valid email address so we can get back to you</p>
               </div>
               <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Reset password</button>
+              <h1 style="color:red;text-align: center">${mess}</h1>
+              <h1 style="color:red;text-align: center">${message}</h1>
             </div>
           </form>
         </div>
