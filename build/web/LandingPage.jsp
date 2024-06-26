@@ -91,9 +91,22 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="About.jsp">Development team</a></li>
                                         <li><a href="Contact.jsp">Contact</a></li>
+                                        
                                     </ul>
                                 </li>
 
+                                <li class="nav-item dropdown" id="account">
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <span class="nav-label">Account<span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="login.jsp">Sign in</a></li>
+                                        <li><a href="signup.jsp">Sign up</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="help">Help Center<span class="sr-only">(current)</span></a>
+                                </li>
                                 <form class="form-inline" action="Search.jsp">
                                     <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
                                         <i class="fa fa-search" aria-hidden="true"></i>
