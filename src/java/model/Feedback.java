@@ -9,7 +9,7 @@ public class Feedback {
     private String feedbackText;
     private Date createdAt;
     private String username;
-    private String role; // Add role attribute
+    private String role;
 
     public Feedback() {
     }
@@ -29,6 +29,8 @@ public class Feedback {
         this.username = username;
         this.role = role;
     }
+
+  
 
     public Feedback(int feedbackID, int userID, String feedbackTopic, String feedbackText, Date createdAt) {
         this.feedbackID = feedbackID;
@@ -93,4 +95,5 @@ public class Feedback {
     public void setRole(String role) {
         this.role = role;
     }
+
 }

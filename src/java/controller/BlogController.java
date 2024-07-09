@@ -30,11 +30,10 @@ public class BlogController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
-         HttpSession session = req.getSession();
-        int userID = (int) session.getAttribute("userID");
+        HttpSession session = req.getSession();
+        Integer userID = (Integer) session.getAttribute("userID");
         
-        if (userID > 0) {
+        if (userID != null) {
             try (PrintWriter out = resp.getWriter()) {
                 List<Post> listPosts = postDAO.getAllPost();
                 Collections.reverse(listPosts);

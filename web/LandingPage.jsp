@@ -11,9 +11,9 @@
                         var name = <%= session.getAttribute("usernamegoogle") != null ? session.getAttribute("usernamegoogle") : "null" %>;
 
             console.log("User ID: " + name);
-
             console.log("Premium: " + premium);
             console.log("Role: " + role);
+            console.log("Name:" + name);
         </script>
         </head>
         <body>

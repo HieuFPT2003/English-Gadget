@@ -86,7 +86,7 @@
             </script>
 <div class="container">
     <form action="searchfeedback" method="get">
-        <input type="text" name="keyword" placeholder="Search by ID, Topic">
+        <input type="text" name="keyword" placeholder="Search by keyword">
         <button type="submit">Search</button>
     </form>
 
@@ -108,7 +108,7 @@
                 <thead>
                     <tr>
                         <th>FeedBackID</th>
-                        <th>UserID</th>
+                        <th>User Name</th>
                         <th>FeedBackTopic</th>
                         <th>FeedBack</th>
                         <th>Create At</th>
@@ -119,7 +119,7 @@
                     <c:forEach items="${feedback}" var="c">
                         <tr>
                             <td>${c.feedbackID}</td>
-                            <td>${c.userID}</td>
+                            <td>${c.username}</td>
                             <td>${c.feedbackTopic}</td>
                             <td>${c.feedbackText}</td>
                             <td>${c.createdAt}</td>

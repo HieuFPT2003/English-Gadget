@@ -27,6 +27,4 @@ public class ManageFeedback extends HttpServlet {
     throws ServletException, IOException {
         doGet(request, response);
     }
-
-
 }

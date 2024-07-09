@@ -86,6 +86,7 @@ public class Login extends HttpServlet {
             session.setAttribute("premium", user.isPremiumID());
             session.setAttribute("role", user.isRole());
 
+            System.out.println(user.getUserID() + " | " + user.isPremiumID() +" | "+ user.isRole());
             // Redirect based on user role
             if (user.isRole()) { // Assuming isRole() checks if user is admin (role = 1)
                 response.sendRedirect("AdminLandingPage.jsp");

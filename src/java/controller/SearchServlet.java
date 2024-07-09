@@ -19,7 +19,7 @@ public class SearchServlet extends HttpServlet {
         String keyword = request.getParameter("keyword");
         UsersDAO usersDAO = new UsersDAO();
         List<Users> users = usersDAO.searchUsers(keyword);
-        request.setAttribute("users", users); // Use "users" as the attribute name
+        request.setAttribute("users", users); 
         request.getRequestDispatcher("list.jsp").forward(request, response);
     }
 

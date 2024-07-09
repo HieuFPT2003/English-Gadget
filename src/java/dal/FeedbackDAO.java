@@ -10,7 +10,7 @@ import model.Feedback;
 
 public class FeedbackDAO extends DBContext {
 
-    public FeedbackDAO() {
+    public FeedbackDAO() { 
         super();
     }
 
@@ -27,7 +27,7 @@ public class FeedbackDAO extends DBContext {
                         rs.getString("feedbackText"),
                         rs.getDate("created_at"),
                         rs.getString("username"),
-                        rs.getString("role") // Get role from ResultSet
+                        rs.getString("role") 
                 );
                 list.add(f);
             }
@@ -161,12 +161,12 @@ public class FeedbackDAO extends DBContext {
                         rs.getString("feedbackText"),
                         rs.getDate("created_at"),
                         rs.getString("username"),
-                        rs.getString("role") // Get role from ResultSet
+                        rs.getString("role") 
                 );
                 list.add(f);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace();    
         }
         return list;
     }
