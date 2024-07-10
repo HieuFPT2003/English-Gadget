@@ -10,8 +10,9 @@
         <meta name="keywords" content="" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        
         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
-        <title>MAGIC GADGET</title>
+        <title>English Gadget</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
         <link href="css/font-awesome.min.css" rel="stylesheet" />
         <link href="css/style.css" rel="stylesheet" />

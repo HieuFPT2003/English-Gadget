@@ -12,14 +12,16 @@ public class Post {
     private Date datePosted;
     private int likeCount;
     private int dislikeCount;
-    private boolean Edited = false;
+    private boolean edited = false;
+    private String category;
+    private boolean status;  // BIT field in the database
 
     // Constructor
-    
+
     public Post() {
     }
 
-    public Post(int postID, int userID, String customerName, String postText, Date datePosted, int likeCount, int dislikeCount) {
+    public Post(int postID, int userID, String customerName, String postText, Date datePosted, int likeCount, int dislikeCount, boolean edited, String category, boolean status) {
         this.postID = postID;
         this.userID = userID;
         this.customerName = customerName;
@@ -27,25 +29,19 @@ public class Post {
         this.datePosted = datePosted;
         this.likeCount = likeCount;
         this.dislikeCount = dislikeCount;
+        this.edited = edited;
+        this.category = category;
+        this.status = status;
     }
 
-    public Post(int postID, int userID, String customerName, String postText, Date datePosted, int likeCount, int dislikeCount, boolean Editeds) {
-        this.postID = postID;
-        this.userID = userID;
-        this.customerName = customerName;
-        this.postText = postText;
-        this.datePosted = datePosted;
-        this.likeCount = likeCount;
-        this.dislikeCount = dislikeCount;
-        this.Edited = Editeds;
-    }
+    // Getter and Setter methods
 
     public boolean isEdited() {
-        return Edited;
+        return edited;
     }
 
-    public void setEdited(boolean Edited) {
-        this.Edited = Edited;
+    public void setEdited(boolean edited) {
+        this.edited = edited;
     }
 
     public int getPostID() {
@@ -104,6 +100,22 @@ public class Post {
         this.dislikeCount = dislikeCount;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     public String getFormattedDatePosted() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         return formatter.format(datePosted);
@@ -111,8 +123,6 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" + "postID=" + postID + ", userID=" + userID + ", customerName=" + customerName + ", postText=" + postText + ", datePosted=" + datePosted + ", likeCount=" + likeCount + ", dislikeCount=" + dislikeCount + ", Edited=" + Edited + '}';
+        return "Post{" + "postID=" + postID + ", userID=" + userID + ", customerName='" + customerName + '\'' + ", postText='" + postText + '\'' + ", datePosted=" + datePosted + ", likeCount=" + likeCount + ", dislikeCount=" + dislikeCount + ", edited=" + edited + ", category='" + category + '\'' + ", status=" + status + '}';
     }
-
-
 }

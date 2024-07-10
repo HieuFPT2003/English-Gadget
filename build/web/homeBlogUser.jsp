@@ -15,7 +15,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
-        <title>MAGIC GADGET</title>
+     
         <!-- bootstrap core css -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
         <!-- font awesome style -->
@@ -24,6 +24,7 @@
         <link href="css/style.css" rel="stylesheet" />
         <!-- responsive style -->
         <link href="css/responsive.css" rel="stylesheet" />
+         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
         <style>
             .home {
                 display: flex;
@@ -134,18 +135,6 @@
                     </div>
                     <div class="body-post">
                         <p class="body-post__content">${post.postText}</p>
-                    </div>
-                    <div class="row footer-post text-center">
-                        <div class="col-4 like emotion">
-                            <i class="bi bi-hand-thumbs-up-fill action">Like  ${post.likeCount}</i>
-                        </div>
-                        <div class="col-4 dislike emotion">
-                            <i class="bi bi-hand-thumbs-down-fill">Dislike ${post.dislikeCount}</i> 
-                        </div>
-                        <div class="col-4 dislike emotion">
-                            <i class="bi bi-flag-fill" id="reportModal">Report</i> 
-                        </div>
-                        
                     </div>
                 </div>
             </c:forEach>

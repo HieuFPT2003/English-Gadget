@@ -40,6 +40,10 @@
         <servlet-name>SpellingCheckController</servlet-name>
         <servlet-class>controller.SpellingCheckController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManageBlog</servlet-name>
+        <servlet-class>controller.ManageBlog</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BlogController</servlet-name>
         <url-pattern>/blog</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>SpellingCheckController</servlet-name>
         <url-pattern>/SpellingCheck</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageBlog</servlet-name>
+        <url-pattern>/ManageBlog</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>LandingPage.jsp</welcome-file>

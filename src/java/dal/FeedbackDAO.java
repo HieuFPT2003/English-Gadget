@@ -148,9 +148,10 @@ public class FeedbackDAO extends DBContext {
 
     public List<Feedback> getAllHaveName() {
         List<Feedback> list = new ArrayList<>();
-        String sql = "SELECT f.feedbackID, f.userID, u.username, f.feedbackTopic, f.feedbackText, f.created_at, u.role " +
-                     "FROM Feedback f " +
-                     "JOIN Users u ON f.userID = u.userID";
+        String sql = "SELECT f.feedbackID, f.userID, u.username, f.feedbackTopic, f.feedbackText, f.created_at, u.role "
+                + "FROM Feedback f "
+                + "JOIN Users u ON f.userID = u.userID"
+                + "ORDER BY f.feedbackID DESC";
 
         try (PreparedStatement st = connection.prepareStatement(sql); ResultSet rs = st.executeQuery()) {
             while (rs.next()) {
@@ -173,10 +174,10 @@ public class FeedbackDAO extends DBContext {
 
     public List<Feedback> searchUserFeedback(String keyword) {
         List<Feedback> list = new ArrayList<>();
-        String sql = "SELECT f.feedbackID, f.userID, u.username, f.feedbackTopic, f.feedbackText, f.created_at, u.role " +
-                     "FROM Feedback f " +
-                     "JOIN Users u ON f.userID = u.userID " +
-                     "WHERE u.username = ? OR f.feedbackTopic LIKE ? ";
+        String sql = "SELECT f.feedbackID, f.userID, u.username, f.feedbackTopic, f.feedbackText, f.created_at, u.role "
+                + "FROM Feedback f "
+                + "JOIN Users u ON f.userID = u.userID "
+                + "WHERE u.username = ? OR f.feedbackTopic LIKE ? ";
 
         try (PreparedStatement st = connection.prepareStatement(sql)) {
             st.setString(1, keyword);

@@ -30,6 +30,7 @@
                                         <span class="nav-label">Manage<span class="caret"></span></span>
                                     </a>
                                     <ul class="dropdown-menu">
+                                        <li><a href="ManageBlog">Manage Blog</a></li>
                                         <li><a href="list">Manage Account</a></li>
                                         <li><a href="managefeedback">Manage Feedback</a></li>
                                     </ul>
