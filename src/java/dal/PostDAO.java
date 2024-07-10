@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Arrays;
 import org.apache.commons.lang3.StringUtils;
 
 public class PostDAO {
@@ -23,43 +22,17 @@ public class PostDAO {
                 + "       u.username AS customerName, "
                 + "       p.postText, "
                 + "       p.datePosted, "
-                + "       ISNULL(likeCountTable.likeCount, 0) AS likeCount, "
-                + "       ISNULL(dislikeCountTable.dislikeCount, 0) AS dislikeCount, "
-                + "       ISNULL(likeUsers.userIDs, '') AS likeUserIDs, "
-                + "       ISNULL(dislikeUsers.userIDs, '') AS dislikeUserIDs "
+                + "       p.category, "
+                + "       p.status "
                 + "FROM UserPost p "
                 + "JOIN Users u ON p.userID = u.userID "
-                + "LEFT JOIN ( "
-                + "    SELECT postID, COUNT(*) AS likeCount "
-                + "    FROM Emotion "
-                + "    WHERE emotionType = 'like' "
-                + "    GROUP BY postID "
-                + ") AS likeCountTable ON p.postID = likeCountTable.postID "
-                + "LEFT JOIN ( "
-                + "    SELECT postID, COUNT(*) AS dislikeCount "
-                + "    FROM Emotion "
-                + "    WHERE emotionType = 'dislike' "
-                + "    GROUP BY postID "
-                + ") AS dislikeCountTable ON p.postID = dislikeCountTable.postID "
-                + "LEFT JOIN ( "
-                + "    SELECT postID, STRING_AGG(userID, ', ') AS userIDs "
-                + "    FROM Emotion "
-                + "    WHERE emotionType = 'like' "
-                + "    GROUP BY postID "
-                + ") AS likeUsers ON p.postID = likeUsers.postID "
-                + "LEFT JOIN ( "
-                + "    SELECT postID, STRING_AGG(userID, ', ') AS userIDs "
-                + "    FROM Emotion "
-                + "    WHERE emotionType = 'dislike' "
-                + "    GROUP BY postID "
-                + ") AS dislikeUsers ON p.postID = dislikeUsers.postID;";
+                + "WHERE p.status = 1";  // Fetch posts with status = 0 (pending)
 
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            
-            
+
             List<Post> posts = new ArrayList<>();
             while (rs.next()) {
                 int postID = rs.getInt("postID");
@@ -67,29 +40,11 @@ public class PostDAO {
                 String customerName = rs.getString("customerName");
                 String postText = rs.getString("postText");
                 Date datePosted = rs.getTimestamp("datePosted");
-                int likeCount = rs.getInt("likeCount");
-                int dislikeCount = rs.getInt("dislikeCount");
+                String category = rs.getString("category");
+                boolean status = rs.getBoolean("status");
 
-                List<Integer> likeUserIDs = new ArrayList<>();
-                List<Integer> dislikeUserIDs = new ArrayList<>();
-
-                String likeUserIDsStr = rs.getString("likeUserIDs");
-                if (!likeUserIDsStr.isEmpty()) {
-                    Arrays.stream(likeUserIDsStr.split(","))
-                            .map(String::trim)
-                            .map(Integer::parseInt)
-                            .forEach(likeUserIDs::add);
-                }
-
-                String dislikeUserIDsStr = rs.getString("dislikeUserIDs");
-                if (!dislikeUserIDsStr.isEmpty()) {
-                    Arrays.stream(dislikeUserIDsStr.split(","))
-                            .map(String::trim)
-                            .map(Integer::parseInt)
-                            .forEach(dislikeUserIDs::add);
-                }
-
-                Post post = new Post(postID, userID, customerName, postText, datePosted, likeCount, dislikeCount);
+                // Create a Post object with likeCount and dislikeCount as 0
+                Post post = new Post(postID, userID, customerName, postText, datePosted, 0, 0, false, category, status);
                 posts.add(post);
             }
             return posts;
@@ -113,11 +68,44 @@ public class PostDAO {
         }
     }
 
-    public List<Post> getAllPostExceptUserID(int userIDToExclude) {
-        String sql = "SELECT p.postID, p.userID, p.postText, p.datePosted, p.likeCount, p.dislikeCount, p.Edited, u.username AS customerName "
+    public List<Post> getAllPostsForAdmin() {
+        String sql = "SELECT p.postID, p.userID, p.postText, p.datePosted, p.likeCount, p.dislikeCount, p.Edited, p.category, p.status, u.username AS customerName "
                 + "FROM UserPost p "
                 + "JOIN Users u ON p.userID = u.userID "
-                + "WHERE p.userID <> ? "
+                + "WHERE p.status = 0"
+                + "ORDER BY p.datePosted DESC";
+
+        List<Post> posts = new ArrayList<>();
+
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Post post = new Post();
+                    post.setPostID(rs.getInt("postID"));
+                    post.setUserID(rs.getInt("userID"));
+                    post.setPostText(rs.getString("postText"));
+                    post.setDatePosted(rs.getTimestamp("datePosted"));
+                    post.setLikeCount(rs.getInt("likeCount"));
+                    post.setDislikeCount(rs.getInt("dislikeCount"));
+                    post.setEdited(rs.getBoolean("Edited"));
+                    post.setCategory(rs.getString("category"));
+                    post.setStatus(rs.getBoolean("status"));
+                    post.setCustomerName(rs.getString("customerName"));
+                    posts.add(post);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Consider logging the error and re-throwing as a custom exception
+        }
+        return posts;
+    }
+
+    public List<Post> getAllPostExceptUserID(int userIDToExclude) {
+        String sql = "SELECT p.postID, p.userID, p.postText, p.datePosted, p.Edited, p.category, p.status, u.username AS customerName "
+                + "FROM UserPost p "
+                + "JOIN Users u ON p.userID = u.userID "
+                + "WHERE p.userID <> ? AND p.status = 0 "
                 + "ORDER BY p.datePosted DESC";
 
         List<Post> posts = new ArrayList<>();
@@ -132,27 +120,45 @@ public class PostDAO {
                     post.setUserID(rs.getInt("userID"));
                     post.setPostText(rs.getString("postText"));
                     post.setDatePosted(rs.getTimestamp("datePosted"));
-                    post.setLikeCount(rs.getInt("likeCount"));
-                    post.setDislikeCount(rs.getInt("dislikeCount"));
                     post.setEdited(rs.getBoolean("Edited"));
                     post.setCustomerName(rs.getString("customerName"));
+                    post.setCategory(rs.getString("category"));
+                    post.setStatus(rs.getBoolean("status"));
                     posts.add(post);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Consider logging the error and re-throwing as a custom exception
         }
         return posts;
     }
 
-    public List getPost(int userID) {
-        String sql = "SELECT p.postID, p.userID, p.postText, p.datePosted, p.Edited, u.username AS customerName "
+    public boolean insertPost(Post post) {
+        String sql = "INSERT INTO UserPost (userID, postText, datePosted, category, status) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, post.getUserID());
+            ps.setString(2, post.getPostText());
+            ps.setTimestamp(3, new java.sql.Timestamp(post.getDatePosted().getTime()));
+            ps.setString(4, post.getCategory());
+            ps.setBoolean(5, post.isStatus()); // Chèn trạng thái (pending approval)
+
+            int rowsInserted = ps.executeUpdate();
+            return rowsInserted > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public List<Post> getPost(int userID) {
+        String sql = "SELECT p.postID, p.userID, p.postText, p.datePosted, p.Edited, p.category, p.status, u.username AS customerName "
                 + "FROM UserPost p JOIN Users u ON p.userID = u.userID "
-                + "WHERE p.userID = " + userID;
+                + "WHERE p.userID = ? AND p.status = 0";
+
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql);
+            ps.setInt(1, userID);
             rs = ps.executeQuery();
             List<Post> posts = new ArrayList<>();
 
@@ -164,6 +170,8 @@ public class PostDAO {
                 post.setDatePosted(rs.getTimestamp("datePosted"));
                 post.setEdited(rs.getBoolean("Edited"));
                 post.setCustomerName(rs.getString("customerName"));
+                post.setCategory(rs.getString("category"));
+                post.setStatus(rs.getBoolean("status"));
                 posts.add(post);
             }
             return posts;
@@ -175,12 +183,14 @@ public class PostDAO {
     }
 
     public Post getPostByPostID(int postID) {
-        String sql = "SELECT p.postID, p.userID, p.postText, p.datePosted, p.Edited, u.username AS customerName "
+        String sql = "SELECT p.postID, p.userID, p.postText, p.datePosted, p.Edited, p.category, p.status, u.username AS customerName "
                 + "FROM UserPost p JOIN Users u ON p.userID = u.userID "
-                + "WHERE p.postID = " + postID;
+                + "WHERE p.postID = ?";
+
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql);
+            ps.setInt(1, postID);
             rs = ps.executeQuery();
             Post post = new Post();
 
@@ -191,6 +201,8 @@ public class PostDAO {
                 post.setDatePosted(rs.getTimestamp("datePosted"));
                 post.setEdited(rs.getBoolean("Edited"));
                 post.setCustomerName(rs.getString("customerName"));
+                post.setCategory(rs.getString("category"));
+                post.setStatus(rs.getBoolean("status"));
             }
             return post;
 
@@ -200,53 +212,19 @@ public class PostDAO {
         return null;
     }
 
-    public boolean updatePost(int userID, int postID, String postText) {
-        String sql = "UPDATE UserPost SET postText = ?, Edited = 1 Where postID = ? AND userID = ?";
-
-        try {
-            conn = DBUtils.getConnection();
-            ps = conn.prepareStatement(sql);
-
-            ps.setString(1, postText);
-            ps.setInt(2, postID);
-            ps.setInt(3, userID);
-
-            int row = ps.executeUpdate();
-
-            if (row > 0) {
-                return true;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public double getSimilarity(String text1, String text2) {
-        text1 = text1.toLowerCase();
-        text2 = text2.toLowerCase();
-
-        int distance = StringUtils.getLevenshteinDistance(text1, text2);
-
-        double similarity = 1.0 - ((double) distance / (double) Math.max(text1.length(), text2.length()));
-
-        return similarity;
-    }
-
-    public boolean insertUserPost(int userID, String postText) {
-        String sql = "INSERT INTO UserPost (userID, postText) VALUES (?, ?)";
+    public boolean insertUserPost(int userID, String postText, String category) {
+        String sql = "INSERT INTO UserPost (userID, postText, category, status) VALUES (?, ?, ?, 0)";  // Default status is 0 (pending)
 
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, userID);
             ps.setString(2, postText);
+            ps.setString(3, category);
 
             int rowsInserted = ps.executeUpdate();
-            if (rowsInserted > 0) {
-                return true;
-            }
+            return rowsInserted > 0;
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -264,13 +242,74 @@ public class PostDAO {
         return false;
     }
 
-    public boolean deletePost(int userID, int postID) {
-        String sql = "DELETE FROM UserPost WHERE postID = ? AND userID = ?";
+    public boolean updatePostStatus(int postID, int status) {
+        String sql = "UPDATE UserPost SET status = ? WHERE postID = ?";
+
+        try {
+            conn = DBUtils.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, status);
+            ps.setInt(2, postID);
+
+            int row = ps.executeUpdate();
+            return row > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public List<Post> searchPostByText(String txtSearch) {
+        List<Post> list = new ArrayList<>();
+        String sql = "SELECT p.postID, p.userID, u.username AS customerName, p.postText, p.datePosted, p.category, p.status "
+                + "FROM UserPost p "
+                + "JOIN Users u ON p.userID = u.userID "
+                + "WHERE p.postText LIKE ? AND p.status = 0";  // Fetch posts with status = 0 (pending)
+
+        try {
+            conn = DBUtils.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + txtSearch + "%");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int postID = rs.getInt("postID");
+                int userID = rs.getInt("userID");
+                String customerName = rs.getString("customerName");
+                String postText = rs.getString("postText");
+                Date datePosted = rs.getTimestamp("datePosted");
+                String category = rs.getString("category");
+                boolean status = rs.getBoolean("status");
+
+                Post post = new Post(postID, userID, customerName, postText, datePosted, 0, 0, false, category, status);
+                list.add(post);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public boolean deletePost(int postID) {
+        String sql = "DELETE FROM UserPost WHERE postID = ?";
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, postID);
-            ps.setInt(2, userID);
 
             int rowsInserted = ps.executeUpdate();
             if (rowsInserted > 0) {
@@ -283,41 +322,76 @@ public class PostDAO {
         return false;
     }
 
-    public static void main(String[] args) {
-        PostDAO dao = new PostDAO();
-//        Post post = dao.getPostByPostID(1);
-//        List<Post> posts = dao.getAllPostExceptUserID(1);
-//        boolean test = dao.updatePost(1, 1, "Hieu Test updata");
-//
-//        for (Post p : posts) {
-//            System.out.println(p);
-//        }
+    public List<Post> getPostByUserID(int userID) {
+        String sql = "SELECT p.postID, p.userID, p.postText, p.datePosted, p.likeCount, p.dislikeCount, p.Edited,p.category,p.status, u.username AS customerName "
+                + "FROM UserPost p "
+                + "JOIN Users u ON p.userID = u.userID "
+                + "WHERE p.userID = ? "
+                + "ORDER BY p.datePosted DESC";
 
-        boolean test = dao.deletePost(1, 11);
-        System.out.println(test);
+        List<Post> posts = new ArrayList<>();
+
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, userID);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Post post = new Post();
+                    post.setPostID(rs.getInt("postID"));
+                    post.setUserID(rs.getInt("userID"));
+                    post.setPostText(rs.getString("postText"));
+                    post.setDatePosted(rs.getTimestamp("datePosted"));
+                    post.setLikeCount(rs.getInt("likeCount"));
+                    post.setDislikeCount(rs.getInt("dislikeCount"));
+                    post.setEdited(rs.getBoolean("Edited"));
+                    post.setStatus(rs.getBoolean("status"));
+                    post.setCategory(rs.getString("category"));
+                    post.setCustomerName(rs.getString("customerName"));
+                    posts.add(post);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Consider logging the error and re-throwing as a custom exception
+        }
+        return posts;
     }
-        public List<Post> searchPostByText(String txtSearch) {
-        List<Post> list = new ArrayList<>();
-        String sql = "  select * from UserPost\n" +
-"                       where [postText] like ?";
+
+    public double getSimilarity(String text1, String text2) {
+        text1 = text1.toLowerCase();
+        text2 = text2.toLowerCase();
+
+        int distance = StringUtils.getLevenshteinDistance(text1, text2);
+
+        double similarity = 1.0 - ((double) distance / (double) Math.max(text1.length(), text2.length()));
+
+        return similarity;
+    }
+
+    public boolean updatePost(int postID, String category, String postText) {
+        String sql = "UPDATE UserPost  SET category = ?, postText = ? WHERE postID = ?";
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1,"%"+ txtSearch+"%");
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Post(rs.getInt(1),
-                        rs.getInt(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getDate(4),
-                        rs.getInt(5),
-                        rs.getInt(6)));
-            }
-        } catch (Exception e) {
-        }
+            ps.setString(1, category);
+            ps.setString(2, postText);
+            ps.setInt(3, postID);
+            int row = ps.executeUpdate();
+            return row > 0;
 
-        return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
+    public static void main(String[] args) {
+        PostDAO dao = new PostDAO();
+
+//        List<Post> posts = dao.getPostByUserID(19);
+//        for (Post p : posts) {
+//            System.out.println(p);
+//        }
+        boolean test = dao.updatePostStatus(1009, 1);
+        System.out.println(test);
+    }
 }

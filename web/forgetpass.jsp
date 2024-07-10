@@ -9,7 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>ForgetPass Page</title>
+         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
+       <title>English Gadget</title>
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     </head>
     <body>

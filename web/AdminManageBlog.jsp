@@ -4,8 +4,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
-        <title>English Gadget</title>
+    <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
+    <title>English Gadget</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+        
         <style>
             body {
                 font-family: 'Arial', sans-serif;
@@ -37,16 +40,6 @@
 
             .post:hover {
                 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            }
-
-            .post-highlight {
-                border: 2px solid #dc3545;
-                box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
-            }
-            
-            .post-border {
-                border: 2px solid green;
-                box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
             }
 
             .header-post {
@@ -116,32 +109,39 @@
                 background-color: #0056b3;
             }
 
-            .form-group {
-                margin-bottom: 15px;
+            .btn-accept {
+                background-color: #28a745;
             }
 
-            select, textarea {
-                width: 100%;
-                padding: 10px;
-                font-size: 16px;
-                border-radius: 5px;
-                border: 1px solid #ced4da;
-                margin-bottom: 10px;
+            .btn-accept:hover {
+                background-color: #218838;
             }
 
-            select:focus, textarea:focus {
-                outline: none;
-                border-color: #80bdff;
-                box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+            .btn-check {
+                background-color: #ffc107;
+                color: #343a40;
+            }
+
+            .btn-check:hover {
+                background-color: #e0a800;
+            }
+
+            .btn-delete {
+                background-color: #dc3545;
+            }
+
+            .btn-delete:hover {
+                background-color: #c82333;
             }
         </style>
     </head>
     <body>
-        <%@include file="navbarUser.jsp" %>
-
+        <%@include file="NavbarAdmin.jsp" %>
         <section class="home">
+            <h3>Admin Manage Blog</h3>
+
             <c:forEach items="${listPost}" var="post">
-                <div class="post ${post.status ? 'post-border' : 'post-highlight'}">
+                <div class="post">
                     <div class="header-post">
                         <div class="post-user">
                             <i class="bi bi-person-circle avatar"></i>
@@ -150,40 +150,38 @@
                             <div class="post-user-name">${post.customerName}</div>
                             <div class="post-time">
                                 ${post.formattedDatePosted}
-                                <c:if test="${post.edited}">
-                                    <span>(edited)</span>
-                                </c:if>
                             </div>
                         </div>
                     </div>
-
                     <div class="body-post">
-                        <form action="myblog?action=update&post=${post.postID}" method="post">
-                            <div class="form-group">
-                                <label for="category">Category:</label>
-                                <select id="category" name="category" required>
-                                    <option value="Technology" ${post.category == 'Technology' ? 'selected' : ''}>Technology</option>
-                                    <option value="Science" ${post.category == 'Science' ? 'selected' : ''}>Science</option>
-                                    <option value="Health" ${post.category == 'Health' ? 'selected' : ''}>Health</option>
-                                    <option value="Travel" ${post.category == 'Travel' ? 'selected' : ''}>Travel</option>
-                                    <option value="Education" ${post.category == 'Education' ? 'selected' : ''}>Education</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="postText">Post Text:</label>
-                                <textarea id="postText" name="postText" rows="4" required>${post.postText}</textarea>
-                            </div>
-
-                            <div class="form-group body-footer">
-                                <button type="submit" class="btn">Update</button>
-                                <a href="myblog?action=delete&post=${post.postID}&id=${post.userID}" class="btn">Delete</a>
-                            </div>
-                        </form>
+                        <p class="body-post__content">${post.postText}</p>
+                    </div>
+                    <div class="body-footer">
+                          <a href="#" class="btn btn-accept" onclick="acceptPost(${post.postID})">Accepted</a>
+                        <a href="AdminBlog?action=check&postID=${post.postID}" class="btn">Plagiarism Check</a>
+                        <a href="AdminBlog?action=delete&postID=${post.postID}" class="btn btn-delete">Delete</a>
                     </div>
                 </div>
             </c:forEach>
         </section>
+      <script>
+        function acceptPost(postID) {
+            swal({
+                title: "Are you sure?",
+                text: "Once accepted, you will not be able to revert this action!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willAccept) => {
+                if (willAccept) {
+                    window.location.href = 'AdminBlog?action=accept&postID='+ postID;
+                } else {
+                    swal("The post is not accepted!");
+                }
+            });
+        }
+    </script>
         <jsp:include page="Footer.jsp"></jsp:include>
     </body>
 </html>

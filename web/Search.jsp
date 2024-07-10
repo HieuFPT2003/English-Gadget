@@ -16,7 +16,7 @@
             <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
             <link href="css/main.css" rel="stylesheet" />
             <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
-            <title>MAGIC GADGET</title>
+            <title>English Gadget</title>
         </head>
         <body>
             <header class="header_section">

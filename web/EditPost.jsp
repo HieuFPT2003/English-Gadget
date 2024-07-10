@@ -5,7 +5,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Edit Post</title>
+     <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
+    <title>English Gadget</title>
     <style>
         .edit-post-form {
             width: 50%;

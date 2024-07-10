@@ -19,7 +19,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
-        <title>MAGIC GADGET - Home</title>
+        <title>English Gadget</title>
         <!-- bootstrap core css -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
         <!-- font awesome style -->
