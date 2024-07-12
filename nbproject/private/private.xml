@@ -3,20 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/Contact.jsp</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/controller/AdminBlog.java</file>
             <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/navbarUser.jsp</file>
             <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/dal/FeedbackDAO.java</file>
-            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/controller/BlogController.java</file>
             <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/MyBlog.jsp</file>
-            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/thankfeedback.jsp</file>
-            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/controller/MyBlog.java</file>
-            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/LandingPage.jsp</file>
-            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/feedback.jsp</file>
-            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/AdminLandingPage.jsp</file>
-            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/dal/PostDAO.java</file>
-            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/NavbarAdmin.jsp</file>
-            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/About.jsp</file>
-            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/HelpCenter.jsp</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/AdminManageBlog.jsp</file>
             <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/AdminBlog.jsp</file>
         </group>
     </open-files>

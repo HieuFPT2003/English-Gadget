@@ -103,8 +103,8 @@
                         <p class="body-post__content">${post.postText}</p>
                     </div>
                     <div class="body-footer">
-                        <a href="myblog?action=hidden&post=${post.postID}" class="btn">Hidden</a>
-                        <a href="myblog?action=delete&post=${post.postID}&id=${post.userID}" class="btn">Delete</a>
+                        <a href="AdminBlog?action=hidden&postID=${post.postID}" class="btn">Hidden</a>
+                        <a href="AdminBlog?action=delete&postID=${post.postID}" class="btn">Delete</a>
                     </div>
                 </div>
             </c:forEach>

@@ -47,7 +47,7 @@
                                 HttpSession currentSession = request.getSession();
                                 String username = (String) currentSession.getAttribute("username");
                                 String usernamegoogle = (String) currentSession.getAttribute("usernamegoogle");
-Integer userIdInteger = (Integer) currentSession.getAttribute("userID");
+                                Integer userIdInteger = (Integer) currentSession.getAttribute("userID");
                                 String userid = (userIdInteger != null) ? userIdInteger.toString() : null;
 
                                 if (userid != null) {
