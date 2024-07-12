@@ -83,7 +83,7 @@
             <p>No similar posts found.</p>
         </c:if>
         
-        <a href="blog">Back To Blog</a>
+        <a href="AdminBlog">Back To Blog</a>
     </div>
 </body>
 </html>

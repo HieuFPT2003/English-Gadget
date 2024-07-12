@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 import model.History;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class HistoryCheck extends DBContext {
 
@@ -86,9 +88,49 @@ public class HistoryCheck extends DBContext {
         }
     }
 
+     public JSONArray getHistory(int userID) {
+        JSONArray historyArray = new JSONArray();
+        String sql = "SELECT * FROM CheckHistory WHERE userID = ?";
+
+        try {
+            conn = DBUtils.getConnection();
+            ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, userID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                JSONObject historyItem = new JSONObject();
+                historyItem.put("checkID", rs.getInt("checkID"));
+                historyItem.put("userID", rs.getInt("userID"));
+                historyItem.put("text", rs.getString("text"));
+                historyItem.put("result", rs.getString("result"));
+                historyItem.put("checkDate", rs.getTimestamp("checkDate"));
+                historyItem.put("type", rs.getBoolean("type") ? "grammar" : "spelling");
+
+                historyArray.put(historyItem);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return historyArray;
+    }
+    
     public static void main(String[] args) {
         HistoryCheck dao = new HistoryCheck();
-        History newH = new History(1, "Test", "Test111", true);
-        dao.saveGrammarCheckHistory(newH);
+
+        // Test getHistory
+        JSONArray history = dao.getHistory(1);
+        System.out.println(history.toString(2)); // Pretty print the JSON array
     }
 }

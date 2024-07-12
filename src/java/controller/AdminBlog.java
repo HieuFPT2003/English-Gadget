@@ -48,10 +48,7 @@ public class AdminBlog extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String postIDString = request.getParameter("postID");
-
         String check = request.getParameter("action");
-        System.out.println("check:" + check);
-        System.out.println("postID:" + postIDString);
 
         List<Post> listPosts = postDAO.getAllPost();
         if (postIDString != null && check.equals("check")) {
@@ -63,6 +60,8 @@ public class AdminBlog extends HttpServlet {
                 if (!similarPostAuthor.isEmpty()) {
                     request.setAttribute("similarPosts", similarPostAuthor);
                     request.getRequestDispatcher("ErrorCreate.jsp").forward(request, response);
+                } else {
+                    response.sendRedirect("ErrorCreate.jsp");
                 }
             } catch (NumberFormatException e) {
                 response.getWriter().println("Invalid postID format: " + postIDString);
@@ -72,6 +71,11 @@ public class AdminBlog extends HttpServlet {
             if (postDAO.updatePostStatus(postID, 1)) {
                 processRequest(request, response);
             };
+        } else if (postIDString != null && check.equals("hidden")) {
+            int postID = Integer.parseInt(postIDString);
+            if (postDAO.updatePostStatus(postID, 0)) {
+                response.sendRedirect("ManageBlog");
+            }
         } else if (postIDString != null && check.equals("delete")) {
             int postID = Integer.parseInt(postIDString);
             if (postDAO.deletePost(postID)) {

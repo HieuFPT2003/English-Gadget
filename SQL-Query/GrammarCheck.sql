@@ -52,6 +52,9 @@ CREATE TABLE UserPost (
     datePosted DATETIME DEFAULT GETDATE(),
     likeCount INT DEFAULT 0,
     dislikeCount INT DEFAULT 0,
+	[edited] BIT NOT NULL DEFAULT 0,
+    [category] NVARCHAR(100) NULL,
+    [status] BIT NOT NULL DEFAULT 1,
     FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 GO
@@ -97,9 +100,11 @@ GO
 CREATE TABLE Feedback (
     feedbackID INT PRIMARY KEY IDENTITY(1,1),
     userID INT,
-    feedbackTopic NVARCHAR(100),  -- Adjusted length to 100
+    feedbackTopic NVARCHAR(100), 
     feedbackText NVARCHAR(MAX),
     created_at DATETIME DEFAULT GETDATE(),
+	rating INT DEFAULT 0 ,
+	status BIT DEFAULT 0,
 	role BIT DEFAULT 0
     FOREIGN KEY (userID) REFERENCES Users(userID)
 );
@@ -180,15 +185,17 @@ VALUES
 (2, N'This sentence will be checked for grammar.', N'Grammar check passed.', GETDATE(), 1);
 GO
 
+
 -- Populate Feedback table
-INSERT INTO Feedback (userID, feedbackTopic, feedbackText,role)
+INSERT INTO Feedback (userID, feedbackTopic, feedbackText,rating,status,role)
 VALUES 
-(1, 'Convenient', 'This spell-check software is very convenient and easy to use. I have significantly reduced errors in my documents.',0),
-(2, 'Accurate', 'I find this software quite accurate in detecting spelling mistakes',0),
-(3, 'Feature', 'Very satisfied with the word suggestion feature. It helps me write faster is user-friendly and easy to navigate. However, more language options should be added.',0),
-(5, 'Saving time', 'This spell-check software saves me a lot of editing time. Highly recommended.',0),
-(3, 'Missed error', 'Sometimes the software still misses a few minor spelling errors. Hopefully, it will be improved in future versions.',0);
+(1, 'Convenient', 'This spell-check software is very convenient and easy to use. I have significantly reduced errors in my documents.',0,0,0),
+(2, 'Accurate', 'I find this software quite accurate in detecting spelling mistakes',0,0,0),
+(3, 'Feature', 'Very satisfied with the word suggestion feature. It helps me write faster is user-friendly and easy to navigate. However, more language options should be added.',0,0,0),
+(5, 'Saving time', 'This spell-check software saves me a lot of editing time. Highly recommended.',0,0,0),
+(3, 'Missed error', 'Sometimes the software still misses a few minor spelling errors. Hopefully, it will be improved in future versions.',0,0,0);
 GO
+
 
 -- Query to fetch UserPost details with like and dislike counts and user IDs
 SELECT p.postID, 
@@ -308,11 +315,4 @@ VALUES
 
 
 
-
-select*from Feedback
-SELECT * FROM Feedback;
-
-
-SELECT f.feedbackID, f.userID, u.username, f.feedbackTopic, f.feedbackText, f.created_at
-FROM Feedback f 
-JOIN Users u ON f.userID = u.userID
+select * from UserPost
