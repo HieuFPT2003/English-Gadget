@@ -15,11 +15,39 @@ public class UserFeedback extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         FeedbackDAO feedbackDAO = new FeedbackDAO();
-        List<Feedback> feedbackList = feedbackDAO.getAllHaveName();
-        request.setAttribute("feedback", feedbackList);
-        request.getRequestDispatcher("Userfeedback.jsp").forward(request, response);
+
+        int limit = 10; 
+        int page = 1;   
+        
+        String pageParam = request.getParameter("page");
+        if (pageParam != null && !pageParam.isEmpty()) {
+            page = Integer.parseInt(pageParam);
+        }
+        
+        int offset = (page - 1) * limit;
+
+        try {
+            List<Feedback> feedbackList;
+            int totalFeedback;
+            int totalPages;
+
+            // Fetch only approved feedback entries with pagination
+            feedbackList = feedbackDAO.getApprovedFeedback(offset, limit);
+            totalFeedback = feedbackDAO.getTotalFeedback(); // Total number of feedback entries
+            totalPages = (int) Math.ceil((double) totalFeedback / limit);
+
+            request.setAttribute("feedbackList", feedbackList);
+            request.setAttribute("totalPages", totalPages);
+            request.setAttribute("currentPage", page);
+            request.setAttribute("limit", limit);
+
+            request.getRequestDispatcher("Userfeedback.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getWriter().println("Error: " + e.getMessage());
+        }
     }
 
     @Override

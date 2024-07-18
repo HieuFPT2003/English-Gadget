@@ -19,6 +19,7 @@ public class BlogController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+
         resp.setContentType("text/html;charset=UTF-8");
         HttpSession session = req.getSession();
         Integer userID = (Integer) session.getAttribute("userID");
