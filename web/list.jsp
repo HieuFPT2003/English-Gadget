@@ -25,7 +25,8 @@
     </script>
 <head>
     <meta charset="UTF-8">
-    <title>List of Users</title>
+    <title>English Gadget</title>
+     <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
     <style>
         body {
             font-family: Arial, sans-serif;

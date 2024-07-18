@@ -90,12 +90,17 @@ public class GrammarCheckController extends HttpServlet {
 
         if (userID == null) {
             response.sendRedirect("login");
+            return;
         }
-        
+
         // results
         String results = correctedTextBuilder.toString();
-        History newHistory = new History( userID, checkText, results,true);
-        historyDAO.saveGrammarCheckHistory(newHistory);
+
+        // Kiểm tra nếu results có giá trị thì mới lưu vào cơ sở dữ liệu
+        if (results != null && !results.isEmpty()) {
+            History newHistory = new History(userID, checkText, results, true);
+            historyDAO.saveGrammarCheckHistory(newHistory);
+        }
 
         // Conver from java to JSON
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

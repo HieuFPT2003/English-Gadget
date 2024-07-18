@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
         <jsp:include page="Header.jsp"></jsp:include>
             <script>
             var userID = <%= session.getAttribute("userID") != null ? session.getAttribute("userID") : "null" %>;

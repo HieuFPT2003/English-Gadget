@@ -11,7 +11,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
-        <title>MAGIC GADGET</title>
+        <title>English Gadget</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
         <link href="css/font-awesome.min.css" rel="stylesheet" />
         <link href="css/style.css" rel="stylesheet" />
@@ -43,6 +43,45 @@
             }
             .form_input{
                 font-size: 16px;
+            }
+            .history-container {
+                padding: 20px;
+                background-color: #f9f9f9;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                margin-top: 20px;
+            }
+
+            .history-container h3 {
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            .history-record {
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                background-color: #fff;
+                transition: background-color 0.3s;
+            }
+
+            .history-record:hover {
+                background-color: #f0f0f0;
+            }
+
+            .history-record p {
+                margin: 5px 0;
+                color: #555;
+            }
+
+            .history-record p strong {
+                color: #333;
+            }
+
+            .history-divider {
+                border-top: 1px solid #ddd;
+                margin: 10px 0;
             }
         </style>
 
@@ -101,7 +140,7 @@
                             resultHtml += '<div class="form-check">';
                             resultHtml += '<div class="card-header bg-success text-white">After Error Correction</div>';
                             resultHtml += '<form id="myForm" action="GrammarCheck" method="post">';
-                            resultHtml += '<textarea readonly class="form_input" rows="20" cols="50" placeholder="This is where you get your answers" required>' + correctText + '</textarea>';
+                            resultHtml += '<textarea class="form_input" rows="20" cols="50" placeholder="This is where you get your answers" required>' + correctText + '</textarea>';
                             resultHtml += '</form>';
                             resultHtml += '</div>';
                             $('#results').html(resultHtml);
@@ -120,19 +159,20 @@
         <div class="hero_area">
             <header class="header_section">
                 <div class="container">
-                    <nav class="navbar navbar-expand-lg custom_nav-container ">
+                    <nav class="navbar navbar-expand-lg custom_nav-container">
                         <a class="navbar-brand" href="LandingPage.jsp"><img width="300" src="images/logofixfinal.png" alt="#" /></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class=""> </span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav">
-                                <li class="nav-item">
+                                <li class="nav-item active">
                                     <a class="nav-link" href="LandingPage.jsp">Home<span class="sr-only">(current)</span></a>
                                 </li>
-                                <li class="nav-item dropdown active">
-                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Products<span class="caret"></span></a>
-
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <span class="nav-label">Products<span class="caret"></span></span>
+                                    </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="GrammarCheck.jsp">Grammar Check (Prime)</a></li>
                                         <li><a href="SpellingCheck.jsp">Spelling Check</a></li>
@@ -140,21 +180,52 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Account<span class="caret"></span></a>
+                                    <%
+                                        HttpSession currentSession = request.getSession();
+                                        String username = (String) currentSession.getAttribute("username");
+                                        String usernamegoogle = (String) currentSession.getAttribute("usernamegoogle");
+                                        Integer userIdInteger = (Integer) currentSession.getAttribute("userID");
+                                        String userid = (userIdInteger != null) ? userIdInteger.toString() : null;
+
+                                        if (userid != null) {
+                                            String displayUsername = (username != null) ? username : usernamegoogle;
+                                    %>
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <span class="nav-label">Profile<span class="caret"></span></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="profile.jsp">Account detail: <%= displayUsername %></a></li>
+                                        <li><a href="">Premium</a></li>
+                                        <li><a href="logout">Logout</a></li>
+                                    </ul>
+                                    <%
+                                        } else {
+                                    %>
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <span class="nav-label">Account<span class="caret"></span></span>
+                                    </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="login.jsp">Sign in</a></li>
                                         <li><a href="signup.jsp">Sign up</a></li>
                                     </ul>
+                                    <%
+                                        }
+                                    %>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">About us<span class="caret"></span></a>
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <span class="nav-label">About us<span class="caret"></span></span>
+                                    </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="About.jsp">Development team</a></li>
                                         <li><a href="Contact.jsp">Contact</a></li>
                                     </ul>
                                 </li>
-                                <form class="form-inline">
-                                    <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="help">Help Center<span class="sr-only">(current)</span></a>
+                                </li>
+                                <form class="form-inline" action="Search.jsp">
+                                    <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
                                         <i class="fa fa-search" aria-hidden="true"></i>
                                     </button>
                                 </form>
@@ -191,7 +262,8 @@
                                 <span class="visually-hidden" ></span>
                             </div>
                             <span id="loadingText" style="display:none;">Loading.....</span>
-                            <button id="btnCheck" class="btn btn-success">Check Grammar</button>
+                            <button id="btnCheck" type="submit" class="btn btn-success">Check Grammar</button>
+                            <button id="btnHistory" type="button" class="btn btn-primary">History Check</button>
                         </form>
                     </div>
                 </div>
@@ -202,9 +274,40 @@
                     </div>
                     <div id="correct"></div>
                 </div>
+
                 <div id="results" class="col-5"></div>
             </div>
         </div>
+
+        <div id="history" class="history-container" style="display: none;">
+            <h3>History</h3>
+            <div id="historyContent"></div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('#btnHistory').click(function () {
+                    $.ajax({
+                        type: 'GET',
+                        url: 'ViewHistory',
+                        success: function (response) {
+                            var historyHtml = '';
+                            response.forEach(function (record) {
+                                historyHtml += '<div class="history-record">';
+                                historyHtml += '<p><strong>Date:</strong> ' + record.checkDate + '</p>';
+                                historyHtml += '<p><strong>Original Text:</strong> ' + record.text + '</p>';
+                                historyHtml += '<p><strong>Result:</strong> ' + record.result + '</p>';
+                                historyHtml += '</div><hr class="history-divider">';
+                            });
+                            $('#historyContent').html(historyHtml);
+                            $('#history').show();
+                        },
+                        error: function (error) {
+                            console.log('Error fetching history:', error);
+                        }
+                    });
+                });
+            });
+        </script>
         <script src="scripts.js"></script>
         <jsp:include page="Footer.jsp"></jsp:include>
         <script src="js/jquery-3.4.1.min.js"></script>

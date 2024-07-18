@@ -1,7 +1,5 @@
 <%-- 
-    Document   : navbarUser
-    Created on : May 21, 2024, 9:23:53 PM
-    Author     : Q.Hieu
+
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,7 +7,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <style>
@@ -142,21 +139,18 @@
             <!--             search-->
             <div class="headerMiddle d-flex">
                 <div class="headerMiddle d-flex">
-                <form action="Search.jsp">
-                    <input type="submit" id="fname" name="fname" value="Search Post"><br>
-                </button>
-                </form>
-            </div>
+                    <form action="Search.jsp">
+                        <input type="submit" id="fname" name="fname" value="Search Post"><br>
+                        </button>
+                    </form>
+                </div>
             </div>
             <!--            <div class="headerMiddle d-flex">
                             <input class="form-control form-control-sm me-2 searchInput" type="search" placeholder="Search Blog" aria-label="Search" >
                             <i class="bi bi-search midlleIcon"></i>
                         </div>-->
             <div class="headerRight">
-                <button type="button" class="rightBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    <i class="bi bi-plus-lg"></i>
-                    Create
-                </button>
+
                 <div class="dropdown-center">
                     <button class="dropdown-toggle listUser" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-person-circle rightIcon"></i>
@@ -174,10 +168,6 @@
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <form class="modal-content" action="blog" method="post">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a Post</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
                     <div class="modal-body">
                         <select name="category" id="category">
                             <option value="" disabled selected>Select Category</option>
@@ -205,8 +195,10 @@
                 <div class="navLeft">
                     <ul class="leftTop">
                         <li class="navLi"><a class="navLink fs-5" href="LandingPage.jsp"> <i class="bi bi-house-door-fill"></i> Home</a></li>
-                        <li class="navLi"><a class="navLink fs-5" href="Check_Backup.jsp"> <i class="bi bi-book-fill"></i> Grammar Checking</a></li>
-                        <li class="navLi"><a class="navLink fs-5" href="#"><i class="bi bi-chat-left-text-fill"></i> Paraphraser</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="AdminLandingPage.jsp"> <i class="bi bi-house-door-fill"></i>Admin Manage</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="GrammarCheck.jsp"> <i class="bi bi-book-fill"></i> Grammar Checking</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="AdminBlog"><i class="bi bi-chat-left-text-fill"></i> Manage Blog</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="#"><i class="bi bi-chat-left-text-fill"></i> Manage Account</a></li>
                         <li class="navLi"><a class="navLink fs-5" href="userfeedback"> <i class="bi bi-house-door-fill"></i> Feedback</a></li>
                     </ul>
                     <div class="leftBotton">
@@ -215,7 +207,7 @@
                 </div>
             </div>
         </div>
-         
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>

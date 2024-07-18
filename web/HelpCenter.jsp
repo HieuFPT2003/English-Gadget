@@ -14,7 +14,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link rel="icon" href="images/logoTab-01.png" type="image/x-icon">
-        <title>MAGIC GADGET</title>
+      <title>English Gadget</title>
 
         <!-- Bootstrap CSS -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">

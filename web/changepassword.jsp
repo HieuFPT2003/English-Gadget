@@ -9,8 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-        <title>JSP Page</title>
+        <title>English Gadget</title>
     </head>
     <body>
         

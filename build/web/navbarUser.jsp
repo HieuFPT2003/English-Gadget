@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <style>
@@ -47,7 +48,6 @@
                 position: relative;
             }
             .rightBtn{
-
                 border: none;
                 background-color: transparent;
                 text-align: center;
@@ -112,6 +112,21 @@
                 list-style: none;
                 color: black;
             }
+            /* Custom styles for the modal form */
+            .modal-body textarea {
+                resize: none;
+                border-radius: 5px;
+                padding: 10px;
+                border: 1px solid #ced4da;
+                margin-bottom: 10px;
+            }
+            .modal-body select {
+                width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ced4da;
+                margin-bottom: 10px;
+            }
         </style>
     </head>
     <body>
@@ -164,6 +179,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <select name="category" id="category">
+                            <option value="" disabled selected>Select Category</option>
+                            <option value="technology">Technology</option>
+                            <option value="education">Education</option>
+                            <option value="health">Health</option>
+                            <option value="lifestyle">Lifestyle</option>
+                        </select>
                         <textarea style="width: 100%; height: 300px;" placeholder="What are you thinking?" name="contentpost" id="contentpost"></textarea>
                     </div>
                     <div class="modal-footer">
@@ -183,7 +205,7 @@
                 <div class="navLeft">
                     <ul class="leftTop">
                         <li class="navLi"><a class="navLink fs-5" href="LandingPage.jsp"> <i class="bi bi-house-door-fill"></i> Home</a></li>
-                        <li class="navLi"><a class="navLink fs-5" href="Check_Backup.jsp"> <i class="bi bi-book-fill"></i> Grammer Checking</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="Check_Backup.jsp"> <i class="bi bi-book-fill"></i> Grammar Checking</a></li>
                         <li class="navLi"><a class="navLink fs-5" href="#"><i class="bi bi-chat-left-text-fill"></i> Paraphraser</a></li>
                         <li class="navLi"><a class="navLink fs-5" href="userfeedback"> <i class="bi bi-house-door-fill"></i> Feedback</a></li>
                     </ul>
@@ -193,8 +215,7 @@
                 </div>
             </div>
         </div>
-
-
+         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -90,7 +90,7 @@ public class SpellingCheckController extends HttpServlet {
         if (userID != null) {
             // results
             History newHistory = new History(userID, checkText, true);
-            historyDAO.saveGrammarCheckHistory(newHistory);
+            historyDAO.saveSpellingCheckHistory(newHistory);
         }
 
         // Conver from java to JSON

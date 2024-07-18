@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Update User</title>
+     <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
+ <title>English Gadget</title>
     <style>
         body {
             font-family: Arial, sans-serif;
