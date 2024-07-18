@@ -129,13 +129,12 @@
     <form class="sort-form" action="usersort" method="get">
         <input type="hidden" name="keyword" value="${keyword}" />
         <select name="sortBy">
-            <option value="All" >All</option>
             <option value="created_at" ${sortBy == 'created_at' ? 'selected' : ''}>Created Date</option>
             <option value="rating" ${sortBy == 'rating' ? 'selected' : ''}>Rating</option>
         </select>
         <button type="submit" name="order" value="ASC">Ascending</button>
         <button type="submit" name="order" value="DESC">Descending</button>
-        <input type="hidden" name="page" value="${currentPage}" />
+        <input type="hidden" name="page" value="1" /> <!-- Reset to first page on sorting -->
         <input type="hidden" name="limit" value="${limit}" />
     </form>
     <form action="LandingPage.jsp" method="get">
@@ -172,18 +171,18 @@
         </c:forEach>
         <div class="pagination">
             <c:if test="${currentPage > 1}">
-                <a href="userfeedback?page=${currentPage - 1}&limit=${limit}">Previous</a>
+                <a href="usersort?page=${currentPage - 1}&limit=${limit}&sortBy=${sortBy}&order=${order}&keyword=${keyword}">Previous</a>
             </c:if>
 
             <c:set var="beginPage" value="${currentPage > 1 ? currentPage - 1 : 1}" />
             <c:set var="endPage" value="${currentPage < totalPages ? currentPage + 1 : totalPages}" />
 
             <c:forEach var="i" begin="${beginPage}" end="${endPage}">
-                <a href="userfeedback?page=${i}&limit=${limit}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+                <a href="usersort?page=${i}&limit=${limit}&sortBy=${sortBy}&order=${order}&keyword=${keyword}" class="${i == currentPage ? 'active' : ''}">${i}</a>
             </c:forEach>
 
             <c:if test="${currentPage < totalPages}">
-                <a href="userfeedback?page=${currentPage + 1}&limit=${limit}">Next</a>
+                <a href="usersort?page=${currentPage + 1}&limit=${limit}&sortBy=${sortBy}&order=${order}&keyword=${keyword}">Next</a>
             </c:if>
         </div>
     </div>

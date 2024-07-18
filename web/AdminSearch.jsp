@@ -269,15 +269,15 @@
         <!-- Pagination -->
         <div class="pagination">
             <c:if test="${currentPage > 1}">
-                <a href="managefeedback?page=${currentPage - 1}&sortBy=${sortBy}&order=${order}&keyword=${keyword}&status=${status}&rating=${rating}">Previous</a>
+                <a href="searchfeedback?page=${currentPage - 1}&sortBy=${sortBy}&order=${order}&keyword=${keyword}&status=${status}&rating=${rating}">Previous</a>
             </c:if>
             <c:set var="beginPage" value="${currentPage > 1 ? currentPage - 1 : 1}" />
             <c:set var="endPage" value="${currentPage < totalPages ? currentPage + 1 : totalPages}" />
             <c:forEach var="i" begin="${beginPage}" end="${endPage}">
-                <a href="managefeedback?page=${i}&sortBy=${sortBy}&order=${order}&keyword=${keyword}&status=${status}&rating=${rating}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+                <a href="searchfeedback?page=${i}&sortBy=${sortBy}&order=${order}&keyword=${keyword}&status=${status}&rating=${rating}" class="${i == currentPage ? 'active' : ''}">${i}</a>
             </c:forEach>
             <c:if test="${currentPage < totalPages}">
-                <a href="managefeedback?page=${currentPage + 1}&sortBy=${sortBy}&order=${order}&keyword=${keyword}&status=${status}&rating=${rating}">Next</a>
+                <a href="searchfeedback?page=${currentPage + 1}&sortBy=${sortBy}&order=${order}&keyword=${keyword}&status=${status}&rating=${rating}">Next</a>
             </c:if>
         </div>
         <!-- Success message for approval -->

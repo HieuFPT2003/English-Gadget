@@ -119,17 +119,16 @@
 </head>
 <body>
 <header>
-    <h1>User Feedback</h1>
+    <h1>User Feedback Search</h1>
 </header>
 <div class="container">
     <form class="search-form" action="usersearchfeedback" method="get">
         <input type="text" name="keyword" placeholder="Search by Name, Topic" value="${keyword}">
         <button type="submit">Search</button>
     </form>
-    <form class="sort-form" action="usersort" method="get">
+    <form class="sort-form" action="usersearchfeedback" method="get">
         <input type="hidden" name="keyword" value="${keyword}" />
         <select name="sortBy">
-            <option value="All" >All</option>
             <option value="created_at" ${sortBy == 'created_at' ? 'selected' : ''}>Created Date</option>
             <option value="rating" ${sortBy == 'rating' ? 'selected' : ''}>Rating</option>
         </select>
@@ -141,7 +140,7 @@
     <form action="LandingPage.jsp" method="get">
         <button type="submit">Home</button>
     </form>
-     <form action="userfeedback" method="get">
+    <form action="userfeedback" method="get">
         <button type="submit">Reset</button>
     </form>
     <div class="feedback-list">
@@ -172,18 +171,18 @@
         </c:forEach>
         <div class="pagination">
             <c:if test="${currentPage > 1}">
-                <a href="userfeedback?page=${currentPage - 1}&limit=${limit}">Previous</a>
+                <a href="usersearchfeedback?page=${currentPage - 1}&limit=${limit}&sortBy=${sortBy}&order=${order}&keyword=${keyword}">Previous</a>
             </c:if>
 
             <c:set var="beginPage" value="${currentPage > 1 ? currentPage - 1 : 1}" />
             <c:set var="endPage" value="${currentPage < totalPages ? currentPage + 1 : totalPages}" />
 
             <c:forEach var="i" begin="${beginPage}" end="${endPage}">
-                <a href="userfeedback?page=${i}&limit=${limit}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+                <a href="usersearchfeedback?page=${i}&limit=${limit}&sortBy=${sortBy}&order=${order}&keyword=${keyword}" class="${i == currentPage ? 'active' : ''}">${i}</a>
             </c:forEach>
 
             <c:if test="${currentPage < totalPages}">
-                <a href="userfeedback?page=${currentPage + 1}&limit=${limit}">Next</a>
+                <a href="usersearchfeedback?page=${currentPage + 1}&limit=${limit}&sortBy=${sortBy}&order=${order}&keyword=${keyword}">Next</a>
             </c:if>
         </div>
     </div>

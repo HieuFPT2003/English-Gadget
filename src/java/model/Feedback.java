@@ -9,35 +9,30 @@ public class Feedback {
     private String feedbackText;
     private Date createdAt;
     private String username;
-    private String role;
+    private int rating;
+    private int status;
+    private int role;
 
     public Feedback() {
     }
 
-    public Feedback(int userID, String feedbackTopic, String feedbackText) {
+    public Feedback(int userID, String feedbackTopic, String feedbackText,int rating) {
         this.userID = userID;
         this.feedbackTopic = feedbackTopic;
         this.feedbackText = feedbackText;
+        this.rating = rating;
     }
 
-    public Feedback(int feedbackID, int userID, String feedbackTopic, String feedbackText, Date createdAt, String username, String role) {
+    public Feedback(int feedbackID, int userID, String feedbackTopic, String feedbackText, Date createdAt, String username, int rating, int status, int role) {
         this.feedbackID = feedbackID;
         this.userID = userID;
         this.feedbackTopic = feedbackTopic;
         this.feedbackText = feedbackText;
         this.createdAt = createdAt;
         this.username = username;
+        this.rating = rating;
+        this.status = status;
         this.role = role;
-    }
-
-  
-
-    public Feedback(int feedbackID, int userID, String feedbackTopic, String feedbackText, Date createdAt) {
-        this.feedbackID = feedbackID;
-        this.userID = userID;
-        this.feedbackTopic = feedbackTopic;
-        this.feedbackText = feedbackText;
-        this.createdAt = createdAt;
     }
 
     public int getFeedbackID() {
@@ -88,12 +83,30 @@ public class Feedback {
         this.username = username;
     }
 
-    public String getRole() {
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
+
+    
 
 }

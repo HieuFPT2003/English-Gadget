@@ -1,6 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    Boolean role = (Boolean) session.getAttribute("role");
+    if (role == null || !role) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html>
+    <head>
+        <jsp:include page="Header.jsp" />
+    </head>
+    <script>
+        var userID = <%= session.getAttribute("userID") != null ? "\"" + session.getAttribute("userID") + "\"" : "null" %>;
+        var premium = <%= session.getAttribute("premium") != null ? "\"" + session.getAttribute("premium") + "\"" : "null" %>;
+        var role = <%= session.getAttribute("role") != null ? "\"" + session.getAttribute("role") + "\"" : "null" %>;
+        var name = <%= session.getAttribute("usernamegoogle") != null ? "\"" + session.getAttribute("usernamegoogle") + "\"" : "null" %>;
+
+        console.log("User ID: " + userID);
+        console.log("Premium: " + premium);
+        console.log("Role: " + role);
+        console.log("Name: " + name);
+    </script>
 <head>
     <meta charset="UTF-8">
     <title>Update User</title>

@@ -23,7 +23,6 @@
         console.log("Role: " + role);
         console.log("Name: " + name);
     </script>
-<head>
     <meta charset="UTF-8">
     <title>List of Users</title>
     <style>
@@ -130,7 +129,7 @@
 </header>
 <div class="container">
     <form action="search" method="get">
-        <input type="text" name="keyword" placeholder="Search by ID, Username, Email, Phone">
+        <input type="text" name="keyword" placeholder="Search by ID, Username, Email, Phone" value="${keyword}">
         <button type="submit">Search</button>
     </form>
 
@@ -141,6 +140,7 @@
             <option value="created_at">Created Date</option>
         </select>
         <button type="submit">Sort</button>
+        <input type="hidden" name="keyword" value="${keyword}">
     </form>
 
     <form action="AdminLandingPage.jsp">
@@ -163,7 +163,7 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${usersList}" var="c">
+            <c:forEach items="${users}" var="c">
                 <tr>
                     <td>${c.userID}</td>
                     <td>${c.username}</td>
@@ -183,17 +183,19 @@
         </tbody>
     </table>
 
-    <div class="pagination">
-        <c:if test="${currentPage > 1}">
-            <a href="list?page=${currentPage - 1}">Previous</a>
-        </c:if>
-        <c:forEach var="i" begin="1" end="${totalPages}">
-            <a href="list?page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
-        </c:forEach>
-        <c:if test="${currentPage < totalPages}">
-            <a href="list?page=${currentPage + 1}">Next</a>
-        </c:if>
-    </div>
+    <c:if test="${totalPages > 1}">
+        <div class="pagination">
+            <c:if test="${currentPage > 1}">
+                <a href="search?page=${currentPage - 1}&limit=${limit}&keyword=${keyword}">Previous</a>
+            </c:if>
+            <c:forEach var="i" begin="1" end="${totalPages}">
+                <a href="search?page=${i}&limit=${limit}&keyword=${keyword}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+            </c:forEach>
+            <c:if test="${currentPage < totalPages}">
+                <a href="search?page=${currentPage + 1}&limit=${limit}&keyword=${keyword}">Next</a>
+            </c:if>
+        </div>
+    </c:if>
 </div>
 <jsp:include page="Footer.jsp"></jsp:include>
 </body>

@@ -52,7 +52,7 @@
     <div class="container">
         <h2>Thank you for your feedback!</h2>
         <p>We appreciate your time and effort.</p>
-        <a href="LandingPage.jsp" class="button">Home</a>
+        <a href="blog" class="button">Home</a>
     </div>
 </body>
 </html>

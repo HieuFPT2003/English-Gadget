@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : Contact
     Created on : May 24, 2024, 3:52:42 PM
@@ -11,51 +12,93 @@
     <head>
         <!-- Basic -->
         <jsp:include page="Header.jsp"></jsp:include>
+        <script>
+        var userID = <%= session.getAttribute("userID") != null ? session.getAttribute("userID") : "null" %>;
+        var premium = <%= session.getAttribute("premium") != null ? session.getAttribute("premium") : "null" %>;
+        var role = <%= session.getAttribute("role") != null ? session.getAttribute("role") : "null" %>;
+        var name = <%= session.getAttribute("usernamegoogle") != null ? session.getAttribute("usernamegoogle") : "null" %>;
+
+        console.log("User ID: " + userID);
+        console.log("Premium: " + premium);
+        console.log("Role: " + role);
+        console.log("Name: " + name);
+    </script>
         </head>
         <body class="sub_page">
             <div class="hero_area">
                 <!-- header section strats -->
                 <header class="header_section">
-                    <div class="container">
-                        <nav class="navbar navbar-expand-lg custom_nav-container ">
-                            <a class="navbar-brand" href="LandingPage.jsp"><img width="300" src="images/logofixfinal.png" alt="#" /></a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class=""> </span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="LandingPage.jsp">Home<span class="sr-only">(current)</span></a>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Products<span class="caret"></span></a>
+                    <nav class="navbar navbar-expand-lg custom_nav-container">
+                <a class="navbar-brand" href="LandingPage.jsp"><img width="300" src="images/logofixfinal.png" alt="#" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class=""> </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="LandingPage.jsp">Home<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                <span class="nav-label">Products<span class="caret"></span></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="GrammarCheck.jsp">Grammar Check (Prime)</a></li>
+                                <li><a href="SpellingCheck.jsp">Spelling Check</a></li>
+                                <li><a href="blog">Blog</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <%
+                                HttpSession currentSession = request.getSession();
+                                String username = (String) currentSession.getAttribute("username");
+String usernamegoogle = (String) currentSession.getAttribute("usernamegoogle");
+                                Integer userIdInteger = (Integer) currentSession.getAttribute("userID");
+                                String userid = (userIdInteger != null) ? userIdInteger.toString() : null;
 
-                                        <ul class="dropdown-menu">
-                                            <li><a href="Check_Backup.jsp">Grammar Check</a></li>
-                                            <li><a href="Blog.jsp">Blog</a></li>
-                                        </ul>
-
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Account<span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="product.html">Sign in</a></li>
-                                            <li><a href="contact.html">Sign up</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item dropdown  active">
-                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">About us<span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="About.jsp">Development team</a></li>
-                                            <li><a href="Contact.jsp">Contact</a></li>
-                                        </ul>
-                                    </li>
+                                if (userid != null) {
+                                    String displayUsername = (username != null) ? username : usernamegoogle;
+                            %>
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                <span class="nav-label">Profile<span class="caret"></span></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="profile.jsp">Account detail: <%= displayUsername %></a></li>
+                                <li><a href="">Premium</a></li>
+                                <li><a href="logout">Logout</a></li>
+                            </ul>
+                            <%
+                                } else {
+                            %>
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                <span class="nav-label">Account<span class="caret"></span></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="login.jsp">Sign in</a></li>
+                                <li><a href="signup.jsp">Sign up</a></li>
+                            </ul>
+                            <%
+                                }
+                            %>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                <span class="nav-label">About us<span class="caret"></span></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="About.jsp">Development team</a></li>
+                                <li><a href="Contact.jsp">Contact</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="help">Help Center<span class="sr-only">(current)</span></a>
+                        </li>
 
                                     <form class="form-inline">
 
                                         <!--                        <input type="text" name="search"placeholder="Tìm kiếm">-->
                                         <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
+<i class="fa fa-search" aria-hidden="true"></i>
                                         </button>
                                     </form>
                                 </ul>
@@ -105,7 +148,7 @@
                                         <option class="dropdown-item" value="Feature Request">Feature Request</option>
                                         <option class="dropdown-item" value="Technical Support">Technical Support</option>
                                         <option class="dropdown-item" value="Account Issues">Account Issues</option>
-                                        <option class="dropdown-item" value="Partnership Inquiry">Partnership Inquiry</option>
+<option class="dropdown-item" value="Partnership Inquiry">Partnership Inquiry</option>
                                     </select>
                                     <br>
                                     <br>
@@ -179,7 +222,7 @@
         <script src="js/jquery-3.4.1.min.js"></script>
         <!-- popper js -->
         <script src="js/popper.min.js"></script>
-        <!-- bootstrap js -->
+<!-- bootstrap js -->
         <script src="js/bootstrap.js"></script>
         <!-- custom js -->
         <script src="js/custom.js"></script>
