@@ -30,7 +30,6 @@ public class SearchQAServlet extends HttpServlet {
         HelpCenterDAO dao = new HelpCenterDAO();
         List<HelpCenter> listQA = dao.searchAns(keyword);
         PrintWriter out = response.getWriter();
-
         String ms = "";
 
         if (listQA == null || listQA.isEmpty()) {

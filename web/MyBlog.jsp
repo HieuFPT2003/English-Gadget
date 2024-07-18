@@ -106,6 +106,7 @@
                     <div class="body-footer">
                         <a href="myblog?action=edit&post=${post.postID}&id=${post.userID}" class="btn">Edit</a>
                         <a href="myblog?action=delete&post=${post.postID}&id=${post.userID}" class="btn">Delete</a>
+                        <a href="#" class="btn">Report</a>
                     </div>
                 </div>
             </c:forEach>

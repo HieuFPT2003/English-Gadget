@@ -5,6 +5,7 @@
         <group>
             <file>file:/D:/New%20folder%20(2)/English-Gadget/web/UserSort.jsp</file>
             <file>file:/D:/New%20folder%20(2)/English-Gadget/src/java/controller/ApproveFeedback.java</file>
+
             <file>file:/D:/New%20folder%20(2)/English-Gadget/web/Userfeedback.jsp</file>
             <file>file:/D:/New%20folder%20(2)/English-Gadget/src/java/controller/UserSort.java</file>
             <file>file:/D:/New%20folder%20(2)/English-Gadget/src/java/dal/FeedbackDAO.java</file>
@@ -13,6 +14,9 @@
             <file>file:/D:/New%20folder%20(2)/English-Gadget/src/java/controller/UserSearchFeedback.java</file>
             <file>file:/D:/New%20folder%20(2)/English-Gadget/src/java/controller/UserFeedback.java</file>
             <file>file:/D:/New%20folder%20(2)/English-Gadget/web/UserSearch.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/English-Gadget/src/java/controller/UserProfile.java</file>
+            <file>file:/D:/New%20folder%20(2)/English-Gadget/src/java/model/Feedback.java</file>
+
         </group>
     </open-files>
 </project-private>

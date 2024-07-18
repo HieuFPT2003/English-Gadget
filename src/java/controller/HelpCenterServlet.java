@@ -34,7 +34,19 @@ public class HelpCenterServlet extends HttpServlet {
         List<HelpCenter> list1 = dao1.getAllQaA();
         request.setAttribute("listQaA", list1);
         request.getRequestDispatcher("HelpCenter.jsp").forward(request, response);
-
+//        String keyword = request.getParameter("txt");
+//        HelpCenterDAO dao2 = new HelpCenterDAO();
+//        List<HelpCenter> listQA = dao2.searchAns(keyword);
+//        String ms = "";
+//
+////        if (listQA == null || listQA.isEmpty()) {
+////            ms = "Sorry, no results found. Please try again with a different keyword.";
+////            request.setAttribute("ms", ms);
+////            request.getRequestDispatcher("HelpCenter.jsp").forward(request, response);
+////        } else {
+//            request.setAttribute("listQaA", listQA);
+//            request.getRequestDispatcher("HelpCenter.jsp").forward(request, response);
+////        }
     }
 
     @Override
