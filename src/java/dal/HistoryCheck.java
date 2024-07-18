@@ -69,7 +69,7 @@ public class HistoryCheck extends DBContext {
     }
 
     public void saveSpellingCheckHistory(History newHistory) {
-        String sql = "INSERT INTO GrammarCheckHistory (userID, text, result, checkDate,type) VALUES (?, ?, ?, ?,?)";
+        String sql = "INSERT INTO CheckHistory (userID, text, result, checkDate,type) VALUES (?, ?, ?, ?,?)";
 
         try {
             conn = DBUtils.getConnection();

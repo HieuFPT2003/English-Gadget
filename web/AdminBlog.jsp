@@ -95,7 +95,6 @@
                             <div class="post-user-name">${post.customerName}</div>
                             <div class="post-time">
                                 ${post.formattedDatePosted}
-                                
                             </div>
                         </div>
                     </div>

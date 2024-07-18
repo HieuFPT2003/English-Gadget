@@ -82,7 +82,6 @@ public class MyBlog extends HttpServlet {
             out.println("</script>");
         }
     }
-
     private void handleConfirmDeleteRequest(HttpServletRequest request, HttpServletResponse response, int currentID)
             throws IOException {
         int postID = Integer.parseInt(request.getParameter("post"));
@@ -112,6 +111,7 @@ public class MyBlog extends HttpServlet {
         String postIdParam = request.getParameter("post");
         String postText = request.getParameter("postText");
         String category = request.getParameter("category");
+        
         // Validate parameters
         if (postIdParam == null || postIdParam.trim().isEmpty()) {
         }
@@ -121,7 +121,7 @@ public class MyBlog extends HttpServlet {
             postID = Integer.parseInt(postIdParam);
         } catch (NumberFormatException e) {
             request.setAttribute("errorMessage", "Invalid user ID or post ID format.");
-            request.getRequestDispatcher("/path/to/your/jsp/page.jsp").forward(request, response);
+            request.getRequestDispatcher("/myblog").forward(request, response);
             return;
         }
 
@@ -129,7 +129,7 @@ public class MyBlog extends HttpServlet {
         if (postText == null || postText.trim().isEmpty()) {
             request.setAttribute("post", postDAO.getPostByPostID(postID)); // Restore post data for re-display
             request.setAttribute("errorMessage", "Post text cannot be empty.");
-            request.getRequestDispatcher("/path/to/your/jsp/page.jsp").forward(request, response);
+            request.getRequestDispatcher("/myblog").forward(request, response);
             return;
         }
         boolean updateSuccess = postDAO.updatePost(postID, category, postText);
@@ -139,7 +139,7 @@ public class MyBlog extends HttpServlet {
         } else {
             request.setAttribute("post", postDAO.getPostByPostID(postID)); // Restore post data for re-display
             request.setAttribute("errorMessage", "Failed to update the post. Please try again.");
-            request.getRequestDispatcher("/path/to/your/jsp/page.jsp").forward(request, response);
+            request.getRequestDispatcher("/myblog").forward(request, response);
         }
     }
 }
