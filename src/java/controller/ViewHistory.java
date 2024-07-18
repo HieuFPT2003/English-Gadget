@@ -4,6 +4,9 @@
  */
 package controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,8 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.json.JSONArray;
-import org.json.JSONObject;
+
 import dal.HistoryCheck;
 
 /**
@@ -21,8 +23,9 @@ import dal.HistoryCheck;
  */
 @WebServlet(name = "ViewHistory", urlPatterns = {"/ViewHistory"})
 public class ViewHistory extends HttpServlet {
-    
+
     HistoryCheck historyCheck = new HistoryCheck();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -31,7 +34,7 @@ public class ViewHistory extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ViewHistory</title>");            
+            out.println("<title>Servlet ViewHistory</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ViewHistory at " + request.getContextPath() + "</h1>");
@@ -44,14 +47,14 @@ public class ViewHistory extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer userID = (Integer) request.getSession().getAttribute("userID");
-        JSONArray historyArray = historyCheck.getHistory(userID);
-        
+        JsonArray historyArray = historyCheck.getHistory(userID);
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        // Gửi JSON phản hồi lại cho client
         PrintWriter out = response.getWriter();
-        out.print(historyArray.toString());
+        Gson gson = new Gson();
+        out.print(gson.toJson(historyArray));
         out.flush();
     }
 
@@ -60,6 +63,5 @@ public class ViewHistory extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
 
 }

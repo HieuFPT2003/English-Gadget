@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.web.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
-            <name>English Gadget1</name>
+            <name>English Gadget</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
@@ -271,16 +271,30 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.javax.activation-api-1.2.0-javadoc.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
+                    <file>${file.reference.javax.mail-1.6.2.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.javax.mail-api-1.6.2.jar}</file>
                 </library>
                 <library dirs="200">
                     <file>${file.reference.javax.mail.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.json-20240303.jar}</file>
+                    <file>${file.reference.mail.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.smtp-1.6.2.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.javax.activation-1.2.0.jar-1}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.javax.activation-api-1.2.0-javadoc.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.javax.mail.jar-1}</file>
                 </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
