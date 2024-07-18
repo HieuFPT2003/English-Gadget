@@ -1,5 +1,8 @@
 package dal;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,10 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 import model.History;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class HistoryCheck extends DBContext {
 
@@ -18,9 +18,9 @@ public class HistoryCheck extends DBContext {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public List<History> getHistoryCheck(int id) {
+    public List<History> getHistoryList(int id) {
         String sql = "select * from CheckHistory Where userID = ?";
-        List<History> historys = new ArrayList<>();
+        List<History> histories = new ArrayList<>();
 
         try {
             conn = DBUtils.getConnection();
@@ -37,10 +37,10 @@ public class HistoryCheck extends DBContext {
                 Date checkDate = rs.getDate("checkDate");
                 boolean type = rs.getBoolean("type");
 
-                historys.add(new History(checkID, userID, text, result, checkDate, type));
+                histories.add(new History(checkID, userID, text, result, checkDate, type));
             }
 
-            return historys;
+            return histories;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -80,7 +80,7 @@ public class HistoryCheck extends DBContext {
             ps.setString(3, "This is Check Spelling");
             ps.setTimestamp(4, new java.sql.Timestamp(new Date().getTime()));
             ps.setBoolean(5, false);
-            
+
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -88,8 +88,8 @@ public class HistoryCheck extends DBContext {
         }
     }
 
-     public JSONArray getHistory(int userID) {
-        JSONArray historyArray = new JSONArray();
+    public JsonArray getHistory(int userID) {
+        JsonArray historyArray = new JsonArray();
         String sql = "SELECT * FROM CheckHistory WHERE userID = ?";
 
         try {
@@ -100,24 +100,30 @@ public class HistoryCheck extends DBContext {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                JSONObject historyItem = new JSONObject();
-                historyItem.put("checkID", rs.getInt("checkID"));
-                historyItem.put("userID", rs.getInt("userID"));
-                historyItem.put("text", rs.getString("text"));
-                historyItem.put("result", rs.getString("result"));
-                historyItem.put("checkDate", rs.getTimestamp("checkDate"));
-                historyItem.put("type", rs.getBoolean("type") ? "grammar" : "spelling");
+                JsonObject historyItem = new JsonObject();
+                historyItem.addProperty("checkID", rs.getInt("checkID"));
+                historyItem.addProperty("userID", rs.getInt("userID"));
+                historyItem.addProperty("text", rs.getString("text"));
+                historyItem.addProperty("result", rs.getString("result"));
+                historyItem.addProperty("checkDate", rs.getTimestamp("checkDate").toString());
+                historyItem.addProperty("type", rs.getBoolean("type") ? "grammar" : "spelling");
 
-                historyArray.put(historyItem);
+                historyArray.add(historyItem);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -125,12 +131,12 @@ public class HistoryCheck extends DBContext {
 
         return historyArray;
     }
-    
+
     public static void main(String[] args) {
         HistoryCheck dao = new HistoryCheck();
 
         // Test getHistory
-        JSONArray history = dao.getHistory(1);
-        System.out.println(history.toString(2)); // Pretty print the JSON array
+        JsonArray history = dao.getHistory(1);
+        System.out.println(history);
     }
 }
