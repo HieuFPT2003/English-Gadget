@@ -10,8 +10,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class mailsent {
-    static final String from = "khanhddhe172056@fpt.edu.vn";
-    static final String password = "nule nrjw bvhl wzmy";
+    static final String from = "englishgadget.contact@gmail.com";
+    static final String password = "mbgd zatg kpho sawf";
 
     public boolean mailsent(String to, String name) {
         Properties props = new Properties();
@@ -39,7 +39,7 @@ public class mailsent {
             
             String content = "<div style='font-family: Arial, sans-serif; line-height: 1.6;'>" +
                 "<h1 style='color: #4CAF50;'>Xin chào " + name + "</h1>" +
-                "<p style='font-size: 16px;'>Tài khoản của bạn đã được nâng cấp lên premium.</p>" +
+                "<p style='font-size: 16px;'>Tài khoản của bạn đã được nâng cấp lên Premium.</p>" +
                 "<p style='font-size: 16px;'>Chúng tôi hy vọng rằng bạn sẽ có trải nghiệm dịch vụ tốt nhất từ chúng tôi.</p>" +
                 "<p style='font-size: 16px;'>Xin chân thành cảm ơn sự hỗ trợ của quý khách.</p>" +
                 "<hr style='border: 0; border-top: 1px solid #eee;'/>" +

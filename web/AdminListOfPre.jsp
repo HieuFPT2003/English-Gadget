@@ -3,9 +3,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
         <title>English Gadget</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <link href="css/font-awesome.min.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
+        <link href="css/responsive.css" rel="stylesheet" />
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -76,13 +85,9 @@
         </header>
         <div class="container">
             <h1 style="text-align:center">List Of Premium Accounts</h1>
-            <form method="get" action="searchPremium">
-                <input type="text" name="searchContent" placeholder="Search by content" required>
-                <button type="submit">Search</button>
-            </form>
-
-            <form method="get" action="SortByDateServlet">
-                <button type="submit">Sort by Date</button>
+            <form method="get" action="searchPremium" class="d-flex">
+                <input class="m-0 mr-4" type="text" name="searchContent" placeholder="Search by content" required>
+                <button class="btn btn-success" type="submit">Search</button>
             </form>
             <c:if test="${not empty payments}">
                 <table>
@@ -110,8 +115,8 @@
                                     </c:otherwise>
                                 </c:choose>
                             <td class="center">
-                                <a href="updateOrder?userID=${payment.userId}">Upgrade</a>&nbsp;
-                                <a href="#" onclick="doDelete('${payment.content}')">Reject</a>
+                                <a class="btn btn-success" href="updateOrder?userID=${payment.userId}">Upgrade</a>&nbsp;
+                                <a class="btn btn-danger" href="#" onclick="doDelete('${payment.content}')">Reject</a>
                             </td>
                         </c:forEach>
                         </td>
@@ -126,13 +131,21 @@
 
 
         </div>
-        <jsp:include page="Footer.jsp" />
+        <jsp:include page="Footer.jsp"></jsp:include>
+
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <!-- popper js -->
+        <script src="js/popper.min.js"></script>
+        <!-- bootstrap js -->
+        <script src="js/bootstrap.js"></script>
+        <!-- custom js -->
+        <script src="js/custom.js"></script>
         <script type="text/javascript">
-            function doDelete(content) {
-                if (confirm("Are you sure you want to delete user with" + content + "?")) {
-                    window.location = "deletePayment?content=" + content;
-                }
-            }
+                                    function doDelete(content) {
+                                        if (confirm("Are you sure you want to delete user with" + content + "?")) {
+                                            window.location = "deletePayment?content=" + content;
+                                        }
+                                    }
         </script>
     </body>
 </html>
