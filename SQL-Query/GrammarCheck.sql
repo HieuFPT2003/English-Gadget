@@ -104,7 +104,7 @@ CREATE TABLE Feedback (
     feedbackTopic NVARCHAR(100), 
     feedbackText NVARCHAR(MAX),
     created_at DATETIME DEFAULT GETDATE(),
-	rating INT DEFAULT 0 ,
+	rating INT DEFAULT 1 ,
 	status BIT DEFAULT 0,
 	role BIT DEFAULT 0
     FOREIGN KEY (userID) REFERENCES Users(userID)
@@ -190,49 +190,14 @@ GO
 -- Populate Feedback table
 INSERT INTO Feedback (userID, feedbackTopic, feedbackText,rating,status,role)
 VALUES 
-(1, 'Convenient', 'This spell-check software is very convenient and easy to use. I have significantly reduced errors in my documents.',0,0,0),
-(2, 'Accurate', 'I find this software quite accurate in detecting spelling mistakes',0,0,0),
-(3, 'Feature', 'Very satisfied with the word suggestion feature. It helps me write faster is user-friendly and easy to navigate. However, more language options should be added.',0,0,0),
-(5, 'Saving time', 'This spell-check software saves me a lot of editing time. Highly recommended.',0,0,0),
-(3, 'Missed error', 'Sometimes the software still misses a few minor spelling errors. Hopefully, it will be improved in future versions.',0,0,0);
+(1, 'Convenient', 'This spell-check software is very convenient and easy to use. I have significantly reduced errors in my documents.',5,0,0),
+(2, 'Accurate', 'I find this software quite accurate in detecting spelling mistakes',3,0,0),
+(3, 'Feature', 'Very satisfied with the word suggestion feature. It helps me write faster is user-friendly and easy to navigate. However, more language options should be added.',2,0,0),
+(5, 'Saving time', 'This spell-check software saves me a lot of editing time. Highly recommended.',1,0,0),
+(3, 'Missed error', 'Sometimes the software still misses a few minor spelling errors. Hopefully, it will be improved in future versions.',1,0,0);
 GO
 
 
--- Query to fetch UserPost details with like and dislike counts and user IDs
-SELECT p.postID, 
-       p.userID,
-       p.postText, 
-       p.datePosted,
-       ISNULL(likeCountTable.likeCount, 0) AS likeCount, 
-       ISNULL(dislikeCountTable.dislikeCount, 0) AS dislikeCount,
-       ISNULL(likeUsers.userIDs, '') AS likeUserIDs,
-       ISNULL(dislikeUsers.userIDs, '') AS dislikeUserIDs
-FROM UserPost p
-LEFT JOIN (
-    SELECT postID, COUNT(*) AS likeCount
-    FROM Emotion
-    WHERE emotionType = 'like'
-    GROUP BY postID
-) AS likeCountTable ON p.postID = likeCountTable.postID
-LEFT JOIN (
-    SELECT postID, COUNT(*) AS dislikeCount
-    FROM Emotion
-    WHERE emotionType = 'dislike'
-    GROUP BY postID
-) AS dislikeCountTable ON p.postID = dislikeCountTable.postID
-LEFT JOIN (
-    SELECT postID, STRING_AGG(CAST(userID AS VARCHAR), ', ') AS userIDs
-    FROM Emotion
-    WHERE emotionType = 'like'
-    GROUP BY postID
-) AS likeUsers ON p.postID = likeUsers.postID
-LEFT JOIN (
-    SELECT postID, STRING_AGG(CAST(userID AS VARCHAR), ', ') AS userIDs
-    FROM Emotion
-    WHERE emotionType = 'dislike'
-    GROUP BY postID
-) AS dislikeUsers ON p.postID = dislikeUsers.postID;
-GO
 
 
 -- Create table HelpCenter

@@ -170,7 +170,7 @@
                                 <span class="visually-hidden" ></span>
                             </div>
                             <span id="loadingText" style="display:none;">Loading.....</span>
-                            <button id="btnCheck" class="btn btn-success">Check Grammar</button>
+                            <button id="btnCheck" class="btn btn-success">Check Spelling</button>
                         </form>
                     </div>
                 </div>

@@ -9,6 +9,51 @@
             <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project_1207/English-Gadget/src/java/controller/AdminAdvertise.java</file>
             <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project_1207/English-Gadget/web/LandingPage.jsp</file>
             <file>file:/D:/DH%20FPT/2024_SUMMER/SWP391/Project_1207/English-Gadget/src/java/dal/ContactDAO.java</file>
+
+            <file>file:/C:/New%20folder/English-Gadget/src/java/controller/ListOfPremiumAdmin.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/controller/SortByDateServlet.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/controller/loginwithgoogle.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/dal/ChangePasswordDao.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/controller/PremiumServletOrder.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/model/Payments.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/controller/searchPremium.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/controller/UserProfile.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/model/SimilarPost.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/model/Users.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/web/premium.jsp</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/dal/UsersDAO.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/dal/PaymentDAO.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/model/ResultCheck.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/controller/payment.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/web/AdminLandingPage.jsp</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/controller/logout.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/web/paymentPending.jsp</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/model/UserPost.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/model/Sendmail.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/web/AdminListOfPre.jsp</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/controller/deletePayment.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/controller/requestPass.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/controller/UpdateServlet.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/controller/ChangePassword.java</file>
+            <file>file:/C:/New%20folder/English-Gadget/src/java/model/mailsent.java</file>
+
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/controller/GrammarCheckController.java</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/dal/HistoryCheck.java</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/controller/BlogController.java</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/dal/FeedbackDAO.java</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/controller/ViewHistory.java</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/dal/PostDAO.java</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/controller/EmailContactServlet.java</file>
+        </group>
+        <group>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/navbarUser.jsp</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/controller/ViewHistory.java</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/GrammarCheck.jsp</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/LandingPage.jsp</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/web/homeBlogUser.jsp</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/dal/HistoryCheck.java</file>
+            <file>file:/D:/SWP/SWP_Iter3/English-Gadget/src/java/controller/GrammarCheckController.java</file>
+
         </group>
     </open-files>
 </project-private>

@@ -17,6 +17,10 @@
         console.log("Premium: " + premium);
         console.log("Role: " + role);
         console.log("Name: " + name);
+        // Redirect to AdminLandingPage.jsp if role is true
+            if (role === "true") {
+                window.location.href = 'AdminLandingPage.jsp';
+            }
         </script>
     </head>
     <body>
@@ -57,8 +61,8 @@
                                     <span class="nav-label">Profile<span class="caret"></span></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="profile.jsp">Account detail: <%= displayUsername %></a></li>
-                                    <li><a href="">Premium</a></li>
+                                    <li><a href="userprofile">Account detail: <%= displayUsername %></a></li>
+                                    <li><a href="premium.jsp">Premium</a></li>
                                     <li><a href="logout">Logout</a></li>
                                 </ul>
                                 <%

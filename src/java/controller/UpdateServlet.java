@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Users;
+import model.mailsent;
 
 @WebServlet(name = "UpdateUserServlet", urlPatterns = {"/update"})
 public class UpdateServlet extends HttpServlet {
@@ -53,8 +54,12 @@ public class UpdateServlet extends HttpServlet {
                 user.setPremiumID(premiumID);
                 if (newPassword != null && !newPassword.isEmpty()) {
                     user.setPassword(newPassword);
+                  
+                    
                 }
                 usersDAO.update(user);
+                 
+                
             }
             response.sendRedirect("list");
         } catch (NumberFormatException e) {

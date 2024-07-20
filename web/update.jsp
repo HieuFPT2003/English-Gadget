@@ -53,7 +53,7 @@
     </style>
 </head>
 <body>
-    <h1>Update User</h1>
+    <h1>Upgrade User</h1>
     <form action="update" method="post">
         <input type="hidden" name="userID" value="${user.userID}" />
         
@@ -75,7 +75,7 @@
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" value="${user.age}" readonly />
 
-        <label for="premiumID">Premium ID:</label>
+        <label for="premiumID">Premium:</label>
         <select id="premiumID" name="premiumID" >
             <option value="1" ${user.premiumID ? 'selected' : ''}>Yes</option>
             <option value="0" ${!user.premiumID ? 'selected' : ''}>No</option>

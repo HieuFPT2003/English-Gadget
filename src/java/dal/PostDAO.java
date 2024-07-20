@@ -143,7 +143,6 @@ public class PostDAO extends DBContext {
             ps.setTimestamp(3, new java.sql.Timestamp(post.getDatePosted().getTime()));
             ps.setString(4, post.getCategory());
             ps.setBoolean(5, post.isStatus()); // Chèn trạng thái (pending approval)
-
             int rowsInserted = ps.executeUpdate();
             return rowsInserted > 0;
         } catch (SQLException e) {

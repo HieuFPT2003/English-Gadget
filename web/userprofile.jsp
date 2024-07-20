@@ -14,8 +14,8 @@
             padding: 0;
         }
         header {
-            background-color: #4CAF50;
-            padding: 20px;
+            background-color: white;
+            padding: 33px;
             color: white;
             text-align: center;
         }
@@ -70,9 +70,15 @@
 </head>
 <body>
 <header>
-    <h1>User Profile</h1>
+    <a style="float: left;text-decoration: none" href="LandingPage.jsp" >
+        <img style="height: 33px;margin-top: -14px"src="images/logofixfinal.png" alt=""/>
+    </a> 
+
+   
 </header>
 <div class="container">
+    <h1 style="text-align:center">User Profile</h1>
+    
     <c:if test="${not empty user}">
         <table>
             <tr>
@@ -107,9 +113,9 @@
     </c:if>
     <c:if test="${not empty errorMessage}">
         <p class="error">${errorMessage}</p>
-    </c:if>
-    <a href="LandingPage.jsp" class="btn-home">Home</a>
+    </c:if>   
     <a href="userupdate?userID=${user.userID}" class="btn-home">Update</a>
+    <a href="changepass.jsp" class="btn-home">Change Password</a>
 </div>
 <jsp:include page="Footer.jsp" />
 </body>

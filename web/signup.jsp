@@ -10,10 +10,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
-       <title>English Gadget</title>
+        <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
+        <title>English Gadget</title>
         <link href="css/signup.css" rel="stylesheet" type="text/css"/>
-              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     </head>
     <body>
@@ -28,28 +28,28 @@
                         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <span>or use your email for registration</span>
-                    
-                     <%
-            HttpSession currentSession = request.getSession();
-            String username = (String) currentSession.getAttribute("username");
-             String email = (String) currentSession.getAttribute("email");
-             String password = (String) currentSession.getAttribute("password");
-              String phone = (String) currentSession.getAttribute("password");
-               String address = (String) currentSession.getAttribute("address");
-                String age = (String) currentSession.getAttribute("age");
-        %>
-        <input name="email" type="email" placeholder="Email" value="<%= email != null ? email : "" %>"/>
-                    
-        <input name="username" type="text" placeholder="username" value="<%= username != null ? username : "" %>" />
-                     <div class="wrapper2" style="position: relative">
-                         <input style=" width: 281px"id="password" name="password" type="password" placeholder="Password" value="<%= password != null ? password : "" %>"/>
+
+                    <%
+           HttpSession currentSession = request.getSession();
+           String username = (String) currentSession.getAttribute("username");
+            String email = (String) currentSession.getAttribute("email");
+            String password = (String) currentSession.getAttribute("password");
+             String phone = (String) currentSession.getAttribute("password");
+              String address = (String) currentSession.getAttribute("address");
+               String age = (String) currentSession.getAttribute("age");
+                    %>
+                    <input name="email" type="email" placeholder="Email" value="<%= email != null ? email : "" %>"/>
+
+                    <input name="username" type="text" placeholder="username" value="<%= username != null ? username : "" %>" />
+                    <div class="wrapper2" style="position: relative">
+                        <input style=" width: 281px"id="password" name="password" type="password" placeholder="Password" value="<%= password != null ? password : "" %>"/>
                         <span class="show-hide">
                             <i style="position: relative;left: 134px;bottom: 38px"class="btn fa-solid fa-eye"></i>
                         </span>
                     </div>
-                  <input name="phone" type="text" placeholder="phone" value="<%= phone != null ? phone : "" %>" />
-                  <input name="address" type="text" placeholder="Address" value="<%= address != null ? address : "" %>" />
-                  <input name="age" type="text" placeholder="age" value="<%= age != null ? age : "" %>" />
+                    <input name="phone" type="text" placeholder="phone" value="<%= phone != null ? phone : "" %>" />
+                    <input name="address" type="text" placeholder="Address" value="<%= address != null ? address : "" %>" />
+                    <input name="age" type="text" placeholder="age" value="<%= age != null ? age : "" %>" />
                     <button type="submit">Sign Up</button>
                     <h6 style="color: red">${mess}</h6>
                 </form>
@@ -70,7 +70,7 @@
         <footer>
 
         </footer>
-                 <script type="text/javascript">
+        <script type="text/javascript">
             const input = document.getElementById("password");
             const toggle = document.querySelector(".btn");
             toggle.addEventListener("click", () => {
@@ -87,5 +87,5 @@
     </body>
 </html>
 
-    </body>
+</body>
 </html>
