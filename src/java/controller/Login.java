@@ -85,12 +85,12 @@ public class Login extends HttpServlet {
             session.setAttribute("userID", user.getUserID());
             session.setAttribute("premium", user.isPremiumID());
             session.setAttribute("role", user.isRole());
+            session.setAttribute("email", user.getEmail());
 
-            // Redirect based on user role
             if (user.isRole()) { // Assuming isRole() checks if user is admin (role = 1)
                 response.sendRedirect("AdminLandingPage.jsp");
             } else {
-                response.sendRedirect("LandingPage.jsp");
+                response.sendRedirect("home");
             }
         }
     }

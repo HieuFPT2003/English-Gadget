@@ -69,22 +69,22 @@ public class HelpCenterDAO extends DBContext {
         List<TopicHelpCenter> list = dao.getAllTopic();
         for (TopicHelpCenter o : list) {
             System.out.println(o);
-
-        }
-        HelpCenterDAO dao1 = new HelpCenterDAO();
-        List<HelpCenter> list1 = dao1.getAllQaA();
-        for (HelpCenter o : list1) {
-            System.out.println(o);
-
-        }
-        HelpCenterDAO dao2 = new HelpCenterDAO();
-        System.out.println("break");
-        List<HelpCenter> list2 = dao2.searchAns("click");
-        for (HelpCenter o : list2) {
-            System.out.println(o);
-
         }
 
+//        }
+//        HelpCenterDAO dao1 = new HelpCenterDAO();
+//        List<HelpCenter> list1 = dao1.getAllQaA();
+//        for (HelpCenter o : list1) {
+//            System.out.println(o);
+//
+//        }
+//        HelpCenterDAO dao2 = new HelpCenterDAO();
+//        System.out.println("break");
+//        List<HelpCenter> list2 = dao2.searchAns("click");
+//        for (HelpCenter o : list2) {
+//            System.out.println(o);
+//
+//        }
     }
 
 //    public List<HelpCenter> searchAns(String ans) {

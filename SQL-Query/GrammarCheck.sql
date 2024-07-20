@@ -1,4 +1,4 @@
--- Create the new merged database
+﻿-- Create the new merged database
 CREATE DATABASE GrammarCheck;
 GO
 
@@ -54,10 +54,11 @@ CREATE TABLE UserPost (
     dislikeCount INT DEFAULT 0,
 	[edited] BIT NOT NULL DEFAULT 0,
     [category] NVARCHAR(100) NULL,
-    [status] BIT NOT NULL DEFAULT 1,
+    [status] BIT NOT NULL DEFAULT 0,
     FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 GO
+
 
 -- Create Emotion table
 CREATE TABLE Emotion (
@@ -233,12 +234,6 @@ LEFT JOIN (
 ) AS dislikeUsers ON p.postID = dislikeUsers.postID;
 GO
 
--- Create table Topic Help Center
-CREATE TABLE TopicHelpCenter (
-    topicID INT PRIMARY KEY,
-	topicName NVARCHAR(255),
-
-);
 
 -- Create table HelpCenter
 CREATE TABLE HelpCenter (
@@ -248,13 +243,18 @@ CREATE TABLE HelpCenter (
 	topicID INT,
 	FOREIGN KEY (topicId) references TopicHelpCenter(topicID)
 );
-
-insert into TopicHelpCenter(topicID,topicName)
+CREATE TABLE TopicHelpCenter (
+    topicID INT PRIMARY KEY,
+	topicName NVARCHAR(255),
+	topicDetail NVARCHAR(255),
+	topicPics NVARCHAR(255)
+);
+insert into TopicHelpCenter(topicID,topicName, topicDetail, topicPics)
 values
-(1, 'Account'),
-(2, 'Grammar Checking'),
-(3, 'Post'),
-(4, 'Contact us')
+(1, 'Account','Manage your account settings and learn about username changes and other account-related topics', 'images/accoumt.png' ),
+(2, 'Grammar Checking','Find out how to use the grammar checker, report issues, and customize settings for better text accuracy.','images/grammar.png'),
+(3, 'Post','Learn how to create, edit, publish, and manage your blog posts effectively.','images/post.png'),
+(4, 'Contact us','Get in touch with our support team for any assistance or inquiries you may have.','images/contact.png')
 
 INSERT INTO HelpCenter (heID, questionContent, answerContent, topicID)
 VALUES 
@@ -262,7 +262,7 @@ VALUES
 (2, 'How do I reset my password?', 'Click on the "Forgot Password" link on the login page and follow the instructions.', 1),
 (3, 'How do I update my profile information?', 'Go to your account settings and click on "Edit Profile". Make the necessary changes and save.', 1),
 (4, 'How do I delete my account?', 'Please contact our support team at support@example.com to request account deletion.', 1),
-(5, 'What should I do if I don�t receive the account verification email?', 'Check your spam folder and ensure you entered the correct email address. If the issue persists, contact support.', 1),
+(5, 'What should I do if I don’t receive the account verification email?', 'Check your spam folder and ensure you entered the correct email address. If the issue persists, contact support.', 1),
 (6, 'How do I check grammar in my post?', 'To check grammar in your post, click on the "Check Grammar" button before publishing.', 2),
 (7, 'What grammar rules does the grammar checker follow?', 'Our grammar checker follows standard English grammar rules and is constantly updated to improve accuracy.', 2),
 (8, 'Can I check grammar for languages other than English?', 'Currently, our grammar checker only supports English. We are working on adding support for more languages.', 2),
@@ -314,5 +314,76 @@ VALUES
 
 
 
+CREATE TABLE PostReport (
+	reportID int primary key IDENTITY(1,1),
+    postID INT,
+	userID INT,
+	userReportID INT,
+	reportType NVARCHAR(255),
+	[message] NVARCHAR(255),
+	created_at DATETIME DEFAULT GETDATE(),
 
+	FOREIGN KEY (postID) references UserPost(postID),
+	Foreign key (userID) references Users(userID)
+);
 select * from UserPost
+
+CREATE TABLE Advertise (
+    adID INT PRIMARY KEY IDENTITY(1,1), -- Mã quảng cáo tự động tăng
+    title NVARCHAR(255) NOT NULL, -- Tiêu đề quảng cáo
+    description NVARCHAR(MAX) NOT NULL, -- Mô tả quảng cáo
+    imageAd NVARCHAR(255), -- Đường dẫn URL hình ảnh quảng cáo
+    isActive BIT NOT NULL,  -- Trạng thái hoạt động của quảng cáo (0: không hoạt động, 1: hoạt động)
+    userID int, -- Người tạo quảng cáo
+	created_at DATETIME DEFAULT GETDATE(),
+	FOREIGN KEY (userID) references Users(userID)
+);
+CREATE TABLE AdvertiseEmails (
+    emailAdID INT PRIMARY KEY IDENTITY(1,1), -- Mã email tự động tăng
+    adID INT NOT NULL, -- Mã quảng cáo, là khóa ngoại
+    userID int NOT NULL, -- Email người nhận quảng cáo
+    sendDate DATETIME DEFAULT GETDATE(), -- Ngày gửi quảng cáo
+    FOREIGN KEY (adID) REFERENCES advertise(adID), -- Thiết lập khóa ngoại
+    FOREIGN KEY (userID) REFERENCES Users(userID) -- Thiết lập khóa ngoại
+
+);
+select a.adID, a.title, a.description,a.imageAd, a.isActive,
+a.userID as adminID , ae.userID, ae.sendDate as ReceivedID
+FROM Advertise a join  AdvertiseEmails ae
+ON a.adID = ae.adID
+
+select * from Advertise
+where isActive= 1
+
+select a.adID,a.title,a.description,a.imageAd,a.isActive, u.username as adminName, a.created_at
+from Advertise a join Users u ON a.userID=u.role
+ORDER BY a.adID DESC
+
+	INSERT INTO Advertise (title, description, imageAd, isActive, userID) VALUES
+	(N'Quảng cáo 1', N'Mô tả chi tiết về quảng cáo 1', 'images/post.png', 1, 1),
+	(N'Quảng cáo 2', N'Mô tả chi tiết về quảng cáo 2', 'images/img_1.png', 0, 1),
+	(N'Quảng cáo 3', N'Mô tả chi tiết về quảng cáo 3', 'images/img.jpg', 1, 1),
+	(N'Quảng cáo 4', N'Mô tả chi tiết về quảng cáo 4', 'images/contact.png', 1, 1),
+	(N'Quảng cáo 5', N'Mô tả chi tiết về quảng cáo 5', 'images/accoumt.png', 0, 1),
+	(N'Nguyên xấu trai ngu vl đần đụt điên', N'k có gì để nói', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fdantri.com.vn%2Fkhoa-hoc-cong-nghe%2Flam-the-nao-de-tinh-tuoi-con-meo-cua-ban-20230124073204167.htm&psig=AOvVaw3SH11BpuTH_A0hsjZFKHr4&ust=1721448362594000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCID8hIKdsocDFQAAAAAdAAAAABAI', 0, 1);
+
+(N'Đạt của Bình', N'Chắc là thế', 'http://example.com/image5.jpg', 0, 1);
+
+Select * from Advertise a
+where a.isActive = 0
+
+select a.adID,a.title,a.description,a.imageAd,a.isActive, u.username as adminName, a.created_at
+from Advertise a join Users u ON a.userID=u.role
+where a.title LIKE '%5%'
+
+select * from advertise
+
+CREATE TABLE ContactUs (
+    contactID INT IDENTITY(1,1) PRIMARY KEY,
+    UserName NVARCHAR(255) NOT NULL,
+    Email NVARCHAR(255) NOT NULL,
+    Subject NVARCHAR(255) NOT NULL,
+    Message NVARCHAR(MAX) NOT NULL,
+    CreatedAt DATETIME DEFAULT GETDATE(),
+	status BIT
+); 

@@ -13,7 +13,7 @@ import model.Post;
 import model.Users;
 
 @WebServlet(name = "SearchServlet", urlPatterns = {"/search"})
-public class SearchServlet extends HttpServlet {
+public class SearchServlet_1 extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

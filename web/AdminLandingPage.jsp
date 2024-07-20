@@ -33,6 +33,10 @@
                                         <li><a href="ManageBlog">Manage Blog</a></li>
                                         <li><a href="list">Manage Account</a></li>
                                         <li><a href="managefeedback">Manage Feedback</a></li>
+                                        <li><a href="ReportPostServlet">Manage Report</a></li>
+                                        <li><a href="AdminAdvertise">Manage Advertisement</a></li>
+                                        <li><a href="ContactServlet">Manage Contact Info</a></li>
+
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">

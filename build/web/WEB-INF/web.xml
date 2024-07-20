@@ -44,6 +44,18 @@
         <servlet-name>ManageBlog</servlet-name>
         <servlet-class>controller.ManageBlog</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SortReport</servlet-name>
+        <servlet-class>controller.SortReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAdvertise</servlet-name>
+        <servlet-class>controller.AdminAdvertise</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAdvertise</servlet-name>
+        <servlet-class>controller.UpdateAdvertise</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BlogController</servlet-name>
         <url-pattern>/blog</url-pattern>
@@ -80,7 +92,19 @@
         <servlet-name>ManageBlog</servlet-name>
         <url-pattern>/ManageBlog</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortReport</servlet-name>
+        <url-pattern>/SortReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAdvertise</servlet-name>
+        <url-pattern>/AdminAdvertise</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAdvertise</servlet-name>
+        <url-pattern>/UpdateAdvertise</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>LandingPage.jsp</welcome-file>
+        <welcome-file>home</welcome-file>
     </welcome-file-list>
 </web-app>

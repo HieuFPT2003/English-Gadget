@@ -64,6 +64,8 @@ public class loginwithgoogle extends HttpServlet {
             session.setAttribute("userName", c.getUsername());
             session.setAttribute("premium", c.isPremiumID());
             session.setAttribute("role", c.isRole());
+            session.setAttribute("email", c.getEmail());
+
             request.getRequestDispatcher("LandingPage.jsp").forward(request, response);
         }
     }
