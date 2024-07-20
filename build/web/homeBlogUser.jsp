@@ -15,7 +15,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
-     
+
         <!-- bootstrap core css -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
         <!-- font awesome style -->
@@ -24,7 +24,7 @@
         <link href="css/style.css" rel="stylesheet" />
         <!-- responsive style -->
         <link href="css/responsive.css" rel="stylesheet" />
-         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
+        <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
         <style>
             .home {
                 display: flex;
@@ -44,6 +44,7 @@
                 padding: 20px;
                 display: flex;
                 flex-direction: column;
+                position: relative; /* Thêm dòng này */
             }
 
             .header-post {
@@ -66,6 +67,29 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+            }
+            .header-post-right {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+            .report {
+                position: absolute; /* Thêm dòng này */
+                top: 10px; /* Khoảng cách từ phía trên */
+                right: 10px; /* Khoảng cách từ phía phải */
+                cursor: pointer;
+                color: #6c757d;
+            }
+
+            .report:hover {
+                color: #007bff;
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                top: 100%;
+                left: auto;
+                right: 0;
             }
 
             .header-name {
@@ -112,6 +136,7 @@
                 color: #007bff;
             }
 
+
             /*            .action {
                             font-size: 14px;
                             margin-right: 10px;
@@ -122,9 +147,63 @@
     <body>
         <%@include file="navbarUser.jsp" %>
         <section class="home">
+            <div class="col-lg-8 offset-lg-2">
+                <c:if test="${not empty logsu}">
+                    <div class="alert alert-success mt-3" style="text-align: center">${logsu}</div>
+                    <div>
+                        <a class="btn btn-light" style="text-align: center"  href="blog" role="button">Get back to Blog</a>
+                    </div>
+                </c:if>
+                <c:if test="${not empty logfa}}">
+                    <div class="alert alert-danger mt-3"  style="text-align: center">${logfa}</div>
+                    <a class="btn btn-light" style="text-align: center" href="blog" role="button">Get back to Blog</a>
+                </c:if>
+                    
+            </div>
             <c:forEach items="${listPost}" var="post"> 
                 <div class="post">
+                    <div class="report" >
+
+                        <i class="bi bi-flag-fill " type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <form action="ReportPostServlet" method="post">
+                                <li>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="reportType" style="justify-content: center">Choose a report type:</label>
+                                            <select id="reportType" name="reportType" required>
+                                                <option value="" disabled selected hidden>Select a type</option>
+                                                <option value="Spam">Spam</option>
+                                                <option value="Inappropriate">Inappropriate Content</option>
+                                                <option value="False Information">False Information</option>
+                                                <option value="Harassment">Harassment</option>
+                                                <option value="Privacy Violation">Privacy Violation</option>
+                                                <option value="Copyright Violation">Copyright Violation</option>
+                                                <option value="Hate Speech">Hate Speech</option>
+                                                <option value="Community Guidelines Violation">Community Guidelines Violation</option>
+                                                <option value="Financial Scam">Financial Scam</option>
+                                                <option value="Insulting Communist Party">Insulting the Communist Party of Vietnam</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="message-text" class="col-form-label">Message:</label>
+                                            <textarea class="form-control" name="message" placeholder="Enter message"></textarea>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><textarea class="form-control" name="postID" readonly hidden>${post.postID}</textarea></li>
+                                <li><textarea class="form-control" name="userID" readonly hidden>${post.userID}</textarea></li>
+                                <li><textarea class="form-control" name="userReportID" readonly hidden>${sessionScope.userID}</textarea></li>
+                                <li><textarea class="form-control" name="userReportName" readonly hidden>${sessionScope.username}</textarea></li>
+                                <li><button type="submit" class="btn btn-danger">Send report</button></li>
+                            </form>
+                        </ul>
+
+                    </div>
                     <div class="header-post">
+
+
                         <div class="post-user">
                             <i class="bi bi-person-circle avatar"></i>
                         </div>
@@ -132,35 +211,17 @@
                             <div class="post-user-name">${post.customerName}</div>
                             <div class="post-time">${post.formattedDatePosted}</div>
                         </div>
+
+
                     </div>
+
                     <div class="body-post">
                         <p class="body-post__content">${post.postText}</p>
                     </div>
                 </div>
+
             </c:forEach>
         </section>
-        <!-- Modal -->
-        <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="reportModalLabel">Report Post</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="reportForm" action="/submit-report" method="post">
-                            <div class="form-group">
-                                <label for="reportReason">Reason for reporting:</label>
-                                <textarea class="form-control" id="reportReason" name="reportReason" rows="3" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit Report</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
