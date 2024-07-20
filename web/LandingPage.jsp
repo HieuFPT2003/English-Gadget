@@ -9,11 +9,14 @@
             var premium = <%= session.getAttribute("premium") != null ? session.getAttribute("premium") : "null" %>;
             var role = <%= session.getAttribute("role") != null ? session.getAttribute("role") : "null" %>;
            
-
             console.log("User ID: " + userID);
             console.log("Premium: " + premium);
             console.log("Role: " + role);
 
+            // Redirect to AdminLandingPage.jsp if role is true
+            if (role === true) {
+                window.location.href = 'AdminLandingPage.jsp';
+            }
         </script>
     </head>
     <body>
