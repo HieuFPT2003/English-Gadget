@@ -54,7 +54,7 @@
 </head>
 <body>
     <h1>Upgrade User</h1>
-    <form action="update" method="post">
+    <form action="updateOrder" method="post">
         <input type="hidden" name="userID" value="${user.userID}" />
         
         <label for="username">Username:</label>
