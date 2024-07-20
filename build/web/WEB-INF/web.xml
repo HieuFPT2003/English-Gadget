@@ -26,11 +26,11 @@
     </servlet>
     <servlet>
         <servlet-name>SearchUserServlet</servlet-name>
-        <servlet-class>controller.SearchUserServlet</servlet-class>
+        <servlet-class>controller.Admin.SearchUserServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchUser</servlet-name>
-        <servlet-class>controller.SearchUserServlet</servlet-class>
+        <servlet-class>controller.Admin.SearchUserServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GrammarCheckController</servlet-name>
@@ -42,7 +42,7 @@
     </servlet>
     <servlet>
         <servlet-name>ManageBlog</servlet-name>
-        <servlet-class>controller.ManageBlog</servlet-class>
+        <servlet-class>controller.Admin.ManageBlog</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BlogController</servlet-name>

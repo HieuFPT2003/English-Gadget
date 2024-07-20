@@ -38,7 +38,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="GrammarCheck.jsp">Grammar Check (Prime)</a></li>
                                         <li><a href="SpellingCheck.jsp">Spelling Check</a></li>
-                                        <li><a href="blog">Blog</a></li>
+                                        <li><a href="myblog">Blog</a></li>
                                     </ul>
                                 </li>
 

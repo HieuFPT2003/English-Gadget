@@ -1,4 +1,4 @@
-package controller;
+package controller.Admin;
 
 import dal.FeedbackDAO;
 import jakarta.servlet.ServletException;
