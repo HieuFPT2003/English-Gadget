@@ -8,7 +8,7 @@
     <title>User Feedback</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
@@ -21,37 +21,35 @@
         }
         h1 {
             margin: 0;
-            font-size: 2em;
+            font-size: 2.5em;
         }
         .container {
             width: 80%;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .search-form, .sort-form {
+        .form-group {
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
         }
-        .search-form input, .sort-form select {
+        .form-group input, .form-group select, .form-group button {
             padding: 10px;
             font-size: 1em;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .search-form button, .sort-form button {
-            padding: 10px;
-            font-size: 1em;
+        .form-group button {
             background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
+            margin-left: 10px;
         }
-        .search-form button:hover, .sort-form button:hover {
+        .form-group button:hover {
             background-color: #45a049;
         }
         .feedback-list {
@@ -61,6 +59,8 @@
             display: flex;
             align-items: flex-start;
             margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
         }
         .user-review img {
             border-radius: 50%;
@@ -69,8 +69,8 @@
         .review-content {
             background-color: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             flex: 1;
         }
         .review-header {
@@ -84,6 +84,7 @@
         }
         .review-header h3 {
             margin: 0;
+            font-size: 1.5em;
         }
         .review-header small {
             color: #888;
@@ -107,6 +108,7 @@
             text-decoration: none;
             border: 1px solid #ddd;
             margin: 0 4px;
+            border-radius: 5px;
         }
         .pagination a.active {
             background-color: #4CAF50;
@@ -119,34 +121,36 @@
 </head>
 <body>
 <header>
-    <h1>User Feedback Search</h1>
+    <h1>User Feedback</h1>
 </header>
 <div class="container">
-    <form class="search-form" action="usersearchfeedback" method="get">
+    <form class="form-group" action="usersearchfeedback" method="get">
         <input type="text" name="keyword" placeholder="Search by Name, Topic" value="${keyword}">
         <button type="submit">Search</button>
     </form>
-    <form class="sort-form" action="usersearchfeedback" method="get">
+    <form class="form-group" action="usersort" method="get">
         <input type="hidden" name="keyword" value="${keyword}" />
         <select name="sortBy">
             <option value="created_at" ${sortBy == 'created_at' ? 'selected' : ''}>Created Date</option>
             <option value="rating" ${sortBy == 'rating' ? 'selected' : ''}>Rating</option>
         </select>
-        <button type="submit" name="order" value="ASC">Ascending</button>
-        <button type="submit" name="order" value="DESC">Descending</button>
-        <input type="hidden" name="page" value="${currentPage}" />
+        <div>
+            <button type="submit" name="order" value="ASC">Ascending</button>
+            <button type="submit" name="order" value="DESC">Descending</button>
+        </div>
+        <input type="hidden" name="page" value="1" /> <!-- Reset to first page on sorting -->
         <input type="hidden" name="limit" value="${limit}" />
     </form>
-    <form action="LandingPage.jsp" method="get">
+    <form class="form-group" action="LandingPage.jsp" method="get">
         <button type="submit">Home</button>
     </form>
-    <form action="userfeedback" method="get">
+    <form class="form-group" action="userfeedback" method="get">
         <button type="submit">Reset</button>
     </form>
     <div class="feedback-list">
         <c:forEach items="${feedbackList}" var="c">
             <div class="user-review">
-                <img src="images/default-avatar.png" alt="User Avatar" width="80" height="80">
+                <img src="images/default-avatar.png" alt="User Avatar" width="80" height="60">
                 <div class="review-content">
                     <div class="review-header">
                         <div class="review-header-left">
@@ -171,18 +175,18 @@
         </c:forEach>
         <div class="pagination">
             <c:if test="${currentPage > 1}">
-                <a href="usersearchfeedback?page=${currentPage - 1}&limit=${limit}&sortBy=${sortBy}&order=${order}&keyword=${keyword}">Previous</a>
+                <a href="usersearchfeedback?page=${currentPage - 1}&limit=${limit}& keyword=${keyword}">Previous</a>
             </c:if>
 
             <c:set var="beginPage" value="${currentPage > 1 ? currentPage - 1 : 1}" />
             <c:set var="endPage" value="${currentPage < totalPages ? currentPage + 1 : totalPages}" />
 
             <c:forEach var="i" begin="${beginPage}" end="${endPage}">
-                <a href="usersearchfeedback?page=${i}&limit=${limit}&sortBy=${sortBy}&order=${order}&keyword=${keyword}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+                <a href="usersearchfeedback?page=${i}&limit=${limit}&keyword=${keyword}" class="${i == currentPage ? 'active' : ''}">${i}</a>
             </c:forEach>
 
             <c:if test="${currentPage < totalPages}">
-                <a href="usersearchfeedback?page=${currentPage + 1}&limit=${limit}&sortBy=${sortBy}&order=${order}&keyword=${keyword}">Next</a>
+                <a href="usersearchfeedback?page=${currentPage + 1}&keyword=${keyword}">Next</a>
             </c:if>
         </div>
     </div>

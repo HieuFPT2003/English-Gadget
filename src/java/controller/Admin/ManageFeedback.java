@@ -1,4 +1,4 @@
-package controller;
+package controller.Admin;
 
 import dal.FeedbackDAO;
 import jakarta.servlet.ServletException;
@@ -18,7 +18,7 @@ public class ManageFeedback extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false); // Get the current session, don't create a new one if it doesn't exist
+        HttpSession session = request.getSession(false);
 
         if (session != null && session.getAttribute("role") != null) {
             boolean isAdmin = (boolean) session.getAttribute("role");
@@ -26,46 +26,44 @@ public class ManageFeedback extends HttpServlet {
             if (isAdmin) {
                 FeedbackDAO feedbackDAO = new FeedbackDAO();
 
-                int limit = 10; // Number of feedback items per page
-                int page = 1;   // Current page
+                int limit = 10; // Số lượng feedback mỗi trang
+                int page = 1;   // Trang hiện tại
 
-                // Get the page parameter from the request
+                // Lấy tham số trang từ request
                 String pageParam = request.getParameter("page");
                 if (pageParam != null && !pageParam.isEmpty()) {
                     page = Integer.parseInt(pageParam);
                 }
 
-                int offset = (page - 1) * limit; // Calculate the offset for SQL query
+                int offset = (page - 1) * limit; // Tính toán offset cho truy vấn SQL
 
                 try {
-                    // Get the paginated feedback list
+                    // Lấy danh sách feedback theo phân trang
                     List<Feedback> feedbackList = feedbackDAO.getPaginatedFeedback(offset, limit);
                     int totalFeedback = feedbackDAO.getTotalFeedback(); 
                     int totalPages = (int) Math.ceil((double) totalFeedback / limit);
 
-                    // Set the attributes for the request
+                    // Thiết lập các thuộc tính cho request
                     request.setAttribute("feedbackList", feedbackList);
                     request.setAttribute("totalPages", totalPages);
                     request.setAttribute("currentPage", page);
 
-                    // Check and set success message if any
+                    // Kiểm tra và thiết lập thông báo thành công nếu có
                     String message = (String) request.getAttribute("message");
                     if (message != null) {
                         request.setAttribute("message", message);
                     }
 
-                    // Forward to JSP for display
+                    // Chuyển tiếp đến JSP để hiển thị
                     request.getRequestDispatcher("AdminFeedback.jsp").forward(request, response);
                 } catch (Exception e) {
                     e.printStackTrace();
                     response.getWriter().println("Error: " + e.getMessage());
                 }
             } else {
-                // If not admin, redirect to login page
                 response.sendRedirect(request.getContextPath() + "/login.jsp");
             }
         } else {
-            // If no session or role in session, redirect to login page
             response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
     }

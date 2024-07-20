@@ -11,77 +11,6 @@
 <html>
     <head>
         <jsp:include page="Header.jsp" />
-        <meta charset="UTF-8">
-         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
-        <title>English Gadget</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-                margin: 0;
-                padding: 0;
-            }
-            header {
-                background-color: #4CAF50;
-                padding: 20px;
-                color: white;
-                text-align: center;
-            }
-            h1 {
-                margin: 0;
-                font-size: 2em;
-            }
-            .container {
-                width: 80%;
-                margin: 20px auto;
-                padding: 20px;
-                background-color: #fff;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
-            form {
-                display: flex;
-                justify-content: flex-end;
-                margin-bottom: 20px;
-            }
-            form button {
-                padding: 10px;
-                font-size: 1em;
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-            form button:hover {
-                background-color: #45a049;
-            }
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-            th, td {
-                padding: 12px;
-                border: 1px solid #ddd;
-                text-align: center;
-            }
-            th {
-                background-color: #f2f2f2;
-            }
-            tr:nth-child(even) {
-                background-color: #f9f9f9;
-            }
-            tr:hover {
-                background-color: #f1f1f1;
-            }
-            td a {
-                text-decoration: none;
-                color: #4CAF50;
-            }
-            td a:hover {
-                color: #45a049;
-            }
-        </style>
     </head>
     <script>
         var userID = <%= session.getAttribute("userID") != null ? "\"" + session.getAttribute("userID") + "\"" : "null" %>;
@@ -337,20 +266,21 @@
                 </c:forEach>
             </tbody>
         </table>
-        <!-- Pagination -->
-        <div class="pagination">
-            <c:if test="${currentPage > 1}">
-                <a href="managefeedback?page=${currentPage - 1}&sortBy=${sortBy}&order=${order}&keyword=${keyword}&status=${status}&rating=${rating}">Previous</a>
-            </c:if>
-            <c:set var="beginPage" value="${currentPage > 1 ? currentPage - 1 : 1}" />
-            <c:set var="endPage" value="${currentPage < totalPages ? currentPage + 1 : totalPages}" />
-            <c:forEach var="i" begin="${beginPage}" end="${endPage}">
-                <a href="managefeedback?page=${i}&sortBy=${sortBy}&order=${order}&keyword=${keyword}&status=${status}&rating=${rating}" class="${i == currentPage ? 'active' : ''}">${i}</a>
-            </c:forEach>
-            <c:if test="${currentPage < totalPages}">
-                <a href="managefeedback?page=${currentPage + 1}&sortBy=${sortBy}&order=${order}&keyword=${keyword}&status=${status}&rating=${rating}">Next</a>
-            </c:if>
-        </div>
+       <!-- Pagination -->
+<div class="pagination">
+    <c:if test="${currentPage > 1}">
+        <a href="managefeedback?page=${currentPage - 1}&sortBy=${sortBy}&order=${order}&keyword=${keyword}&status=${status}&rating=${rating}">Previous</a>
+    </c:if>
+    <c:set var="beginPage" value="${currentPage > 1 ? currentPage - 1 : 1}" />
+    <c:set var="endPage" value="${currentPage < totalPages - 1 ? currentPage + 1 : totalPages}" />
+    <c:forEach var="i" begin="${beginPage}" end="${endPage}">
+        <a href="managefeedback?page=${i}&sortBy=${sortBy}&order=${order}&keyword=${keyword}&status=${status}&rating=${rating}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+    </c:forEach>
+    <c:if test="${currentPage < totalPages}">
+        <a href="managefeedback?page=${currentPage + 1}&sortBy=${sortBy}&order=${order}&keyword=${keyword}&status=${status}&rating=${rating}">Next</a>
+    </c:if>
+</div>
+
         <!-- Success message for approval -->
         <c:if test="${not empty message}">
             <div style="color: green; text-align: center; margin-top: 20px;">

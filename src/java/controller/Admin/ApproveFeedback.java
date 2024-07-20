@@ -1,4 +1,4 @@
-package controller;
+package controller.Admin;
 
 import dal.FeedbackDAO;
 import java.io.IOException;

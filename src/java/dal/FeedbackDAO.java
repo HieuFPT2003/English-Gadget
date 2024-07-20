@@ -11,7 +11,7 @@ public class FeedbackDAO extends DBContext {
     public FeedbackDAO() {
         super();
     }
-    
+
     // Get feedback by ID
     public Feedback getFeedbackById(int id) {
         String sql = "SELECT f.feedbackID, f.userID, f.feedbackTopic, f.feedbackText, f.created_at, u.username, f.rating, f.status, f.role "
@@ -158,14 +158,14 @@ public class FeedbackDAO extends DBContext {
                 + "WHERE (f.feedbackText LIKE ? OR f.feedbackTopic LIKE ? OR u.username LIKE ?) AND f.status = 1 "
                 + "ORDER BY " + (sortBy != null ? sortBy : "f.created_at") + " " + (order != null ? order : "DESC")
                 + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-        
+
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, "%" + keyword + "%");
             ps.setString(2, "%" + keyword + "%");
             ps.setString(3, "%" + keyword + "%");
             ps.setInt(4, offset);
             ps.setInt(5, limit);
-            
+
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Feedback feedback = new Feedback(
@@ -198,7 +198,7 @@ public class FeedbackDAO extends DBContext {
             ps.setString(1, "%" + keyword + "%");
             ps.setString(2, "%" + keyword + "%");
             ps.setString(3, "%" + keyword + "%");
-            
+
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     count = rs.getInt(1);
@@ -212,7 +212,7 @@ public class FeedbackDAO extends DBContext {
 
     public int getTotalFeedback() {
         int count = 0;
-        String query = "SELECT COUNT(*) AS total FROM Feedback WHERE status = 1";
+        String query = "SELECT COUNT(*) AS total FROM Feedback";
         try (PreparedStatement stmt = connection.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
             if (rs.next()) {
                 count = rs.getInt("total");
@@ -388,4 +388,13 @@ public class FeedbackDAO extends DBContext {
         return count;
     }
 
+    public static void main(String[] args) {
+        FeedbackDAO feed = new FeedbackDAO();
+
+        List<Feedback> list = feed.getPaginatedFeedback(1, 3);
+
+        for (Feedback f : list) {
+            System.out.println(f);
+        }
+    }
 }
