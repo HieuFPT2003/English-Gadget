@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-package controller;
+package controller.Admin;
 
 import dal.PostDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,7 +19,8 @@ import model.SimilarPost;
  *
  * @author Q.Hieu
  */
-public class ManageBlog extends HttpServlet {
+@WebServlet(name = "AdminBlog", urlPatterns = {"/AdminBlog"})
+public class AdminBlog extends HttpServlet {
 
     PostDAO postDAO = new PostDAO();
 
@@ -30,13 +28,12 @@ public class ManageBlog extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Boolean isAdmin = (Boolean) session.getAttribute("role");
-
         if (isAdmin != null && isAdmin) {
             try (PrintWriter out = response.getWriter()) {
-                List<Post> listPosts = postDAO.getAllPost();
-                Collections.reverse(listPosts); // Reverse the order if needed
+                List<Post> listPosts = postDAO.getAllPostsForAdmin();
+                Collections.reverse(listPosts);
                 request.setAttribute("listPost", listPosts);
-                request.getRequestDispatcher("AdminBlog.jsp").forward(request, response);
+                request.getRequestDispatcher("AdminManageBlog.jsp").forward(request, response);
             }
         } else {
             response.sendRedirect("login.jsp");
@@ -46,35 +43,49 @@ public class ManageBlog extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
         String postIDString = request.getParameter("postID");
         String check = request.getParameter("action");
 
         List<Post> listPosts = postDAO.getAllPost();
-
         if (postIDString != null && check.equals("check")) {
             try {
                 int postID = Integer.parseInt(postIDString);
                 Post postCheck = postDAO.getPostByPostID(postID);
                 String content = postCheck.getPostText();
                 List<SimilarPost> similarPostAuthor = checkPlagiarism(content, listPosts);
-
                 if (!similarPostAuthor.isEmpty()) {
                     request.setAttribute("similarPosts", similarPostAuthor);
                     request.getRequestDispatcher("ErrorCreate.jsp").forward(request, response);
+                } else {
+                    response.sendRedirect("ErrorCreate.jsp");
                 }
             } catch (NumberFormatException e) {
                 response.getWriter().println("Invalid postID format: " + postIDString);
             }
+        } else if (postIDString != null && check.equals("accept")) {
+            int postID = Integer.parseInt(postIDString);
+            if (postDAO.updatePostStatus(postID, 1)) {
+                processRequest(request, response);
+            };
+        } else if (postIDString != null && check.equals("hidden")) {
+            int postID = Integer.parseInt(postIDString);
+            if (postDAO.updatePostStatus(postID, 0)) {
+                response.sendRedirect("ManageBlog");
+            }
+        } else if (postIDString != null && check.equals("delete")) {
+            int postID = Integer.parseInt(postIDString);
+            if (postDAO.deletePost(postID)) {
+                processRequest(request, response);
+            };
         } else {
-            response.getWriter().println("postID parameter is missing");
+            processRequest(request, response);
         }
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
     }
 
     private List checkPlagiarism(String postText, List<Post> allPosts) {
@@ -94,5 +105,4 @@ public class ManageBlog extends HttpServlet {
 
         return similarPostAuthor;
     }
-
 }

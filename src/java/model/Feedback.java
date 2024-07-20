@@ -107,6 +107,11 @@ public class Feedback {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "Feedback{" + "feedbackID=" + feedbackID + ", userID=" + userID + ", feedbackTopic=" + feedbackTopic + ", feedbackText=" + feedbackText + ", createdAt=" + createdAt + ", username=" + username + ", rating=" + rating + ", status=" + status + ", role=" + role + '}';
+    }
+
     
 
 }

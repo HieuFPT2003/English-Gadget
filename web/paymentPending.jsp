@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-     <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
+    <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
     <title>English Gadget</title>
     <style>
         body {
@@ -71,51 +71,47 @@
 <body>
 <header>
     <a style="float: left;text-decoration: none" href="LandingPage.jsp" >
-        <img style="height: 33px;margin-top: -14px"src="images/logofixfinal.png" alt=""/>
+        <img style="height: 33px;margin-top: -14px" src="images/logofixfinal.png" alt=""/>
     </a> 
-
-   
 </header>
 <div class="container">
-    <h1 style="text-align:center">User Profile</h1>
+    <h1 style="text-align:center">Payment</h1>
+   
+  <c:if test="${not empty users}">
+    <table>
+        <tr>
+            <th>ID</th>
+            <td>${users.userID}</td>
+        </tr>
+        <tr>
+            <th>Username</th>
+            <td>${users.username}</td>
+        </tr>
+        <tr>
+            <th>Premium</th>
+            <td>
+                <c:choose>
+                    <c:when test="${users.premiumID}">
+                        <span style="color:green" class="status-active">Active</span>
+                    </c:when>
+                    <c:otherwise>
+                        <span style="color:red" class="status-pending">Pending</span>
+                    </c:otherwise>
+                </c:choose>
+            </td>
+        </tr>
+        <tr>
+            <th>Random Code</th>
+            <td>${randomCode}</td>
+        </tr>
+       
+    </table>
+</c:if>
+
     
-    <c:if test="${not empty user}">
-        <table>
-            <tr>
-                <th>Username</th>
-                <td>${user.username}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>${user.email}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>${user.phone}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>${user.address}</td>
-            </tr>
-            <tr>
-                <th>Age</th>
-                <td>${user.age}</td>
-            </tr>
-            <tr>
-                <th>Created At</th>
-                <td>${user.createdAt}</td>
-            </tr>
-            <tr>
-                <th>Premium</th>
-                <td>${user.premiumID}</td>
-            </tr>
-        </table>
-    </c:if>
     <c:if test="${not empty errorMessage}">
         <p class="error">${errorMessage}</p>
     </c:if>   
-    <a href="userupdate?userID=${user.userID}" class="btn-home">Update</a>
-    <a href="changepass.jsp" class="btn-home">Change Password</a>
 </div>
 <jsp:include page="Footer.jsp" />
 </body>

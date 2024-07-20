@@ -133,6 +133,11 @@ public class Users {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "Users{" + "userID=" + userID + ", username=" + username + ", email=" + email + ", password=" + password + ", phone=" + phone + ", address=" + address + ", age=" + age + ", createdAt=" + createdAt + ", premiumID=" + premiumID + ", role=" + role + '}';
+    }
+    
 
 
    

@@ -129,7 +129,7 @@
 </header>
 <div class="container">
     <form action="search" method="get">
-        <input type="text" name="keyword" placeholder="Search by ID, Username, Email, Phone" value="${keyword}">
+        <input type="text" name="keyword" placeholder="Search by Username, Email, Phone" value="${keyword}">
         <button type="submit">Search</button>
     </form>
 

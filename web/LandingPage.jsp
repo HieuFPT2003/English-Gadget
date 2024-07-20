@@ -16,7 +16,38 @@
             // Redirect to AdminLandingPage.jsp if role is true
             if (role === true) {
                 window.location.href = 'AdminLandingPage.jsp';
-            }
+                                if (userid != null) {
+                                    String displayUsername = (username != null) ? username : usernamegoogle;
+                            %>
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                <span class="nav-label">Profile<span class="caret"></span></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="userprofile">Account detail: <%= displayUsername %></a></li>
+                                <li><a href="premium.jsp">Premium</a></li>
+                                <li><a href="logout">Logout</a></li>
+                            </ul>
+                            <%
+                                } else {
+                            %>
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                <span class="nav-label">Account<span class="caret"></span></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="login.jsp">Sign in</a></li>
+                                <li><a href="signup.jsp">Sign up</a></li>
+                            </ul>
+                            <%
+                                }
+                            %>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                <span class="nav-label">About us<span class="caret"></span></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="About.jsp">Development team</a></li>
+                                <li><a href="Contact.jsp">Contact</a></li>
         </script>
     </head>
     <body>
