@@ -1,8 +1,13 @@
+<%-- 
+    Document   : changepass
+    Created on : Jul 12, 2024, 4:59:47 PM
+    Author     : khanh
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Gadget</title>
@@ -18,12 +23,108 @@
         console.log("Role: " + role);
         console.log("Name: " + name);
     </script>
+    <style>
+        .mainDiv {
+    display: flex;
+    min-height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    font-family: 'Open Sans', sans-serif;
+  }
+ .cardStyle {
+    width: 500px;
+    border-color: white;
+    background: #fff;
+    padding: 36px 0;
+    border-radius: 4px;
+    margin: 30px 0;
+    box-shadow: 0px 0 2px 0 rgba(0,0,0,0.25);
+  }
+#signupLogo {
+  max-height: 100px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.formTitle{
+  font-weight: 600;
+  margin-top: 20px;
+  color: #2F2D3B;
+  text-align: center;
+}
+.inputLabel {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 6px;
+  margin-top: 24px;
+}
+  .inputDiv {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+input {
+  height: 40px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: none;
+  border: solid 1px #ccc;
+  padding: 0 11px;
+}
+input:disabled {
+  cursor: not-allowed;
+  border: solid 1px #eee;
+}
+.buttonWrapper {
+  margin-top: 40px;
+}
+  .submitButton {
+    width: 70%;
+    height: 40px;
+    margin: auto;
+    display: block;
+    color: #fff;
+    background-color: #065492;
+    border-color: #065492;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.035);
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+.submitButton:disabled,
+button[disabled] {
+  border: 1px solid #cccccc;
+  background-color: #cccccc;
+  color: #666666;
+}
+.mess{
+    
+      background-color: #499557;
+    border-radius: 20px;
+    display: none;
+    padding: 10px;
+    margin: 10px;
+    display: block;
+    width: 347px;
+    text-align: center;
+    margin-left: 75px;
+}
+.mess h6{
+    color:white;
+}
+
+
+    </style>
 </head>
-<body>
-    <header class="header_section">
+    <body>
+      <header class="header_section">
         <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container">
-                <a class="navbar-brand" href="LandingPage.jsp"><img width="300" src="images/logofixfinal.png" alt="#" /></a>
+                <a class="navbar-brand" href="LandingPage.jsp">
+                    <img width="300" src="images/logofixfinal.png" alt="#" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class=""> </span>
                 </button>
@@ -58,7 +159,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="userprofile">Account detail: <%= displayUsername %></a></li>
-                                <li><a href="premium.jsp">Premium</a></li>
+                                <li><a href="">Premium</a></li>
                                 <li><a href="logout">Logout</a></li>
                             </ul>
                             <%
@@ -98,87 +199,61 @@
         </div>
     </header>
 
-    <section class="slider_section">
-<div class="slider_bg_box">
-            <video width="100%" autoplay>
-                <source src="videos/banner.mp4" type="video/mp4">
-                <source src="movie.ogg" type="video/ogg">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6">
-                                <div class="detail-box">
-                                    <h1 style="font-family: 'Radio Canada Big';">
-                                        <span>Just copy</span><br>and paste
-                                    </h1>
-                                    <p>
-                                        Are you often worried about making spelling and grammar mistakes in your writing? Let us help you! With our advanced spelling and grammar check website, you no longer have to worry about those minor errors.
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="signup.jsp" class="btn1">Sign up now!</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6">
-                                <div class="detail-box">
-                                    <h1 style="font-family: 'Radio Canada Big';">
-                                        <span>Don’t let</span><br>small spelling
-                                    </h1>
-                                    <p>
-                                        and grammar mistakes diminish a good impression. Our spelling and grammar check website uses advanced AI technology to help you detect and correct errors accurately and quickly.
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="signup.jsp" class="btn1">Sign up now!</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6">
-                                <div class="detail-box">
-                                    <h1 style="font-family: 'Radio Canada Big';">
-<span>Whether you</span><br>are writing
-                                    </h1>
-                                    <p>
-                                        essays, work emails, or social media posts. Our tool is always ready to assist, ensuring that every word you use is accurate and professional. Try it today and see the difference!
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="signup.jsp" class="btn1">Sign up now!</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+   
+</header>
+<div class="mainDiv">
+    <div class="cardStyle"> 
+        <form action="changePassword" method="post">
+            <img src="" id="signupLogo"/>
+            <h2 class="formTitle">Change Password</h2> 
+            <div class="inputDiv"> 
+                <label class="inputLabel" for="current-password">Current Password</label>
+                <input type="password" id="current-password" name="current-password" required> 
+            </div> 
+            <div class="inputDiv"> 
+                <label class="inputLabel" for="new-password">New Password</label>
+                <input type="password" id="new-password" name="new-password" required> 
+            </div> 
+            <div class="inputDiv">
+                <label class="inputLabel" for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required> 
             </div>
-            <div class="container">
-                <ol class="carousel-indicators">
-                    <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
-                    <li data-target="#customCarousel1" data-slide-to="1"></li>
-                    <li data-target="#customCarousel1" data-slide-to="2"></li>
-                </ol>
+            <div class="buttonWrapper"> 
+                <button type="submit" id="submitButton" class="submitButton pure-button pure-button-primary"> 
+                    <span>Change</span> 
+                    <span id="loader"></span> 
+                </button> 
+            </div> 
+            <div class="mess">
+            <h6 style="text-align: center">${messfail}</h6>
+            <h6 style="text-align: center">${messSuc}</h6>
             </div>
-        </div>
-    </section>
+               
+            
+            
+        </form> 
+    </div> 
+</div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+    var messfail = '<%= request.getAttribute("messfail") != null ? request.getAttribute("messfail") : "" %>';
+    var messSuc = '<%= request.getAttribute("messSuc") != null ? request.getAttribute("messSuc") : "" %>';
 
-    <jsp:include page="Footer.jsp"></jsp:include>
+    var messDiv = document.querySelector('.mess');
 
-    <!-- jQuery -->
+    if (messfail || messSuc) {
+        messDiv.style.display = 'block';
+        messDiv.innerHTML = `
+            <h6 style="text-align: center">${messfail}</h6>
+            <h6 style="text-align: center">${messSuc}</h6>
+        `;
+    } else {
+        messDiv.style.display = 'none';
+    }
+});
+            </script>
+        <jsp:include page="Footer.jsp" />
+          <!-- jQuery -->
     <script src="js/jquery-3.4.1.min.js"></script>
     <!-- Popper JS -->
     <script src="js/popper.min.js"></script>
@@ -186,5 +261,5 @@
     <script src="js/bootstrap.js"></script>
     <!-- Custom JS -->
     <script src="js/custom.js"></script>
-</body>
-</html>s
+    </body>
+</html>

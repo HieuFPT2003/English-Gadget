@@ -33,6 +33,7 @@
                                         <li><a href="ManageBlog">Manage Blog</a></li>
                                         <li><a href="list">Manage Account</a></li>
                                         <li><a href="managefeedback">Manage Feedback</a></li>
+                                        <li><a href="ListOfPremium  ">Premium List</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">

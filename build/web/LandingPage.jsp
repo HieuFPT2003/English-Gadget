@@ -57,8 +57,8 @@
                                 <span class="nav-label">Profile<span class="caret"></span></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="profile.jsp">Account detail: <%= displayUsername %></a></li>
-                                <li><a href="">Premium</a></li>
+                                <li><a href="userprofile">Account detail: <%= displayUsername %></a></li>
+                                <li><a href="premium.jsp">Premium</a></li>
                                 <li><a href="logout">Logout</a></li>
                             </ul>
                             <%
