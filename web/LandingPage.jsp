@@ -9,10 +9,13 @@
             var premium = <%= session.getAttribute("premium") != null ? session.getAttribute("premium") : "null" %>;
             var role = <%= session.getAttribute("role") != null ? session.getAttribute("role") : "null" %>;
            
-
             console.log("User ID: " + userID);
             console.log("Premium: " + premium);
             console.log("Role: " + role);
+
+            // Redirect to AdminLandingPage.jsp if role is true
+            if (role === true) {
+                window.location.href = 'AdminLandingPage.jsp';
                                 if (userid != null) {
                                     String displayUsername = (username != null) ? username : usernamegoogle;
                             %>
@@ -69,7 +72,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="GrammarCheck.jsp">Grammar Check (Prime)</a></li>
                                         <li><a href="SpellingCheck.jsp">Spelling Check</a></li>
-                                        <li><a href="myblog">Blog</a></li>
+                                        <li><a href="blog">Blog</a></li>
                                     </ul>
                                 </li>
 

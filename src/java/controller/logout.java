@@ -42,6 +42,8 @@ public class logout extends HttpServlet {
             out.println("<body>");
             HttpSession session = request.getSession();
             session.removeAttribute("userID");
+            session.removeAttribute("role");
+            session.removeAttribute("premium");           
             response.sendRedirect("LandingPage.jsp");
             out.println("</body>");
             out.println("</html>");

@@ -4,14 +4,33 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
-    <title>English Gadget</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-        
+        <title>English Gadget</title>
+        <!-- Basic -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- Mobile Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Site Metas -->
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
+
+        <!-- bootstrap core css -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <!-- font awesome style -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" />
+        <!-- Custom styles for this template -->
+        <link href="css/style.css" rel="stylesheet" />
+        <!-- responsive style -->
+        <link href="css/responsive.css" rel="stylesheet" />
+        <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
         <style>
             body {
-                font-family: 'Arial', sans-serif;
+                    font-family: 'Arial', sans-serif;
                 background-color: #f8f9fa;
                 color: #343a40;
                 margin: 0;
@@ -157,31 +176,31 @@
                         <p class="body-post__content">${post.postText}</p>
                     </div>
                     <div class="body-footer">
-                          <a href="#" class="btn btn-accept" onclick="acceptPost(${post.postID})">Accepted</a>
+                        <a href="#" class="btn btn-accept" onclick="acceptPost(${post.postID})">Accepted</a>
                         <a href="AdminBlog?action=check&postID=${post.postID}" class="btn">Plagiarism Check</a>
                         <a href="AdminBlog?action=delete&postID=${post.postID}" class="btn btn-delete">Delete</a>
                     </div>
                 </div>
             </c:forEach>
         </section>
-      <script>
-        function acceptPost(postID) {
-            swal({
-                title: "Are you sure?",
-                text: "Once accepted, you will not be able to revert this action!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willAccept) => {
-                if (willAccept) {
-                    window.location.href = 'AdminBlog?action=accept&postID='+ postID;
-                } else {
-                    swal("The post is not accepted!");
-                }
-            });
-        }
-    </script>
+        <script>
+            function acceptPost(postID) {
+                swal({
+                    title: "Are you sure?",
+                    text: "Once accepted, you will not be able to revert this action!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                        .then((willAccept) => {
+                            if (willAccept) {
+                                window.location.href = 'AdminBlog?action=accept&postID=' + postID;
+                            } else {
+                                swal("The post is not accepted!");
+                            }
+                        });
+            }
+        </script>
         <jsp:include page="Footer.jsp"></jsp:include>
     </body>
 </html>
