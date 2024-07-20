@@ -25,8 +25,7 @@
     </script>
 <head>
     <meta charset="UTF-8">
-    <title>English Gadget</title>
-     <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
+    <title>List of Users</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -164,7 +163,7 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${usersList}" var="c">
+            <c:forEach items="${users}" var="c">
                 <tr>
                     <td>${c.userID}</td>
                     <td>${c.username}</td>
@@ -186,13 +185,13 @@
 
     <div class="pagination">
         <c:if test="${currentPage > 1}">
-            <a href="list?page=${currentPage - 1}">Previous</a>
+            <a href="sort?page=${currentPage - 1}&limit=${limit}&sortBy=${sortBy}&keyword=${keyword}">Previous</a>
         </c:if>
         <c:forEach var="i" begin="1" end="${totalPages}">
-            <a href="list?page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+            <a href="sort?page=${i}&limit=${limit}&sortBy=${sortBy}&keyword=${keyword}" class="${i == currentPage ? 'active' : ''}">${i}</a>
         </c:forEach>
         <c:if test="${currentPage < totalPages}">
-            <a href="list?page=${currentPage + 1}">Next</a>
+            <a href="sort?page=${currentPage + 1}&limit=${limit}&sortBy=${sortBy}&keyword=${keyword}">Next</a>
         </c:if>
     </div>
 </div>
