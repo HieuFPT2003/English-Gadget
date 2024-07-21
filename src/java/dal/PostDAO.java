@@ -5,12 +5,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import model.ReportPost;
 import org.apache.commons.lang3.StringUtils;
 
-public class PostDAO {
+public class PostDAO extends DBContext {
 
     Connection conn = null;
     PreparedStatement ps = null;
@@ -141,7 +143,6 @@ public class PostDAO {
             ps.setTimestamp(3, new java.sql.Timestamp(post.getDatePosted().getTime()));
             ps.setString(4, post.getCategory());
             ps.setBoolean(5, post.isStatus()); // Chèn trạng thái (pending approval)
-
             int rowsInserted = ps.executeUpdate();
             return rowsInserted > 0;
         } catch (SQLException e) {
@@ -276,7 +277,7 @@ public class PostDAO {
         String sql = "SELECT p.postID, p.userID, u.username AS customerName, p.postText, p.datePosted, p.category, p.status "
                 + "FROM UserPost p "
                 + "JOIN Users u ON p.userID = u.userID "
-                + "WHERE p.postText LIKE ? AND p.status = 0";  // Fetch posts with status = 0 (pending)
+                + "WHERE p.postText LIKE ? AND p.status = 1";  // Fetch posts with status = 0 (pending)
 
         try {
             conn = DBUtils.getConnection();
@@ -384,14 +385,278 @@ public class PostDAO {
         }
     }
 
+    /*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+     */
+    /**
+     *
+     * @author Admin
+     */
+    public List<Post> searchByBoth(String txtSearch) {
+        String sql = "SELECT p.postID, p.userID, p.postText, p.datePosted, p.likeCount, p.status, "
+                + "p.dislikeCount, u.username AS customerName FROM UserPost p JOIN Users u ON p.userID = u.userID "
+                + "WHERE (u.username like ?  OR p.postText like ?) AND p.status = 1";
+
+        List<Post> posts = new ArrayList<>();
+
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%" + txtSearch + "%");
+            ps.setString(2, "%" + txtSearch + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Post post = new Post();
+                    post.setPostID(rs.getInt("postID"));
+                    post.setUserID(rs.getInt("userID"));
+                    post.setPostText(rs.getString("postText"));
+                    post.setDatePosted(rs.getTimestamp("datePosted"));
+                    post.setLikeCount(rs.getInt("likeCount"));
+                    post.setDislikeCount(rs.getInt("dislikeCount"));
+                    post.setCustomerName(rs.getString("customerName"));
+                    post.setStatus(rs.getBoolean("status"));
+                    posts.add(post);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Consider logging the error and re-throwing as a custom exception
+        }
+        return posts;
+    }
+
+    public List<Post> searchAllPostByUsername(String username) {
+        String sql = "SELECT p.postID, p.userID, p.postText, p.datePosted, p.likeCount, p.dislikeCount, p.status, u.username AS customerName "
+                + "FROM UserPost p "
+                + "JOIN Users u ON p.userID = u.userID "
+                + "WHERE u.username like ? AND p.status = 1 "
+                + "ORDER BY p.datePosted DESC";
+
+        List<Post> posts = new ArrayList<>();
+
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + username + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Post post = new Post();
+                    post.setPostID(rs.getInt("postID"));
+                    post.setUserID(rs.getInt("userID"));
+                    post.setPostText(rs.getString("postText"));
+                    post.setDatePosted(rs.getTimestamp("datePosted"));
+                    post.setLikeCount(rs.getInt("likeCount"));
+                    post.setDislikeCount(rs.getInt("dislikeCount"));
+                    post.setCustomerName(rs.getString("customerName"));//thêm status
+                    post.setStatus(rs.getBoolean("status"));//thêm status
+                    posts.add(post);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Consider logging the error and re-throwing as a custom exception
+        }
+        return posts;
+    }
+
+    public boolean insertUserReportPost(int postID, int userID, String userReportName, String reportType, String message, int userReportID, Timestamp create_at) {
+        String sql = "insert into PostReport(postID,userID,userReport,reportType,"
+                + "[message], userReportID, created_at)"
+                + "values(?,?,?,?,?,?,?)";
+
+        try {
+            conn = DBUtils.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, postID);
+            ps.setInt(2, userID);
+            ps.setString(3, userReportName);
+            ps.setString(4, reportType);
+            ps.setString(5, message);
+            ps.setInt(6, userReportID);
+            ps.setTimestamp(7, create_at);
+
+            int rowsInserted = ps.executeUpdate();
+            if (rowsInserted > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    public List<ReportPost> getAllReportedPost() {
+        String sql = "select p.reportID, p.postID, p.userReport, u.username, up.postText, p.reportType,p.message,p.created_at\n"
+                + "from (PostReport p join Users u ON p.userID=u.userID) join UserPost up ON p.postID = up.postID";
+
+        List<ReportPost> reportPosts = new ArrayList<>();
+
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ReportPost reportPost = new ReportPost(
+                            rs.getInt("reportID"),
+                            rs.getInt("postID"),
+                            rs.getString("username"), // Correct alias used here
+                            rs.getString("userReport"), // Correct alias used here
+                            rs.getString("postText"), // Correct alias used here
+                            rs.getString("reportType"),
+                            rs.getString("message"),
+                            rs.getDate("created_at")
+                    );
+                    reportPosts.add(reportPost);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reportPosts;
+    }
+
+    public boolean deleteReportPost(int postID) {
+        String sql = "delete from PostReport\n"
+                + "where postID = ?";
+        try {
+            conn = DBUtils.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, postID);
+
+            int rowsInserted = ps.executeUpdate();
+            if (rowsInserted > 0) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public List<ReportPost> searchReportPostsByMessage(String message) {
+        String sql = "select p.reportID, p.postID, p.userReport, u.username, up.postText, p.reportType,p.message,p.created_at\n"
+                + "from (PostReport p join Users u ON p.userID=u.userID) join UserPost up ON p.postID = up.postID\n"
+                + "where p.message like ?";
+
+        List<ReportPost> reportPosts = new ArrayList<>();
+
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + message + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ReportPost posts = new ReportPost(
+                            rs.getInt("reportID"),
+                            rs.getInt("postID"),
+                            rs.getString("username"), // Correct alias used here
+                            rs.getString("userReport"), // Correct alias used here
+                            rs.getString("postText"), // Correct alias used here
+                            rs.getString("reportType"),
+                            rs.getString("message"),
+                            rs.getDate("created_at"));
+                    reportPosts.add(posts);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Consider logging the error and re-throwing as a custom exception
+        }
+        return reportPosts;
+    }
+
+    public List<ReportPost> filterReportPostByType(String type) {
+        String sql = "select p.reportID, p.postID, p.userReport, u.username, up.postText, p.reportType,p.message,p.created_at\n"
+                + "from (PostReport p join Users u ON p.userID=u.userID) join UserPost up ON p.postID = up.postID\n"
+                + "where p.reportType = ?";
+
+        List<ReportPost> reportPosts = new ArrayList<>();
+
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, type);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ReportPost posts = new ReportPost(
+                            rs.getInt("reportID"),
+                            rs.getInt("postID"),
+                            rs.getString("username"), // Correct alias used here
+                            rs.getString("userReport"), // Correct alias used here
+                            rs.getString("postText"), // Correct alias used here
+                            rs.getString("reportType"),
+                            rs.getString("message"),
+                            rs.getDate("created_at"));
+                    reportPosts.add(posts);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Consider logging the error and re-throwing as a custom exception
+        }
+        return reportPosts;
+    }
+    public List<ReportPost> sortReportPost(String type) {
+        String sql = "select p.reportID, p.postID, p.userReport, u.username, up.postText, p.reportType,p.message,p.created_at\n"
+                + "from (PostReport p join Users u ON p.userID=u.userID) join UserPost up ON p.postID = up.postID\n"
+                + "ORDER BY p.created_at " + type;
+
+        List<ReportPost> reportPosts = new ArrayList<>();
+
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ReportPost posts = new ReportPost(
+                            rs.getInt("reportID"),
+                            rs.getInt("postID"),
+                            rs.getString("username"), // Correct alias used here
+                            rs.getString("userReport"), // Correct alias used here
+                            rs.getString("postText"), // Correct alias used here
+                            rs.getString("reportType"),
+                            rs.getString("message"),
+                            rs.getDate("created_at"));
+                    reportPosts.add(posts);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Consider logging the error and re-throwing as a custom exception
+        }
+        return reportPosts;
+    }
+    public boolean deleteEmotion(int postID) {
+        String sql = "delete from Emotion\n"
+                + "where postID = ?";
+        try {
+            conn = DBUtils.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, postID);
+
+            int rowsInserted = ps.executeUpdate();
+            if (rowsInserted > 0) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         PostDAO dao = new PostDAO();
+        List<ReportPost> posts = dao.filterReportPostByType("Spam");
+        for (ReportPost p : posts) {
+            System.out.println(p.getClass());
+//        boolean a = dao.deletePost(5);
+//        System.out.println(a);
+        }
 
-//        List<Post> posts = dao.getPostByUserID(19);
-//        for (Post p : posts) {
-//            System.out.println(p);
-//        }
-        boolean test = dao.updatePostStatus(1009, 1);
-        System.out.println(test);
     }
 }

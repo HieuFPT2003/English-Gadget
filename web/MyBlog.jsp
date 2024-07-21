@@ -4,8 +4,27 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
         <title>English Gadget</title>
+        <!-- Basic -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- Mobile Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Site Metas -->
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
+
+        <!-- bootstrap core css -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <!-- font awesome style -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" />
+        <!-- Custom styles for this template -->
+        <link href="css/style.css" rel="stylesheet" />
+        <!-- responsive style -->
+        <link href="css/responsive.css" rel="stylesheet" />
+        <link rel="icon" href="images/logoTab-01.png" type="images/x-icon">
         <style>
             body {
                 font-family: 'Arial', sans-serif;
@@ -43,7 +62,7 @@
                 border: 2px solid #dc3545;
                 box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
             }
-            
+
             .post-border {
                 border: 2px solid green;
                 box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
@@ -185,5 +204,15 @@
             </c:forEach>
         </section>
         <jsp:include page="Footer.jsp"></jsp:include>
+
+
+        <!-- jQuery -->
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <!-- popper js -->
+        <script src="js/popper.min.js"></script>
+        <!-- bootstrap js -->
+        <script src="js/bootstrap.js"></script>
+        <!-- custom js -->
+        <script src="js/custom.js"></script>
     </body>
 </html>

@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.ContactDAO;
 import dal.LoginDao;
 import dal.UsersDAO;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Properties;
 import javax.mail.Authenticator;
@@ -74,10 +76,15 @@ public class EmailContactServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //        processRequest(request, response);
+        ContactDAO ctDAO = new ContactDAO();
+        Timestamp create_at = new Timestamp(System.currentTimeMillis());
+        boolean status = false;
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String subject = request.getParameter("subject");
         String message = request.getParameter("message");
+        boolean a = ctDAO.insertContact(name, email, subject, message, status, create_at);
+        
         if (sendEmail(email, name, subject, message)) {
             request.setAttribute("logsu","Submit successfully. Thank you for providing your support information.");
             request.getRequestDispatcher("Contact.jsp").forward(request, response);

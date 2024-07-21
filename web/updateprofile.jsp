@@ -60,7 +60,7 @@
         <input type="text" id="username" name="username" value="${user.username}"  />
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="${user.email}"  />
+        <input type="email" id="email" name="email" value="${user.email}"readonly="email"  />
 
         <label for="phone">Phone:</label>
         <input type="tel" id="phone" name="phone" value="${user.phone}"  />

@@ -1,7 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    Boolean role = (Boolean) session.getAttribute("role");
+    if (role == null || !role) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html>
+    <head>
+        <jsp:include page="Header.jsp" />
+    </head>
+    <script>
+        var userID = <%= session.getAttribute("userID") != null ? "\"" + session.getAttribute("userID") + "\"" : "null" %>;
+        var premium = <%= session.getAttribute("premium") != null ? "\"" + session.getAttribute("premium") + "\"" : "null" %>;
+        var role = <%= session.getAttribute("role") != null ? "\"" + session.getAttribute("role") + "\"" : "null" %>;
+        var name = <%= session.getAttribute("usernamegoogle") != null ? "\"" + session.getAttribute("usernamegoogle") + "\"" : "null" %>;
+
+        console.log("User ID: " + userID);
+        console.log("Premium: " + premium);
+        console.log("Role: " + role);
+        console.log("Name: " + name);
+    </script>
 <head>
     <meta charset="UTF-8">
     <title>English Gadget</title>
@@ -76,6 +97,25 @@
         td a:hover {
             color: #45a049;
         }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            color: #4CAF50;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+        }
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .pagination a:hover {
+            background-color: #ddd;
+        }
     </style>
 </head>
 <body>
@@ -91,7 +131,7 @@
 </header>
 <div class="container">
     <form action="search" method="get">
-        <input type="text" name="keyword" placeholder="Search by ID, Username, Email, Phone">
+        <input type="text" name="keyword" placeholder="Search by Username, Email, Phone">
         <button type="submit">Search</button>
     </form>
 
@@ -124,7 +164,7 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${users}" var="c">
+            <c:forEach items="${usersList}" var="c">
                 <tr>
                     <td>${c.userID}</td>
                     <td>${c.username}</td>
@@ -143,6 +183,18 @@
             </c:forEach>
         </tbody>
     </table>
+
+    <div class="pagination">
+        <c:if test="${currentPage > 1}">
+            <a href="list?page=${currentPage - 1}">Previous</a>
+        </c:if>
+        <c:forEach var="i" begin="1" end="${totalPages}">
+            <a href="list?page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+        </c:forEach>
+        <c:if test="${currentPage < totalPages}">
+            <a href="list?page=${currentPage + 1}">Next</a>
+        </c:if>
+    </div>
 </div>
 <jsp:include page="Footer.jsp"></jsp:include>
 </body>
