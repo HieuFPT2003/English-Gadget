@@ -72,6 +72,7 @@
 <header>
     <a style="float: left;text-decoration: none" href="LandingPage.jsp" >
         <img style="height: 33px;margin-top: -14px" src="images/logofixfinal.png" alt=""/>
+        <a href="PaymentServlet">Order</a>
     </a> 
 </header>
 <div class="container">

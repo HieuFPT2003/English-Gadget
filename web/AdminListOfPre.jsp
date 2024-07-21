@@ -81,9 +81,7 @@
                 <button type="submit">Search</button>
             </form>
 
-            <form method="get" action="SortByDateServlet">
-                <button type="submit">Sort by Date</button>
-            </form>
+      
             <c:if test="${not empty payments}">
                 <table>
                     <tr>
