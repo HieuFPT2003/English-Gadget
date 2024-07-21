@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-<!-- Basic -->
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -86,7 +85,6 @@
         </header>
         <div class="container">
             <h1 style="text-align:center">Payment</h1>
-
             <c:if test="${not empty users}">
                 <table>
                     <tr>
@@ -117,8 +115,6 @@
 
                 </table>
             </c:if>
-
-
             <c:if test="${not empty errorMessage}">
                 <p class="error">${errorMessage}</p>
             </c:if>   

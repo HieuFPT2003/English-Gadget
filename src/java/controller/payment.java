@@ -21,6 +21,7 @@ import model.Users;
 /**
  *
  * @author khanh
+ * hien thi ra thong nguoi dung co the nhin thay view order
  */
 @WebServlet(name = "payment", urlPatterns = {"/payment"})
 public class payment extends HttpServlet {

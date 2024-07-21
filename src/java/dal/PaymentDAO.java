@@ -145,25 +145,7 @@ public class PaymentDAO extends DBContext {
         }
         return paymentsList;
     }
-    public List<Payments> getPaymentsSortedByDate() {
-    String sql = "SELECT * FROM Payments ORDER BY payment_date DESC";
-    List<Payments> paymentsList = new ArrayList<>();
-    try (PreparedStatement st = connection.prepareStatement(sql);
-         ResultSet rs = st.executeQuery()) {
-        while (rs.next()) {
-            Payments payment = new Payments(rs.getInt("userId"),
-                    rs.getString("username"),
-                    rs.getString("content"),
-                    rs.getTimestamp("payment_date"), // Sử dụng getTimestamp để lấy cả ngày và giờ
-                    rs.getBoolean("status"));
-            paymentsList.add(payment);
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-        // Log error or handle it appropriately
-    }
-    return paymentsList;
-}
+   
 
 
 }

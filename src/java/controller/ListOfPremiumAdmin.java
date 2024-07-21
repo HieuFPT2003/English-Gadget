@@ -65,7 +65,7 @@ public class ListOfPremiumAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        //cho phep admin nhin thay order
         PaymentDAO paymentDAO = new PaymentDAO();
         UsersDAO usersDAO = new UsersDAO();
 

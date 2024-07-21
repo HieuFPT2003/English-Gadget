@@ -69,8 +69,7 @@ public class searchPremium extends HttpServlet {
         
         // Forward to the JSP page to display the results
         request.getRequestDispatcher("AdminListOfPre.jsp").forward(request, response);
-       
-        
+         
     }
 
     /**
