@@ -89,15 +89,15 @@
             <c:if test="${not empty payments}">
                 <table>
                     <tr>
-                        <th>User ID</th>
-                        <th>Username</th>
-                        <th>Content</th>
+                        <th>STT</th>
+                        <th>Name</th>
+                        <th>Transaction Details</th>
                         <th>Payment Date</th>
-                        <th>status</th>
-
-                        <c:forEach var="payment" items="${payments}">
+                        <th>Status</th>
+                    </tr>
+                    <c:forEach var="payment" items="${payments}" varStatus="no">
                         <tr>
-                            <td>${payment.userId}</td>
+                            <td>${no.index + 1}</td>
                             <td>${payment.username}</td>
                             <td>${payment.content}</td>
                             <td>${payment.date}</td>
@@ -111,7 +111,6 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
-
                         </tr>
                     </c:forEach>
                 </table>
@@ -120,8 +119,6 @@
             <c:if test="${not empty errorMessage}">
                 <p class="error">${errorMessage}</p>
             </c:if> 
-
-
         </div>
         <jsp:include page="Footer.jsp"></jsp:include>
 

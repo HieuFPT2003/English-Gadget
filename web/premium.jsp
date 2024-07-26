@@ -170,10 +170,10 @@
         </div>
 
         <div class="image-container" id="imageContainer">
-            <form action="payment" method="POST" onsubmit="disableSelectButtons()">
-                <img style="height: 272px;width: 300px" id="selectedImage" src="" alt="Selected Plan Image">
+            <form action="payment" method="POST" onsubmit="disableSelectButtons()" style="padding: 40px">
+                <img style="height: 538px;width: 663px" id="selectedImage" src="" alt="Selected Plan Image">
                 <div class="transfer-content">
-                    <h3>Transfer Content</h3>
+                    <h3>Transaction details</h3>
                     <p class="random-code" id="randomCode"></p> 
                     <input type="hidden" name="randomCode" id="hiddenRandomCode">
                 </div>

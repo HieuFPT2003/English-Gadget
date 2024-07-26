@@ -8,19 +8,18 @@
         <title>English Gadget</title>
         <jsp:include page="Header.jsp"></jsp:include>
             <script>
-        var userID = <%= session.getAttribute("userID") != null ? session.getAttribute("userID") : "null" %>;
-        var premium = <%= session.getAttribute("premium") != null ? session.getAttribute("premium") : "null" %>;
-        var role = <%= session.getAttribute("role") != null ? session.getAttribute("role") : "null" %>;
-        var name = <%= session.getAttribute("usernamegoogle") != null ? session.getAttribute("usernamegoogle") : "null" %>;
+                var userID = <%= session.getAttribute("userID") != null ? session.getAttribute("userID") : "null" %>;
+                var premium = <%= session.getAttribute("premium") != null ? session.getAttribute("premium") : "null" %>;
+                var role = <%= session.getAttribute("role") != null ? session.getAttribute("role") : "null" %>;
+                var name = <%= session.getAttribute("usernamegoogle") != null ? session.getAttribute("usernamegoogle") : "null" %>;
 
-        console.log("User ID: " + userID);
-        console.log("Premium: " + premium);
-        console.log("Role: " + role);
-        console.log("Name: " + name);
-        // Redirect to AdminLandingPage.jsp if role is true
-            if (role === "true") {
-                window.location.href = 'AdminLandingPage.jsp';
-            }
+                console.log("User ID: " + userID);
+                console.log("Premium: " + premium);
+                console.log("Role: " + role);
+                console.log("Name: " + name);
+                if (role === "true") {
+                    window.location.href = 'AdminLandingPage.jsp';
+                }
         </script>
     </head>
     <body>
@@ -48,7 +47,7 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <%
-                                    HttpSession currentSession = request.getSession();
+HttpSession currentSession = request.getSession();
                                     String username = (String) currentSession.getAttribute("username");
                                     String usernamegoogle = (String) currentSession.getAttribute("usernamegoogle");
                                     Integer userIdInteger = (Integer) currentSession.getAttribute("userID");
@@ -90,7 +89,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="help">Help Center<span class="sr-only">(current)</span></a>
-                            </li>
+</li>
                             <form class="form-inline" action="Search.jsp">
                                 <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
                                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -142,7 +141,7 @@
                                         <p>
                                             and grammar mistakes diminish a good impression. Our spelling and grammar check website uses advanced AI technology to help you detect and correct errors accurately and quickly.
                                         </p>
-                                        <div class="btn-box">
+<div class="btn-box">
                                             <a href="signup.jsp" class="btn1">Sign up now!</a>
                                         </div>
                                     </div>
@@ -193,28 +192,28 @@
                 </div>
                 <br>
                 <c:if test="${empty sessionScope.id or sessionScope.premium == 0}">
-                <div id="adsCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
-                    <div class="carousel-inner">
-                        <c:forEach var="ad" items="${showAds}" varStatus="status">
-                            <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
-                                <img src="${ad.imageAd}" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="${ad.title}">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>${ad.title}</h5>
-                                    <p>${ad.description}</p>
+                    <div id="adsCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+                        <div class="carousel-inner">
+                            <c:forEach var="ad" items="${showAds}" varStatus="status">
+                                <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
+                                    <img src="${ad.imageAd}" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="${ad.title}">
+<div class="carousel-caption d-none d-md-block">
+                                        <h5>${ad.title}</h5>
+                                        <p>${ad.description}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </c:forEach>
+                            </c:forEach>
+                        </div>
+                        <a class="carousel-control-prev" href="#adsCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#adsCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
-                    <a class="carousel-control-prev" href="#adsCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#adsCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </c:if>
+                </c:if>
             </div>
         </section>
 
