@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.Random;
-import javax.mail.SendFailedException;
 import model.Sendmail;
 import model.Users;
 

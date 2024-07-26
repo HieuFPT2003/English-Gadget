@@ -92,7 +92,7 @@
                         <td>${users.userID}</td>
                     </tr>
                     <tr>
-                        <th>Username</th>
+                        <th>Name</th>
                         <td>${users.username}</td>
                     </tr>
                     <tr>
@@ -109,7 +109,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Random Code</th>
+                        <th>Transaction details</th>
                         <td>${randomCode}</td>
                     </tr>
 

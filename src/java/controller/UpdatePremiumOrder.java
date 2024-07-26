@@ -111,8 +111,12 @@ public class UpdatePremiumOrder extends HttpServlet {
                     
                 }
                 usersDAO.update(user);
-                mailsent mail = new mailsent();
-                mail.mailsent(email, username);
+                   
+                
+                if (premiumID) {
+                    mailsent mail = new mailsent();
+                    mail.mailsent(email, username);
+                }
                 
             }
             response.sendRedirect("ListOfPremium");

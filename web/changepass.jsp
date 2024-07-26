@@ -86,8 +86,8 @@ input:disabled {
     margin: auto;
     display: block;
     color: #fff;
-    background-color: #065492;
-    border-color: #065492;
+    background-color: #588157;
+    border-color: #588157;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
     box-shadow: 0 2px 0 rgba(0, 0, 0, 0.035);
     border-radius: 4px;
@@ -219,7 +219,7 @@ button[disabled] {
                 <input type="password" id="confirmPassword" name="confirmPassword" required> 
             </div>
             <div class="buttonWrapper"> 
-                <button type="submit" id="submitButton" class="submitButton pure-button pure-button-primary"> 
+                <button  type="submit" id="submitButton" class="submitButton pure-button pure-button-primary"> 
                     <span>Change</span> 
                     <span id="loader"></span> 
                 </button> 
