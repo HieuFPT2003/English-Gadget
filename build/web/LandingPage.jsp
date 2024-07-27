@@ -17,7 +17,7 @@
                 console.log("Premium: " + premium);
                 console.log("Role: " + role);
                 console.log("Name: " + name);
-                if (role === "true") {
+                if (role) {
                     window.location.href = 'AdminLandingPage.jsp';
                 }
         </script>
@@ -42,19 +42,19 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="GrammarCheck.jsp">Grammar Check (Prime)</a></li>
                                     <li><a href="SpellingCheck.jsp">Spelling Check</a></li>
-                                    <li><a href="blog">Blog</a></li>
+                                    <li><a href="blog">Community</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
                                 <%
-HttpSession currentSession = request.getSession();
-                                    String username = (String) currentSession.getAttribute("username");
-                                    String usernamegoogle = (String) currentSession.getAttribute("usernamegoogle");
-                                    Integer userIdInteger = (Integer) currentSession.getAttribute("userID");
-                                    String userid = (userIdInteger != null) ? userIdInteger.toString() : null;
+                                   HttpSession currentSession = request.getSession();
+                                   String username = (String) currentSession.getAttribute("username");
+                                   String usernamegoogle = (String) currentSession.getAttribute("usernamegoogle");
+                                   Integer userIdInteger = (Integer) currentSession.getAttribute("userID");
+                                   String userid = (userIdInteger != null) ? userIdInteger.toString() : null;
 
-                                    if (userid != null) {
-                                        String displayUsername = (username != null) ? username : usernamegoogle;
+                                   if (userid != null) {
+                                       String displayUsername = (username != null) ? username : usernamegoogle;
                                 %>
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                                     <span class="nav-label">Profile<span class="caret"></span></span>
@@ -89,7 +89,7 @@ HttpSession currentSession = request.getSession();
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="help">Help Center<span class="sr-only">(current)</span></a>
-</li>
+                            </li>
                             <form class="form-inline" action="Search.jsp">
                                 <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
                                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -141,7 +141,7 @@ HttpSession currentSession = request.getSession();
                                         <p>
                                             and grammar mistakes diminish a good impression. Our spelling and grammar check website uses advanced AI technology to help you detect and correct errors accurately and quickly.
                                         </p>
-<div class="btn-box">
+                                        <div class="btn-box">
                                             <a href="signup.jsp" class="btn1">Sign up now!</a>
                                         </div>
                                     </div>
@@ -197,7 +197,7 @@ HttpSession currentSession = request.getSession();
                             <c:forEach var="ad" items="${showAds}" varStatus="status">
                                 <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
                                     <img src="${ad.imageAd}" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="${ad.title}">
-<div class="carousel-caption d-none d-md-block">
+                                    <div class="carousel-caption d-none d-md-block">
                                         <h5>${ad.title}</h5>
                                         <p>${ad.description}</p>
                                     </div>

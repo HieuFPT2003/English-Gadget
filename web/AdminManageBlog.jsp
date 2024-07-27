@@ -157,7 +157,7 @@
     <body>
         <%@include file="NavbarAdmin.jsp" %>
         <section class="home">
-            <h3>Admin Manage Blog</h3>
+            <h3 class="text-center">Admin Manage Community</h3>
 
             <c:forEach items="${listPost}" var="post">
                 <div class="post">
@@ -176,9 +176,9 @@
                         <p class="body-post__content">${post.postText}</p>
                     </div>
                     <div class="body-footer">
-                        <a href="#" class="btn btn-accept" onclick="acceptPost(${post.postID})">Accepted</a>
-                        <a href="AdminBlog?action=check&postID=${post.postID}" class="btn">Plagiarism Check</a>
-                        <a href="AdminBlog?action=delete&postID=${post.postID}" class="btn btn-delete">Delete</a>
+                        <a href="#" class="btn btn-success" onclick="acceptPost(${post.postID})">Approve</a>
+                        <a href="AdminBlog?action=check&postID=${post.postID}" class="btn btn-warning">Plagiarism Check</a>
+                        <a href="AdminBlog?action=delete&postID=${post.postID}" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </c:forEach>

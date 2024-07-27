@@ -159,7 +159,7 @@
                         <li><a class="dropdown-item" class="navLink" href="userprofile?userID=${sessionScope.userID}">Profile</a></li>
                         <li><a class="dropdown-item" href="myblog">My Blog</a></li>
                         <li><a class="dropdown-item" href="feedback.jsp">Send Feedback</a></li>
-                        <li><a class="dropdown-item" href="LandingPage.jsp">Log Out</a></li>
+                        <li><a class="dropdown-item" href="logout">Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -195,10 +195,10 @@
                 <div class="navLeft">
                     <ul class="leftTop">
                         <li class="navLi"><a class="navLink fs-5" href="AdminLandingPage.jsp"> <i class="bi bi-house-door-fill"></i> Home</a></li>
-                        <li class="navLi"><a class="navLink fs-5" href="ManageBlog"> <i class="bi bi-house-door-fill"></i>View Blog</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="ManageBlog"> <i class="bi bi-house-door-fill"></i> View Community</a></li>
                         <li class="navLi"><a class="navLink fs-5" href="GrammarCheck.jsp"> <i class="bi bi-book-fill"></i> Grammar Checking</a></li>
-                        <li class="navLi"><a class="navLink fs-5" href="AdminBlog"><i class="bi bi-chat-left-text-fill"></i> Manage Blog</a></li>
-                        <li class="navLi"><a class="navLink fs-5" href="list"><i class="bi bi-chat-left-text-fill"></i>Manage Account</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="AdminBlog"><i class="bi bi-chat-left-text-fill"></i> Manage Community</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="list"><i class="bi bi-chat-left-text-fill"></i> Manage Account</a></li>
                         <li class="navLi"><a class="navLink fs-5" href="userfeedback"> <i class="bi bi-house-door-fill"></i> Feedback</a></li>
                     </ul>
                     <div class="leftBotton">

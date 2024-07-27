@@ -163,7 +163,7 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" class="navLink" href="userprofile?userID=${sessionScope.userID}">Profile</a></li>
-                        <li><a class="dropdown-item" href="myblog">My Blog</a></li>
+                        <li><a class="dropdown-item" href="myblog">My Post</a></li>
                         <li><a class="dropdown-item" href="feedback.jsp">Send Feedback</a></li>
                         <li><a class="dropdown-item" href="LandingPage.jsp">Log Out</a></li>
                     </ul>
@@ -207,12 +207,12 @@
                         <li class="navLi"><a class="navLink fs-5" href="LandingPage.jsp"> <i class="bi bi-house-door-fill"></i> Home</a></li>
                         <li class="navLi"><a class="navLink fs-5" href="GrammarCheck.jsp"> <i class="bi bi-book-fill"></i> Grammar Checking</a></li>
                         <li class="navLi"><a class="navLink fs-5" href="HelpCenter.jsp"><i class="bi bi-chat-left-text-fill"></i> Help Center</a></li>
-                        <li class="navLi"><a class="navLink fs-5" href="myblog"> <i class="bi bi-house-door-fill"></i>My Blog</a></li>
-                        <li class="navLi"><a class="navLink fs-5" href="userfeedback"> <i class="bi bi-house-door-fill"></i> Feedback</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="myblog"> <i class="bi bi-house-door-fill"></i>My Post</a></li>
+                        <li class="navLi"><a class="navLink fs-5" href="userfeedback"> <i class="bi bi-house-door-fill"></i>Feedback</a></li>
 
                     </ul>
                     <div class="leftBotton">
-                        <a class="leftBottonLink fs-6"><i class="bi bi-info-circle"></i> Help Center</a>
+                        <a href="help" class="leftBottonLink fs-6"><i class="bi bi-info-circle"></i> Help Center</a>
                     </div>
                 </div>
             </div>

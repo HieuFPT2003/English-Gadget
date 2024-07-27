@@ -120,9 +120,9 @@
                     <div class="body-post">
                         <p class="body-post__content">${post.postText}</p>
                     </div>
-                    <div class="body-footer">
-                        <a href="AdminBlog?action=hidden&postID=${post.postID}" class="btn">Hidden</a>
-                        <a href="AdminBlog?action=delete&postID=${post.postID}" class="btn">Delete</a>
+                    <div class="body-footer d-flex justify-content-around gap-4">
+                        <a href="AdminBlog?action=hidden&postID=${post.postID}" class="btn btn-warning">Hide </a>
+                        <a href="AdminBlog?action=delete&postID=${post.postID}" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </c:forEach>
