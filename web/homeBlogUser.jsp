@@ -203,6 +203,10 @@
                         <div class="post-user">
                             <i class="bi bi-person-circle avatar"></i>
                         </div>
+                        <div class="header-name">
+                            <div class="post-user-name">${post.customerName}</div>
+                            <div class="post-time">${post.formattedDatePosted}</div>
+                        </div>
                     </div>
                     <div class="body-post">
                         <p class="body-post__content">${post.postText}</p>

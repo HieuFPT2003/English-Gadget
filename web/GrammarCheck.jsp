@@ -107,13 +107,12 @@
             // Gui request
             $(document).ready(function () {
                 $('#myForm').submit(function (event) {
-
                     event.preventDefault();
                     $('#loading').show();
                     $('#loadingText').show();
                     $('#btnCheck').hide();
-                    // encode to URL
                     var formData = $(this).serialize();
+
                     $.ajax({
                         type: 'POST',
                         url: 'GrammarCheck',
@@ -122,37 +121,72 @@
                             $('#loading').hide();
                             $('#loadingText').hide();
                             $('#btnCheck').show();
-                            // Lay ra correctText dung nhat
-                            var correctText = response[response.length - 1].correctText;
-                            var correct = "";
-                            response.forEach(function (resultCheck, index) {
-                                correct += '<div title = "' + resultCheck.message + '" class="suggest_list" data-index="' + index + '">' + resultCheck.errorText + ' ---> ' + resultCheck.listSuggests.join(', ') + '</div>';
-                            });
-                            if (response.length > 8) {
-                                $('#correct').html('<div class="suggest_list_container">' + correct + '</div>');
+
+                            if (!response || response.length === 0) {
+
+                                $('#correct').html('<div class="alert alert-success">No errors found.</div>');
+                                $('#results').html('');
                             } else {
-                                $('#correct').html(correct);
+                                var lastResponse = response[response.length - 1];
+                                if (lastResponse && lastResponse.correctText) {
+                                    var correctText = lastResponse.correctText;
+                                    var correct = "";
+                                    response.forEach(function (resultCheck, index) {
+                                        correct += '<div title="' + resultCheck.message + '" class="suggest_list" data-index="' + index + '">' + resultCheck.errorText + ' ---> ' + resultCheck.listSuggests.join(', ') + '</div>';
+                                    });
+                                    if (response.length > 8) {
+                                        $('#correct').html('<div class="suggest_list_container">' + correct + '</div>');
+                                    } else {
+                                        $('#correct').html(correct);
+                                    }
+
+                                    var resultHtml = "";
+                                    // Correct the text in the textarea
+                                    resultHtml += '<div class="form-check">';
+                                    resultHtml += '<div class="card-header bg-success text-white">After Error Correction</div>';
+                                    resultHtml += '<form id="myForm" action="GrammarCheck" method="post">';
+                                    resultHtml += '<textarea class="form_input" rows="20" cols="50" placeholder="This is where you get your answers" required>' + correctText + '</textarea>';
+                                    resultHtml += '</form>';
+                                    resultHtml += '</div>';
+                                    $('#results').html(resultHtml);
+                                } else {
+                                    console.error("Last response object does not have correctText property.");
+                                    $('#correct').html('<div class="alert alert-danger">Phản hồi không hợp lệ từ server.</div>');
+                                    $('#results').html('');
+                                }
                             }
-
-
-                            var resultHtml = "";
-                            // Correct the text in the textarea
-                            resultHtml += '<div class="form-check">';
-                            resultHtml += '<div class="card-header bg-success text-white">After Error Correction</div>';
-                            resultHtml += '<form id="myForm" action="GrammarCheck" method="post">';
-                            resultHtml += '<textarea class="form_input" rows="20" cols="50" placeholder="This is where you get your answers" required>' + correctText + '</textarea>';
-                            resultHtml += '</form>';
-                            resultHtml += '</div>';
-                            $('#results').html(resultHtml);
                         },
                         error: function (error) {
-                            console.log('Success response:', error);
+                            console.log('Error response:', error);
                             $('#loading').hide();
                             $('#results').text('Error occurred!');
                         }
                     });
                 });
+
+                $('#btnHistory').click(function () {
+                    $.ajax({
+                        type: 'GET',
+                        url: 'ViewHistory',
+                        success: function (response) {
+                            var historyHtml = '';
+                            response.forEach(function (record) {
+                                historyHtml += '<div class="history-record">';
+                                historyHtml += '<p><strong>Date:</strong> ' + record.checkDate + '</p>';
+                                historyHtml += '<p><strong>Original Text:</strong> ' + record.text + '</p>';
+                                historyHtml += '<p><strong>Result:</strong> ' + record.result + '</p>';
+                                historyHtml += '</div><hr class="history-divider">';
+                            });
+                            $('#historyContent').html(historyHtml);
+                            $('#history').show();
+                        },
+                        error: function (error) {
+                            console.log('Error fetching history:', error);
+                        }
+                    });
+                });
             });
+
         </script>
     </head>
     <body class="sub_page">
@@ -278,31 +312,6 @@
             <h3>History</h3>
             <div id="historyContent"></div>
         </div>
-        <script>
-            $(document).ready(function () {
-                $('#btnHistory').click(function () {
-                    $.ajax({
-                        type: 'GET',
-                        url: 'ViewHistory',
-                        success: function (response) {
-                            var historyHtml = '';
-                            response.forEach(function (record) {
-                                historyHtml += '<div class="history-record">';
-                                historyHtml += '<p><strong>Date:</strong> ' + record.checkDate + '</p>';
-                                historyHtml += '<p><strong>Original Text:</strong> ' + record.text + '</p>';
-                                historyHtml += '<p><strong>Result:</strong> ' + record.result + '</p>';
-                                historyHtml += '</div><hr class="history-divider">';
-                            });
-                            $('#historyContent').html(historyHtml);
-                            $('#history').show();
-                        },
-                        error: function (error) {
-                            console.log('Error fetching history:', error);
-                        }
-                    });
-                });
-            });
-        </script>
         <script src="scripts.js"></script>
         <jsp:include page="Footer.jsp"></jsp:include>
         <script src="js/jquery-3.4.1.min.js"></script>
