@@ -47,7 +47,6 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <%
-
                                     HttpSession currentSession = request.getSession();
                                     String username = (String) currentSession.getAttribute("username");
                                     String usernamegoogle = (String) currentSession.getAttribute("usernamegoogle");

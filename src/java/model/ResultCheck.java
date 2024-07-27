@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ResultCheck {
@@ -20,6 +21,10 @@ public class ResultCheck {
         this.listSuggests = listSuggests;
         this.message = message;
         this.errorText = errorText;
+    }
+
+    public ResultCheck(ArrayList<Object> arrayList, String no_errors_found, String string, String checkText) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     
