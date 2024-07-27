@@ -20,6 +20,12 @@
                     }
                 }
             </script>
+
+            <script>
+                function confirmDeletion() {
+                    return window.confirm("Are you sure you want to delete all advertisements?");
+                }
+            </script>
             <style>
                 body {
                     font-family: Arial, sans-serif;
@@ -145,6 +151,7 @@
                 td a.decline {
                     color: #dc3545;
                 }
+
                 .action-buttons {
                     display: flex;
                     justify-content: center;
@@ -165,6 +172,9 @@
                 .action-buttons a:hover {
                     background-color: #f0f0f0;
                 }
+
+
+
             </style>
         </head>
         <body>
@@ -185,7 +195,7 @@
                                     <option value="" disabled selected hidden>Select a type</option>
                                     <option value="1">Active</option>
                                     <option value="0">Not Active</option>
-                                    
+
                                 </select>
                                 <button type="submit">Filter status</button>
                             </form>
@@ -194,7 +204,7 @@
                             <form action="AddAdvertise.jsp" method="">
                                 <button type="submit">Add Advertisement</button>
                             </form>
-                            <form action="DeleteAllAdvertise" method="post">
+                            <form action="DeleteAllAdvertise" method="post" onsubmit="return confirmDeletion()">
                                 <button type="submit">Delete All Advertise</button>
                             </form>
                         </div>
@@ -252,9 +262,9 @@
                             </td>
                             <td>${c.userName}</td>
                             <td>${c.created_at}</td>
-                            <td class="action-buttons">
-                                <a href="#" onclick="doDelete('${c.adID}')">Delete</a>
-                                <a href="UpdateAdvertise?adID=${c.adID}" role="button">Update</a>
+                            <td class="d-flex">
+                                <a class="btn btn-danger" href="#" onclick="doDelete('${c.adID}')">Delete</a>
+                                <a class = "btn btn-primary" href="UpdateAdvertise?adID=${c.adID}" role="button">Update</a>
                             </td>
 
                         </tr>

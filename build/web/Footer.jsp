@@ -11,7 +11,7 @@
             <div class="col-md-4">
                 <div class="full">
                     <div class="logo_footer">
-                        <a href="#"><img width="210" src="images/logofixfinal.png" alt="img" /></a>
+                        <a href="home"><img width="210" src="images/logofixfinal.png" alt="img" /></a>
                     </div>
                     <div class="information_f">
                         <p><strong>ADDRESS:</strong> BE209 - BETA Building, FPTUniversity Campus, Hoa Lac High Tech Park Thach That District, Ha Noi city</p>
@@ -28,12 +28,9 @@
                                 <div class="widget_menu">
                                     <h3>Products</h3>
                                     <ul>
-                                        <li><a href="#">Checking grammar</a></li>
-                                        <li><a href="#">Blog</a></li>
-                                        <!--                                        <li><a href="#">Services</a></li>
-                                                                                <li><a href="#">Testimonial</a></li>
-                                                                                <li><a href="#">Blog</a></li>
-                                                                                <li><a href="#">Contact</a></li>-->
+                                        <li><a href="GrammarCheck.jsp">Checking grammar (Prime)</a></li>
+                                        <li><a href="SpellingCheck.jsp">Checking spelling</a></li>
+                                        <li><a href="blog">Blog</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -42,9 +39,6 @@
                                     <h3>Account</h3>
                                     <ul>
                                         <li><a href="#">Account</a></li>
-                                        <li><a href="#">Sign in</a></li>
-                                        <li><a href="#">Sign up</a></li>
-
                                     </ul>
                                 </div>
                             </div>
@@ -54,14 +48,13 @@
                         <div class="widget_menu">
                             <h3>Newsletter</h3>
                             <div class="information_f">
-                                <p>Subscribe by our newsletter and get update protidin.</p>
+                                <p>Subscribe by our newsletter and get update information.</p>
                             </div>
                             <div class="form_sub">
-                                <form>
+                                <form action="Contact.jsp">
                                     <fieldset>
                                         <div class="field">
-                                            <input type="email" placeholder="Enter Your Mail" name="email" />
-                                            <input type="submit" value="Subscribe" />
+                                            <input type="submit" value="Contact us" />
                                         </div>
                                     </fieldset>
                                 </form>

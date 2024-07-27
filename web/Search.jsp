@@ -23,7 +23,7 @@
             <header class="header_section">
                 <div class="container">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                        <a class="navbar-brand" href="LandingPage.jsp"><img width="300" src="images/logofixfinal.png" alt="#" /></a>
+                        <a class="navbar-brand" href="home"><img width="300" src="images/logofixfinal.png" alt="#" /></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class=""> </span>
                         </button>
@@ -34,8 +34,6 @@
                                 </li>
 
                                 <form class="form-inline">
-
-                                    <!--                        <input type="text" name="search"placeholder="Tìm kiếm">-->
                                     <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                                         <i class="fa fa-search" aria-hidden="true"></i>
                                     </button>
@@ -46,7 +44,7 @@
                 </div>
             </header>
             <div class="s004" style="background-image: url('images/img.jpg'); display: flex; align-items: center; justify-content: center;">
-                <form action="search" method="post" style="background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 10px;">
+                <form action="SearchPostServlet" method="post" style="background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 10px;">
                     <fieldset style="text-align: center;">
                         <legend style="margin-bottom: 18px; color: white;">WHAT POST ARE YOU LOOKING FOR?</legend>
                         <div class="inner-form">
