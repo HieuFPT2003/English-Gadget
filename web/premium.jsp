@@ -129,7 +129,7 @@
     <body>
         <header>
             <div class="logo">
-                <a href="LandingPage.jsp"><img  src="images/logofixfinal.png" alt="Logo"></a>
+                <a href="home"><img  src="images/logofixfinal.png" alt="Logo"></a>
 
             </div>
             <div class="text">

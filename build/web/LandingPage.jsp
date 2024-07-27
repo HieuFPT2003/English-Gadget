@@ -26,7 +26,7 @@
         <header class="header_section">
             <div class="container">
                 <nav class="navbar navbar-expand-lg custom_nav-container">
-                    <a class="navbar-brand" href="LandingPage.jsp"><img width="300" src="images/logofixfinal.png" alt="#" /></a>
+                    <a class="navbar-brand" href="home"><img width="300" src="images/logofixfinal.png" alt="#" /></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class=""> </span>
                     </button>
@@ -47,11 +47,12 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <%
-                                   HttpSession currentSession = request.getSession();
-                                   String username = (String) currentSession.getAttribute("username");
-                                   String usernamegoogle = (String) currentSession.getAttribute("usernamegoogle");
-                                   Integer userIdInteger = (Integer) currentSession.getAttribute("userID");
-                                   String userid = (userIdInteger != null) ? userIdInteger.toString() : null;
+
+                                    HttpSession currentSession = request.getSession();
+                                    String username = (String) currentSession.getAttribute("username");
+                                    String usernamegoogle = (String) currentSession.getAttribute("usernamegoogle");
+                                    Integer userIdInteger = (Integer) currentSession.getAttribute("userID");
+                                    String userid = (userIdInteger != null) ? userIdInteger.toString() : null;
 
                                    if (userid != null) {
                                        String displayUsername = (username != null) ? username : usernamegoogle;
@@ -90,11 +91,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="help">Help Center<span class="sr-only">(current)</span></a>
                             </li>
-                            <form class="form-inline" action="Search.jsp">
-                                <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </button>
-                            </form>
                         </ul>
                     </div>
                 </nav>

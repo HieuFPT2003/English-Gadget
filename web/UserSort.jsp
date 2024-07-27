@@ -141,7 +141,7 @@
         <input type="hidden" name="page" value="1" /> <!-- Reset to first page on sorting -->
         <input type="hidden" name="limit" value="${limit}" />
     </form>
-    <form class="form-group" action="LandingPage.jsp" method="get">
+    <form class="form-group" action="home" method="get">
         <button type="submit">Home</button>
     </form>
     <form class="form-group" action="userfeedback" method="get">
