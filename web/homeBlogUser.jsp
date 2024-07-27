@@ -158,12 +158,11 @@
                     <div class="alert alert-danger mt-3"  style="text-align: center">${logfa}</div>
                     <a class="btn btn-light" style="text-align: center" href="blog" role="button">Get back to Blog</a>
                 </c:if>
-                    
+
             </div>
             <c:forEach items="${listPost}" var="post"> 
                 <div class="post">
                     <div class="report" >
-
                         <i class="bi bi-flag-fill " type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
                         <ul class="dropdown-menu">
                             <form action="ReportPostServlet" method="post">
@@ -199,27 +198,16 @@
                                 <li><button type="submit" class="btn btn-danger">Send report</button></li>
                             </form>
                         </ul>
-
                     </div>
                     <div class="header-post">
-
-
                         <div class="post-user">
                             <i class="bi bi-person-circle avatar"></i>
                         </div>
-                        <div class="header-name">
-                            <div class="post-user-name">${post.customerName}</div>
-                            <div class="post-time">${post.formattedDatePosted}</div>
-                        </div>
-
-
                     </div>
-
                     <div class="body-post">
                         <p class="body-post__content">${post.postText}</p>
                     </div>
                 </div>
-
             </c:forEach>
         </section>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

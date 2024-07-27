@@ -369,7 +369,7 @@ public class PostDAO extends DBContext {
     }
 
     public boolean updatePost(int postID, String category, String postText) {
-        String sql = "UPDATE UserPost  SET category = ?, postText = ? WHERE postID = ?";
+        String sql = "UPDATE UserPost SET category = ?, postText = ?, edited = 1 WHERE postID = ?";
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql);
@@ -382,17 +382,24 @@ public class PostDAO extends DBContext {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
-    /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
-     */
-    /**
-     *
-     * @author Admin
-     */
     public List<Post> searchByBoth(String txtSearch) {
         String sql = "SELECT p.postID, p.userID, p.postText, p.datePosted, p.likeCount, p.status, "
                 + "p.dislikeCount, u.username AS customerName FROM UserPost p JOIN Users u ON p.userID = u.userID "
@@ -493,6 +500,7 @@ public class PostDAO extends DBContext {
         }
         return false;
     }
+
     public List<ReportPost> getAllReportedPost() {
         String sql = "select p.reportID, p.postID, p.userReport, u.username, up.postText, p.reportType,p.message,p.created_at\n"
                 + "from (PostReport p join Users u ON p.userID=u.userID) join UserPost up ON p.postID = up.postID";
@@ -601,6 +609,7 @@ public class PostDAO extends DBContext {
         }
         return reportPosts;
     }
+
     public List<ReportPost> sortReportPost(String type) {
         String sql = "select p.reportID, p.postID, p.userReport, u.username, up.postText, p.reportType,p.message,p.created_at\n"
                 + "from (PostReport p join Users u ON p.userID=u.userID) join UserPost up ON p.postID = up.postID\n"
@@ -630,6 +639,7 @@ public class PostDAO extends DBContext {
         }
         return reportPosts;
     }
+
     public boolean deleteEmotion(int postID) {
         String sql = "delete from Emotion\n"
                 + "where postID = ?";

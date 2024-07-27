@@ -127,7 +127,7 @@ public class MyBlog extends HttpServlet {
 
         // Validate post text
         if (postText == null || postText.trim().isEmpty()) {
-            request.setAttribute("post", postDAO.getPostByPostID(postID)); // Restore post data for re-display
+            request.setAttribute("post", postDAO.getPostByPostID(postID));
             request.setAttribute("errorMessage", "Post text cannot be empty.");
             request.getRequestDispatcher("/myblog").forward(request, response);
             return;

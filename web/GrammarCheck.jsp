@@ -162,7 +162,7 @@
                     <nav class="navbar navbar-expand-lg custom_nav-container">
                         <a class="navbar-brand" href="home"><img width="300" src="images/logofixfinal.png" alt="#" /></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class=""> </span>
+                            <span class=""></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav">
@@ -176,7 +176,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="GrammarCheck.jsp">Grammar Check (Prime)</a></li>
                                         <li><a href="SpellingCheck.jsp">Spelling Check</a></li>
-                                        <li><a href="blog">Blog</a></li>
+                                        <li><a href="blog">Community</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
