@@ -106,7 +106,7 @@ public class payment extends HttpServlet {
                     
                     Payments payments = paymentsDAO.getUsersById(userID);
                     request.setAttribute("payments", payments);
-                    
+                    //sout
                     System.out.println(payments);
                     // Chuyển hướng đến trang paymentPending.jsp và gửi các thông tin cần thiết
                     request.setAttribute("randomCode", randomCode);

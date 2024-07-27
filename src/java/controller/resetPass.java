@@ -87,6 +87,8 @@ public class resetPass extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             System.out.println("Passwords match: false");
+            request.setAttribute("mess", "New password not match with Comfirm passowrd");
+            request.getRequestDispatcher("changepassword.jsp").forward(request, response);
         }
        
 
