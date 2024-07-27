@@ -159,7 +159,7 @@
                         <li><a class="dropdown-item" class="navLink" href="userprofile?userID=${sessionScope.userID}">Profile</a></li>
                         <li><a class="dropdown-item" href="myblog">My Blog</a></li>
                         <li><a class="dropdown-item" href="feedback.jsp">Send Feedback</a></li>
-                        <li><a class="dropdown-item" href="LandingPage.jsp">Log Out</a></li>
+                        <li><a class="dropdown-item" href="home">Log Out</a></li>
                     </ul>
                 </div>
             </div>

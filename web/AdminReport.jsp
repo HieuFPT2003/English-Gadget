@@ -239,12 +239,12 @@
                             <td>${c.create_at}</td>
                             <td class="center">
 
-                                <a href ="#" onclick = "doApprove('${c.postID}')" >
+                                <a class = "btn btn-primary" href ="#" onclick = "doApprove('${c.postID}')" >
                                     Approve
 
                                 </a>                        
                                    
-                                <a href ="#" onclick = "doReject('${c.postID}')">
+                                <a class="btn btn-danger" href ="#" onclick = "doReject('${c.postID}')">
                                     Reject
                                 </a>
                             </td>
