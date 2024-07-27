@@ -5,6 +5,7 @@
 package controller;
 
 import dal.PaymentDAO;
+import dal.UsersDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Payments;
+import model.Users;
 
 /**
  *
@@ -60,16 +62,26 @@ public class searchPremium extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          String searchContent = request.getParameter("searchContent");
+       String searchContent = request.getParameter("searchContent");
         PaymentDAO pay = new PaymentDAO();
+        UsersDAO usersDAO = new UsersDAO();
         System.out.println(searchContent);
         List<Payments> payments = pay.searchPaymentsByContent(searchContent);
+
+        for (Payments payment : payments) {
+             Users user = usersDAO.getUsersById(payment.getUserId());
+             System.out.println(user.toString());
+             boolean isPremium = user.isPremiumID();
+             request.setAttribute("status", isPremium);
+             System.out.println(user.isPremiumID());
+             payment.setStatus(isPremium);
+          }
 
         request.setAttribute("payments", payments);
         
         // Forward to the JSP page to display the results
         request.getRequestDispatcher("AdminListOfPre.jsp").forward(request, response);
-         
+       
     }
 
     /**

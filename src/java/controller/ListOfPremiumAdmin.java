@@ -76,15 +76,15 @@ public class ListOfPremiumAdmin extends HttpServlet {
              boolean isPremium = user.isPremiumID();
              request.setAttribute("status", isPremium);
              System.out.println(user.isPremiumID());
-              payment.setStatus(isPremium);
+             payment.setStatus(isPremium);
           }
         System.out.println();
-
+//
         System.out.println(payments);
 
         request.setAttribute("payments", payments);
         
-               request.getRequestDispatcher("AdminListOfPre.jsp").forward(request, response);
+        request.getRequestDispatcher("AdminListOfPre.jsp").forward(request, response);
        
     }
 

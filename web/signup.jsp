@@ -22,11 +22,7 @@
             <div class="form-container sign-in-container">
                 <form action="signup" method="post" style="padding: 18px 50px">
                     <h2>Create Account</h2>
-                    <div class="social-container">
-                        <a href="#" class="social"><i class="fa-brands fa-facebook"></i></i></a>
-                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                    
                     <span>or use your email for registration</span>
 
                     <%

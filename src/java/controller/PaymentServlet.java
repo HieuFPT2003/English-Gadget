@@ -74,6 +74,7 @@ public class PaymentServlet extends HttpServlet {
              request.setAttribute("status", user.isPremiumID());
              System.out.println(payment.getUserId());            
           }
+        //
         System.out.println();
 
         System.out.println(payments);

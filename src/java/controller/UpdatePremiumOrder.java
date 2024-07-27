@@ -71,7 +71,7 @@ public class UpdatePremiumOrder extends HttpServlet {
                 return;
             }
         }
-        response.sendRedirect("list");
+        response.sendRedirect("ListOfPremium");
     }
 
     /**
@@ -85,7 +85,7 @@ public class UpdatePremiumOrder extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       try {
+      try {
             int userID = Integer.parseInt(request.getParameter("userID"));
             String username = request.getParameter("username");
             String email = request.getParameter("email");
@@ -97,7 +97,7 @@ public class UpdatePremiumOrder extends HttpServlet {
 
             UsersDAO usersDAO = new UsersDAO();
             Users user = usersDAO.getUsersById(userID);
-            
+            //update premium 
             if (user != null) {
                 user.setUsername(username);
                 user.setEmail(email);
@@ -111,19 +111,15 @@ public class UpdatePremiumOrder extends HttpServlet {
                     
                 }
                 usersDAO.update(user);
-                   
                 
-                if (premiumID) {
-                    mailsent mail = new mailsent();
-                    mail.mailsent(email, username);
-                }
-                
+                  mailsent mail = new mailsent();
+                  mail.mailsent(email, username);
+              
             }
             response.sendRedirect("ListOfPremium");
         } catch (NumberFormatException e) {
             response.sendRedirect("updateOrder?userID=" + request.getParameter("userID"));
         }
-    
     }
 
     /**
