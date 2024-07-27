@@ -108,7 +108,7 @@
                             <td>
                                 <c:choose>
                                     <c:when test="${payment.status}">
-                                        <span style="color:green" class="status-active">Active</span>
+                                        <span style="color:green" class="status-active">Approved</span>
                                     </c:when>
                                     <c:otherwise>
                                         <span style="color:red" class="status-pending">Pending</span>

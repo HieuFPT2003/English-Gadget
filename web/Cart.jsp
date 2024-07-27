@@ -84,7 +84,7 @@
             </a> 
         </header>
         <div class="container">
-            <h1 style="text-align:center">Payment Pending</h1>
+            <h1 style="text-align:center">View History Payment</h1>
 
             <c:if test="${not empty payments}">
                 <table>

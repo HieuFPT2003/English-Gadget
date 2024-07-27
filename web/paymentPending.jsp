@@ -82,10 +82,11 @@
         <header>
             <a style="float: left;text-decoration: none" href="LandingPage.jsp" >
                 <img style="height: 33px;margin-top: -14px" src="images/logofixfinal.png" alt=""/>
+                <a href="PaymentServlet" style="float: right;color: black">Show Order</a>
             </a> 
         </header>
         <div class="container">
-            <h1 style="text-align:center">Payment</h1>
+            <h1 style="text-align:center">Payment Pending</h1>
 
             <c:if test="${not empty users}">
                 <table>
@@ -102,7 +103,7 @@
                         <td>
                             <c:choose>
                                 <c:when test="${users.premiumID}">
-                                    <span style="color:green" class="status-active">Active</span>
+                                    <span style="color:green" class="status-active">Approved</span>
                                 </c:when>
                                 <c:otherwise>
                                     <span style="color:red" class="status-pending">Pending</span>

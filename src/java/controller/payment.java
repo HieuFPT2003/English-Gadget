@@ -123,7 +123,7 @@ public class payment extends HttpServlet {
             request.setAttribute("errorMessage", "User ID is required");
         }
         request.getRequestDispatcher("paymentPending.jsp").forward(request, response);
-    
+         
     }
 
     /**

@@ -75,52 +75,98 @@ public class Signup extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String phone = request.getParameter("phone");
-        String address = request.getParameter("address");
-        String ageStr = request.getParameter("age");
+         String username = request.getParameter("username");
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+    String phone = request.getParameter("phone");
+    String address = request.getParameter("address");
+    String ageStr = request.getParameter("age");
 
-        if (email.isEmpty() || password.isEmpty() || username.isEmpty()) {
-            request.setAttribute("mess", "The fields can't be empty");
-            request.getRequestDispatcher("signup.jsp").forward(request, response);
-            return;
-        }
+    if (email.isEmpty() || password.isEmpty() || username.isEmpty()) {
+        request.setAttribute("mess", "The fields can't be empty");
+        request.getRequestDispatcher("signup.jsp").forward(request, response);
+        return;
+    }
 
-        int age = 0;
-        try {
-            age = Integer.parseInt(ageStr);
-        } catch (NumberFormatException e) {
-            request.setAttribute("mess", "Invalid age");
-            request.getRequestDispatcher("signup.jsp").forward(request, response);
-            return;
-        }
+    if (username.length() <= 6) {
+        HttpSession session = request.getSession();
+        session.setAttribute("email", email);
+        session.setAttribute("username", username);
+        session.setAttribute("password", password);
+        session.setAttribute("phone", phone);
+        session.setAttribute("address", address);
+        session.setAttribute("age", ageStr);
+        request.setAttribute("mess", "Username must be longer than 6 characters");
+        request.getRequestDispatcher("signup.jsp").forward(request, response);
+        return;
+    }
 
-        LoginDao dao = new LoginDao();
-        Users existingUser = dao.checkAccountExist(username);
+    int age = 0;
+    try {
+        age = Integer.parseInt(ageStr);
+    } catch (NumberFormatException e) {
+        request.setAttribute("mess", "Invalid age");
+        request.getRequestDispatcher("signup.jsp").forward(request, response);
+        return;
+    }
 
-        if (existingUser == null) {
-           Users newUser = new Users();
+    if (age <= 10) {
+        HttpSession session = request.getSession();
+        session.setAttribute("email", email);
+        session.setAttribute("username", username);
+        session.setAttribute("password", password);
+        session.setAttribute("phone", phone);
+        session.setAttribute("address", address);
+        session.setAttribute("age", ageStr);
+        request.setAttribute("mess", "Age must be greater than 10");
+        request.getRequestDispatcher("signup.jsp").forward(request, response);
+        return;
+    }
+
+    LoginDao dao = new LoginDao();
+    Users existingUser = dao.checkAccountExist(username);
+    Users emailExist = dao.checkEmailExist(email);
+
+    if (existingUser != null) {
+        HttpSession session = request.getSession();
+        session.setAttribute("email", email);
+        session.setAttribute("username", username);
+        session.setAttribute("password", password);
+        session.setAttribute("phone", phone);
+        session.setAttribute("address", address);
+        session.setAttribute("age", ageStr);
+        request.setAttribute("mess", "Username already exists");
+        request.getRequestDispatcher("signup.jsp").forward(request, response);
+    } else if (emailExist != null) {
+        HttpSession session = request.getSession();
+        session.setAttribute("email", email);
+        session.setAttribute("username", username);
+        session.setAttribute("password", password);
+        session.setAttribute("phone", phone);
+        session.setAttribute("address", address);
+        session.setAttribute("age", ageStr);
+        request.setAttribute("mess", "Email already exists");
+        request.getRequestDispatcher("signup.jsp").forward(request, response);
+    } else {
+        Users newUser = new Users();
         newUser.setUsername(username);
         newUser.setEmail(email);
         newUser.setPassword(password);
         newUser.setPhone(phone);
         newUser.setAddress(address);
         newUser.setAge(age);
-            
 
-            dao.signup(newUser);
-            
-            HttpSession session = request.getSession();
-            session.setAttribute("email", email);
-            session.setAttribute("username", username);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        } else {
-            request.setAttribute("mess", "Account already exists");
-            request.getRequestDispatcher("signup.jsp").forward(request, response);
-        }
+        dao.signup(newUser);
 
+        HttpSession session = request.getSession();
+        session.setAttribute("email", email);
+        session.setAttribute("username", username);
+        session.setAttribute("password", password);
+        session.setAttribute("phone", phone);
+        session.setAttribute("address", address);
+        session.setAttribute("age", ageStr);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
     }
 
     /**

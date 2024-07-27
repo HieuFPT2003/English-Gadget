@@ -6,12 +6,14 @@
         <jsp:include page="Header.jsp"></jsp:include>
         <script>
             var userID = "<%= session.getAttribute("userID") != null ? session.getAttribute("userID") : "null" %>";
+            var name = "<%= session.getAttribute("usernamegoogle") != null ? session.getAttribute("usernamegoogle") : "null" %>";
             var premium = "<%= session.getAttribute("premium") != null ? session.getAttribute("premium") : "null" %>";
             var role = "<%= session.getAttribute("role") != null ? session.getAttribute("role") : "null" %>";
 
             console.log("User ID: " + userID);
             console.log("Premium: " + premium);
             console.log("Role: " + role);
+            console.log("name " + name);
 
             // Redirect to AdminLandingPage.jsp if role is true
             if (role === "true") {
@@ -59,7 +61,7 @@
                                         <span class="nav-label">Profile <span class="caret"></span></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="profile.jsp">Account detail: <%= displayUsername %></a></li>
+                                        <li><a href="userprofile">Account detail: <%= displayUsername %></a></li>
                                         <li><a href="premium.jsp">Premium</a></li>
                                         <li><a href="logout">Logout</a></li>
                                     </ul>

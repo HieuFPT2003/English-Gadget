@@ -71,7 +71,7 @@ public class UpdatePremiumOrder extends HttpServlet {
                 return;
             }
         }
-        response.sendRedirect("list");
+        response.sendRedirect("ListOfPremium");
     }
 
     /**
@@ -97,7 +97,7 @@ public class UpdatePremiumOrder extends HttpServlet {
 
             UsersDAO usersDAO = new UsersDAO();
             Users user = usersDAO.getUsersById(userID);
-            
+            //update premium 
             if (user != null) {
                 user.setUsername(username);
                 user.setEmail(email);
@@ -113,7 +113,7 @@ public class UpdatePremiumOrder extends HttpServlet {
                 usersDAO.update(user);
                   mailsent mail = new mailsent();
                     mail.mailsent(email, username);
-                
+              
             }
             response.sendRedirect("ListOfPremium");
         } catch (NumberFormatException e) {

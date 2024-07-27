@@ -84,7 +84,7 @@ public class ListOfPremiumAdmin extends HttpServlet {
 
         request.setAttribute("payments", payments);
         
-               request.getRequestDispatcher("AdminListOfPre.jsp").forward(request, response);
+        request.getRequestDispatcher("AdminListOfPre.jsp").forward(request, response);
        
     }
 

@@ -91,7 +91,7 @@
                 <option value="0" ${!user.premiumID ? 'selected' : ''}>No</option>
             </select>
 
-            <input type="submit" value="Update User" />
+            <input type="submit" value="Upgrade User" />
         </form>
         <jsp:include page="Footer.jsp"></jsp:include>
 
